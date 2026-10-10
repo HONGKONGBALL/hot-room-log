@@ -24,7 +24,7 @@ Optional environment variables:
 | `PORT` | `5050` | Port used by `python app.py` |
 | `HOST` | `127.0.0.1` | Bind address. The app is local-only unless you change this |
 | `HOTROOM_DB` | `instance/hotroom.db` | SQLite file path |
-| `HOTROOM_READONLY` | unset | Set to `1` for a read-only demo (view, calculate, and export still work) |
+| `HOTROOM_READONLY` | unset | Set to `1` for a read-only demo (view, calculate, and export still work). Use this for any public link |
 | `SECRET_KEY` | random at each start | Signs the cookie used for one-line confirmation messages |
 
 ## Features
@@ -32,7 +32,7 @@ Optional environment variables:
 - Hand-logged temperature and humidity for each room, with validation and duplicate room names rejected
 - Humidex, dew point, humidity effect, and a comfort band on every reading
 - Inline SVG chart and a readings table
-- Printable evidence sheet with an editable letter, copy, and print
+- Printable evidence sheet with an editable letter, copy, and print. Editing the letter updates what is printed, including the browser's own print command
 - Calculator that shows the working for one or two conditions
 - CSV export and import, including round-trip of an export file
 - Reset back to the labelled sample data
@@ -40,6 +40,8 @@ Optional environment variables:
 - JSON API for readings (`GET /api/humidex`, `GET /api/rooms`, `GET /api/rooms/<id>/readings`, `POST /api/rooms/<id>/readings`)
 
 All rooms and readings in the demo are fictional sample data.
+
+A public or shared demo must be started with `HOTROOM_READONLY=1`. Visitors can still calculate, read the charts, open an evidence sheet, and export CSV. Adding, deleting, importing, and resetting are turned off. The app binds to `127.0.0.1` unless `HOST` is changed. There is no CSRF token; read-only mode is the safe way to put it on a network.
 
 ## Screenshots
 
@@ -62,6 +64,8 @@ Calculator comparing a dry 35 °C at 40 % with a humid 30 °C at 85 %, with the 
 CSV import results:
 
 ![Import results](screenshots/import-results.png)
+
+A 1920×1080 demo, `hot-room-log-demo-v2.mp4`, was recorded from the running app for the submission. It is about 2 minutes 32 seconds, with English title cards and subtitles, and it is not part of this repository.
 
 ## Formulas
 
@@ -90,6 +94,10 @@ The humidex definition `T + 0.5555 × (e − 10)` is the Canadian humidex (Maste
 ## Honesty
 
 The sample rooms and readings are fictional. They are not measurements of any real room. Hot Room Log is not deployed at, endorsed by, or used by any school, estate, or organisation. This is a solo project by Zhenhua Liu for STEMergent Hacks 2026, Hackathon pathway. Export a CSV if you want a copy of your own readings before using Reset demo data.
+
+## Submission draft
+
+Paste-ready Devpost text, with the AI disclosure filled in for the tools used on this build, is in [docs/devpost.md](docs/devpost.md). Do not submit before the Devpost form is open. "Challenges" and "What I learned" are left for Zhenhua to write from the build.
 
 ## Licence
 

@@ -5,7 +5,7 @@
 <section id="latest" class="tone-{{ summary.latest.band_key }}">
   <p class="humidex-big">{{ summary.latest.humidex_text }}</p>
   <p><span class="band band-{{ summary.latest.band_key }}">{{ summary.latest.band }}</span></p>
-  <p>Air {{ summary.latest.temp_text }} °C · Humidity {{ summary.latest.rh_text }} % · Dew point {{ summary.latest.dew_text }} °C · Humidity adds {{ summary.latest.effect_text }}</p>
+  <p class="facts"><span>Air {{ summary.latest.temp_text }} °C</span><span>Humidity {{ summary.latest.rh_text }} %</span><span>Dew point {{ summary.latest.dew_text }} °C</span><span>Humidity adds {{ summary.latest.effect_text }}</span></p>
   <p>Taken {{ summary.latest.taken_at }}</p>
 </section>
 <ul id="stats">
@@ -61,7 +61,7 @@
   <a href="/rooms/{{ room.id }}/export.csv">Export this room (CSV)</a>
   {% if not config.READONLY %}
   <form method="post" action="/rooms/{{ room.id }}/delete" data-confirm="Delete this room and all its readings?">
-    <button type="submit">Delete room</button>
+    <button type="submit" class="danger">Delete room</button>
   </form>
   {% endif %}
 </div>

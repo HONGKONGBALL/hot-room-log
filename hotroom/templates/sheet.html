@@ -19,11 +19,11 @@
 {% include "_readings.html" %}
 <section class="method">
   <h2>How these numbers were calculated</h2>
-  <p>es = 6.105 × exp(17.27 × T ÷ (237.7 + T))</p>
-  <p>e = RH ÷ 100 × es</p>
-  <p>humidex = T + 0.5555 × (e − 10)</p>
-  <p>gamma = ln(RH ÷ 100) + 17.27 × T ÷ (237.7 + T)</p>
-  <p>dew point = 237.7 × gamma ÷ (17.27 − gamma)</p>
+  <p class="formula">es = 6.105 × exp(17.27 × T ÷ (237.7 + T))</p>
+  <p class="formula">e = RH ÷ 100 × es</p>
+  <p class="formula">humidex = T + 0.5555 × (e − 10)</p>
+  <p class="formula">gamma = ln(RH ÷ 100) + 17.27 × T ÷ (237.7 + T)</p>
+  <p class="formula">dew point = 237.7 × gamma ÷ (17.27 − gamma)</p>
   <p>Comfortable is below 30. Some discomfort is 30 to 39.9. Great discomfort is 40 to 45. Dangerous is above 45.</p>
   <p>Humidex and dew point are rounded half away from zero to one decimal place. The humidity effect is the humidex minus the air temperature, also to one decimal place.</p>
   <p>Readings were typed in by hand; accuracy depends on the instrument used.</p>

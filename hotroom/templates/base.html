@@ -7,16 +7,17 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+  <a class="skip" href="#content">Skip to content</a>
   <header>
     <a class="brand" href="/">Hot Room Log</a>
     <nav>
-      <a href="/">Rooms</a>
-      <a href="/calc">Calculator</a>
-      <a href="/import">Import</a>
-      <a href="/about">About</a>
+      <a href="/" {% if request.path == '/' or request.path.startswith('/rooms') %}aria-current="page"{% endif %}>Rooms</a>
+      <a href="/calc" {% if request.path == '/calc' %}aria-current="page"{% endif %}>Calculator</a>
+      <a href="/import" {% if request.path == '/import' %}aria-current="page"{% endif %}>Import</a>
+      <a href="/about" {% if request.path == '/about' %}aria-current="page"{% endif %}>About</a>
     </nav>
   </header>
-  <main>
+  <main id="content">
     {% if config.READONLY %}
     <p class="banner-readonly">Read-only demo: changes are turned off. Run the app on your own computer to add readings.</p>
     {% endif %}

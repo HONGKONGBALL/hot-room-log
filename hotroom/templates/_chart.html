@@ -17,8 +17,8 @@
     <title>{{ point.taken_at }} · humidex {{ point.humidex }} · {{ point.band }}</title>
   </circle>
   {% endfor %}
-  <text class="time-label" x="{{ chart.first_x }}" y="252" text-anchor="{% if chart.first_time == chart.last_time %}middle{% else %}start{% endif %}">{{ chart.first_time }}</text>
+  <text class="time-label" x="{{ chart.first_x }}" y="264" text-anchor="{% if chart.first_time == chart.last_time %}middle{% else %}start{% endif %}">{{ chart.first_time }}</text>
   {% if chart.first_time != chart.last_time %}
-  <text class="time-label" x="{{ chart.last_x }}" y="252" text-anchor="end">{{ chart.last_time }}</text>
+  <text class="time-label" x="{{ chart.last_x }}" y="264" text-anchor="end">{{ chart.last_time }}</text>
   {% endif %}
 </svg>

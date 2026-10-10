@@ -27,7 +27,7 @@
         {% if show_delete %}
         <td>
           <form method="post" action="/readings/{{ reading.id }}/delete" data-confirm="Delete this reading?">
-            <button type="submit" aria-label="Delete reading from {{ reading.taken_at }}">Delete</button>
+            <button type="submit" class="danger" aria-label="Delete reading from {{ reading.taken_at }}">Delete</button>
           </form>
         </td>
         {% endif %}

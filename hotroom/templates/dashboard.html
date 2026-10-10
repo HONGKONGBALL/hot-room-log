@@ -43,7 +43,7 @@
   <a href="/import">Import CSV</a>
   {% if not config.READONLY %}
   <form method="post" action="/reset" data-confirm="Replace all rooms and readings with the sample data?">
-    <button type="submit">Reset demo data</button>
+    <button type="submit" class="danger">Reset demo data</button>
   </form>
   {% endif %}
 </div>

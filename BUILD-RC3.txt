@@ -1,0 +1,179 @@
+Hot Room Log — candidate rc3
+Date: 2026-10-10
+Branch: rc3-work
+Parent: 3ed79d9 (Candidate rc2: sync letter textarea to print target on beforeprint and input)
+Worktree: /workspace/hot-room-log-rc3
+Not pushed.
+
+Start command:
+  python -m venv .venv
+  source .venv/bin/activate
+  pip install -r requirements.txt
+  python app.py
+
+URL: http://127.0.0.1:5050
+Port: 5050
+Login: none
+
+What changed in rc3 (on top of the rc2 print sync):
+  hotroom/static/style.css
+    System font stack (no web fonts). Content width min(72rem, calc(100% - 1.5rem)).
+    Skip link, current-nav underline, two-column nav at 420px and below.
+    Band chips keep their prd §4.2 fills and gain a dark inset ring so the chip
+    stays visible on a card of the same colour.
+    Room facts stack under 640px without a dangling middot. Wide layout still uses " · ".
+    Secondary buttons, danger outline, compare callout, monospace formulas.
+    Stats and sheet summary go to two columns from 720px.
+    Chart tooltip is a fixed dark label. Readings table scrolls inside its box,
+    with an edge shadow while more columns are off-screen.
+    Letter editor and the printed letter use a serif face. Print hides the skip
+    link and the chart tooltip.
+  hotroom/static/app.js
+    Chart text, point size, and stroke width are fitted to the rendered SVG so
+    labels stay readable on a phone. Y-axis labels shrink until neighbouring
+    boxes have at least a 3px gap (floor 8px). Table scroll shadows update on
+    scroll. Hovering or focusing a point shows its title in the tooltip.
+    The rc2 print sync is unchanged: textarea input, beforeprint, and the
+    Print button all copy #letter into #letter-print.
+  Templates
+    Skip link targets #content. One main. Nav sets aria-current.
+    Latest facts are four spans. Delete and Reset use class="danger".
+    Chart time labels sit lower (y=264) so they stay inside the SVG.
+    Formula paragraphs use class="formula". Sheet h1 text is unchanged.
+  README.md, docs/devpost.md, screenshots/*.png
+    Screenshots retaken from the polished UI and cropped. Devpost draft is
+    paste-ready. Challenges and What I learned are left blank for Zhenhua.
+    No product formula, API, or sample-data change.
+
+Demo video (not in this repository):
+  /workspace/demo/hot-room-log-demo-v2.mp4
+  sha256 1ee934f91b6dcfdd42e2d657f0415013382085b5853ef86d79bb0281c8b19ddd
+  ffprobe: h264 1920x1080, 30 fps, aac stereo 48000 Hz, duration 152.067 s
+  (2 min 32 s, inside the 2–4 minute window).
+  Playwright + system Chrome, headless, viewport and record size 1920x1080.
+  No terminal and no address bar. Title card and end card are drawn frames.
+  English subtitles are burned in (DejaVu Sans). Two print stills come from
+  the PDF produced by Chrome Page.printToPDF during the same recording, after
+  the letter was edited to "Dear Room manager,".
+  Review frames: /workspace/demo/hot-room-log-v2-frames/
+    01-title.jpg, 02-dashboard.jpg, 03-room-tooltip.jpg,
+    04-library-card.jpg, 05-print-letter.jpg, 06-end.jpg
+  Checked by eye: sample banner, 47.6 / 35.0 / 28.2, tooltip
+  "2026-09-16 15:00 · humidex 47.6 · Dangerous", library card 45.1 Dangerous,
+  compare sentence on screen, printed letter "Dear Room manager,", no chrome.
+  Recording DB was /tmp/hrl-rc3/demo.db (not committed).
+
+Acceptance against /workspace/pipeline/stemergent/qa.md
+
+Passed: 1–136, 138
+Not a product failure: 137
+Not run, form not open: 139–146
+Failed: none
+
+A. Formulas and bands (1–20) — PASS
+B. Sample JSON (21–27) — PASS
+C. JSON writes (28–37) — PASS
+D. Dashboard HTML (38–41) — PASS
+E. Rooms create / validate / delete (42–51) — PASS
+F. Room page (52–60) — PASS
+G. Add a reading (61–71) — PASS
+H. Delete a reading (72–73) — PASS
+I. Evidence sheet and letter (74–83) — PASS
+J. Calculator (84–91) — PASS
+K. CSV export (92–97) — PASS
+L. CSV import (98–109) — PASS
+M. Reset (110–111) — PASS
+N. Read-only mode (112–116) — PASS
+O. Pages, static, security, accessibility (117–123) — PASS
+  Evidence: `cd /workspace/hot-room-log-rc3 && .venv/bin/python -m pytest -q`
+  → 110 passed in 1.05s on 2026-10-10, after the rc3 CSS, JS, and template edits.
+  Case 128 is this same pytest run.
+
+P. Real server over HTTP (clean copy /tmp/hrl-http, rc3 tree, no instance db at start)
+  124 PASS. Flask log: Running on http://127.0.0.1:5050. GET / 200, GET /api/rooms 200.
+      Log: /tmp/hrl-rc3/http-5050.log
+  125 PASS. POST /rooms 302 in that same log. After restart, GET / and GET /api/rooms
+      are 200 (/tmp/hrl-rc3/http-5050b.log). The checker asserted the body still
+      contained "Curl Room" before it stopped the server.
+  126 PASS. /static/style.css 200, /nope 404, /export.csv 200 (http-5050b.log).
+  127 PASS. PORT=5051 GET / 200 (/tmp/hrl-rc3/http-5051.log). HOTROOM_READONLY=1
+      POST /reset 403 (/tmp/hrl-rc3/http-ro.log). Flask printed 127.0.0.1:5050.
+      The shell script then exited 1: `ss` output is
+      "127.0.0.1:5050  0.0.0.0:*" and the awk matched the peer wildcard 0.0.0.0,
+      not a bind address. The process was bound to 127.0.0.1 only.
+  128 PASS. pytest, above.
+
+Q. Browser (headless Chrome 154, Playwright, app on 127.0.0.1)
+  129 PASS. Dashboard at 1280: cards 47.6 Dangerous (red #ffd6d6), 35.0 Some discomfort
+      (yellow #fff3bf), 28.2 Comfortable (green #d3f9d8). Sample banner visible.
+      screenshots/dashboard.png and the demo frame 02-dashboard.jpg.
+  130 PASS. Room 1 chart hover shows "2026-09-16 15:00 · humidex 47.6 · Dangerous".
+      Demo frame 03-room-tooltip.jpg. Six points, last one in the red strip.
+  131 PASS. Replacing [recipient] with Room manager, then Copy letter, shows "Copied"
+      and returns to "Copy letter" after about 2 seconds. Clipboard text starts
+      with "Dear Room manager,". /tmp/hrl-rc3/qa-flows.json "copied" / "clipboard".
+  132 PASS. After the same edit, Chrome Page.printToPDF is 2 A4 pages
+      (595.92 x 841.92 pts). Text contains "Dear Room manager," once, not
+      "[recipient]". Navigation, Copy, and Print are absent. Chart, 47.6, and
+      "Fan on, windows open" are present.
+      This session, same pipeline during the demo recording:
+      /tmp/hrl-rc3/video/sheet.pdf (pdfinfo Pages: 2, A4; pdftotext).
+      The Print button calls syncLetterForPrint() then window.print().
+      beforeprint and the input listener also sync. qa-flows "native print sync"
+      ok true, beforeprint count 1, stale marker absent.
+      Headless Chrome does not open a print dialog and does not fire beforeprint
+      for a Ctrl+P key event. That shortcut is a browser UI accelerator.
+      Typing in the textarea already updates #letter-print, so a later real print
+      (print preview, window.print, or the Print button) uses the latest edit.
+  133 PASS. Delete reading, Delete room, and Reset each open the exact confirm
+      string. Dismissing leaves the reading, the room, and the extra room in place.
+  134 PASS with JavaScript disabled: add room, add reading, calculator
+      data-humidex 44.4, and reset back to 3 cards all work. Copy stays
+      "Copy letter". The noscript PDF is the original letter with [recipient],
+      2 A4 pages. Two qa-flows checks ("pdf edited 2 pages" and
+      "noscript print 2 pages") were marked false only because the script
+      compared "Pages: 2" with pdfinfo's "Pages:           2". The PDFs are
+      2 pages. 42 of 44 script flags were true; those two are the assertion.
+  135 PASS at 320, 1024, and 1440. No page-level horizontal scroll. The readings
+      table scrolls inside .table-scroll. Forms accept input. One h1, one main.
+      Checked again in the 1920x1080 recording (content column stays centred).
+  136 PASS. Skip link first. Tab order on the dashboard, room, sheet, and
+      calculator is logical. Focus outline is 3px (header links #ffe08a,
+      other controls #0b57d0). Enter submits the add-room form.
+  137 Not run as a physical disconnect. No network was unplugged. Every request
+      logged during the browser pass went to 127.0.0.1:5050. HTML has no
+      external script, style, image, or iframe (case 118). Treat as satisfied
+      by inspection, not by an unplugged-cable test.
+  138 PASS. 200% was checked as CSS zoom 2 on a 1440 viewport and as 720 / 640
+      viewports. Headings were not clipped.
+
+R. Submission checks (Zhenhua) — NOT RUN
+  139–146. Today is 2026-10-10. The planned Devpost window opens Oct 30,
+  11:00 pm CDT (Oct 31, 12:00 noon HKT) and ends Nov 15, 2026. Nothing was
+  submitted. docs/devpost.md is a paste-ready draft. Challenges and
+  What I learned are intentionally empty so they are not written as if
+  Zhenhua wrote them. Prototype link is blank. Re-check the live form on the day.
+
+Browser evidence paths (this machine, not in git):
+  /tmp/hrl-rc3/qa-flows.json
+  /tmp/hrl-rc3/qa-shots/  (includes chart-320, dashboard, room, sheet, calc, import)
+  /tmp/hrl-rc3/probe-ui.json
+  /tmp/hrl-rc3/video/sheet.pdf
+  /tmp/hrl-rc3/http-5050.log, http-5050b.log, http-5051.log, http-ro.log
+
+Known limits (not counted as failed cases):
+  Headless Ctrl+P does not fire beforeprint. Real print does. See case 132.
+  At 320px the room-1 y labels "45" and "40" are about 10px tall and 4px apart.
+  They are separate boxes and inside the SVG. The axis span is fixed by the
+  product rules (20–55), so those two marks stay close on a short chart.
+  Calculator and import pages do not show the sample banner. The banner is for
+  pages that are showing sample rooms.
+  The import-results page is a short list on a tall viewport. The screenshot
+  is cropped to the list.
+  A very deep JSON body can still raise RecursionError (noted in the rc1 review).
+  Not changed in rc3.
+  Room 1 prints on 2 A4 pages, which is the allowed maximum.
+  There is no CSRF token. A public link must use HOTROOM_READONLY=1. The app
+  binds to 127.0.0.1 unless HOST is set. README states this.
+  Bottom subtitles in the demo can cover the last lines of a long page
+  (About limits). The numbers, the letter, and the room cards stay clear.

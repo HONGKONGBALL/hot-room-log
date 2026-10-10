@@ -11,11 +11,11 @@
 <section>
   <h2>How the numbers work</h2>
   <p>T is the air temperature in °C. RH is the relative humidity in %.</p>
-  <p>es = 6.105 × exp(17.27 × T ÷ (237.7 + T))</p>
-  <p>e = RH ÷ 100 × es</p>
-  <p>humidex = T + 0.5555 × (e − 10)</p>
-  <p>gamma = ln(RH ÷ 100) + 17.27 × T ÷ (237.7 + T)</p>
-  <p>dew point = 237.7 × gamma ÷ (17.27 − gamma)</p>
+  <p class="formula">es = 6.105 × exp(17.27 × T ÷ (237.7 + T))</p>
+  <p class="formula">e = RH ÷ 100 × es</p>
+  <p class="formula">humidex = T + 0.5555 × (e − 10)</p>
+  <p class="formula">gamma = ln(RH ÷ 100) + 17.27 × T ÷ (237.7 + T)</p>
+  <p class="formula">dew point = 237.7 × gamma ÷ (17.27 − gamma)</p>
   <p>Humidex and dew point are rounded half away from zero to one decimal place. The humidity effect is that rounded humidex minus the air temperature, also rounded to one decimal place. It can be negative when the air is very dry.</p>
   <p>The dew point is the temperature at which the air would become saturated if it cooled without a change in moisture. The humidity effect is the gap between the humidex and the air temperature.</p>
   <table>
