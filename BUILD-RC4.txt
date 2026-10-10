@@ -1,12 +1,13 @@
 Hot Room Log — candidate rc4
 Date: 2026-10-11
 Branch: rc3-work
-HEAD: e7a7d83eaf1c5d95934dfe98d729aec7e92fe539 (tag rc3)
+HEAD at evidence time: e7a7d83eaf1c5d95934dfe98d729aec7e92fe539 (tag rc3)
 Parent of this rework: e7a7d83 (Candidate rc3)
 Worktree: /workspace/hot-room-log-rc3
-sha256 of `git diff HEAD` at packaging: b88001a03024e6f3d0aec7826aecd34bc90d866360af5963e17795407ebe9d9f
-candidate commit: pending supervisor
-Not committed by the builder. Not tagged rc4. Not pushed. Not deployed. Not submitted to Devpost.
+sha256 of `git diff HEAD` at evidence time: b88001a03024e6f3d0aec7826aecd34bc90d866360af5963e17795407ebe9d9f
+Product and evidence commit: 55220d67c0783e525d2ceed893763079d30afda4
+Tag rc4 points at the commit that adds this hash record. Its parent is 55220d67c0783e525d2ceed893763079d30afda4.
+Not pushed. Not deployed. Not submitted to Devpost.
 
 Start command, from /workspace/hot-room-log-rc3:
 
@@ -127,14 +128,17 @@ A6 PASS. Final-build evidence.
   BUILD-RC3.txt does not claim a focus tooltip on datapoints and does not claim
   a label-gap measurement that ignored point occlusion.
 
-A7 FAIL. Candidate package is written. The commit and tag are not.
+A7 PASS. Candidate package is committed locally and tagged rc4.
   review/rc4/ holds REQUIREMENTS.md, SOURCE.txt, diff-from-rc3.patch,
   START.txt, ACCEPTANCE-TABLE.md, KNOWN-ISSUES.md, the run evidence, and
   hot-room-log-demo-v4.mp4 (same bytes as the v4 file).
-  There is no local rc4 commit. Tag rc4 does not exist. git status is dirty.
-  The builder was told not to commit and not to tag.
-  candidate commit: pending supervisor
-  Nothing was pushed. Nothing was submitted to Devpost.
+  Product and evidence commit: 55220d67c0783e525d2ceed893763079d30afda4.
+  Tag rc4 points at the commit that adds this hash record. That commit's parent
+  is 55220d67c0783e525d2ceed893763079d30afda4. The builder did not commit or tag.
+  The original worktree git directory was not writable by the supervisor, so
+  the commits were made in a clone that has the same history and were then
+  installed as this directory's .git. Nothing was pushed. Nothing was submitted
+  to Devpost.
 
 A8 PASS. Regression.
   Pytest sections A–O are the 110 passed tests.

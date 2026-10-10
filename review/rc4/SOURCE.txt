@@ -1,10 +1,10 @@
-parent: e7a7d83eaf1c5d95934dfe98d729aec7e92fe539
-git rev-parse HEAD: e7a7d83eaf1c5d95934dfe98d729aec7e92fe539
-sha256 of git diff HEAD: b88001a03024e6f3d0aec7826aecd34bc90d866360af5963e17795407ebe9d9f
-candidate commit: pending supervisor
+parent of the rework: e7a7d83eaf1c5d95934dfe98d729aec7e92fe539 (tag rc3)
+git rev-parse HEAD at evidence time: e7a7d83eaf1c5d95934dfe98d729aec7e92fe539
+sha256 of git diff HEAD at evidence time: b88001a03024e6f3d0aec7826aecd34bc90d866360af5963e17795407ebe9d9f
+product and evidence commit: 55220d67c0783e525d2ceed893763079d30afda4
+tag rc4: the commit that adds this hash record; its parent is 55220d67c0783e525d2ceed893763079d30afda4
 
-`git diff HEAD` is the tracked diff from rc3. Untracked files, including this directory, are not part of that hash.
-diff from rc3: review/rc4/diff-from-rc3.patch (`git diff e7a7d83`)
+`git diff HEAD` above is the tracked diff from rc3 at evidence time. Untracked files were not part of that hash. They are included in 55220d67c0783e525d2ceed893763079d30afda4.
+diff from rc3: review/rc4/diff-from-rc3.patch (`git diff e7a7d83` of the tracked files)
 branch: rc3-work
-tag rc4: absent
 push: no
