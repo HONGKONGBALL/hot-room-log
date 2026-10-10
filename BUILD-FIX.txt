@@ -1,0 +1,39 @@
+Print sync fix for Hot Room Log
+Date: 2026-10-10
+No git commit. No git push.
+
+What changed
+  hotroom/static/app.js
+  - Added syncLetterForPrint(), which sets #letter-print textContent from the #letter textarea value.
+  - window "beforeprint" calls that sync, so Ctrl+P, the browser Print menu, and Save as PDF copy the edited letter before the print snapshot. Print CSS hides the textarea and shows only #letter-print.
+  - The textarea "input" listener keeps #letter-print current while the letter is edited.
+  - The #print-sheet click handler still syncs and then calls window.print().
+  - sheet.html was not changed. With JavaScript disabled, printing still shows the server-rendered letter in #letter-print.
+  About and README already disclose Grok (xAI) for application code. No new AI tool was used, so those pages were not changed.
+
+Commands run
+  cd /workspace/hot-room-log && .venv/bin/pytest -q
+  HOTROOM_DB=/tmp/hrl-print/hotroom.db PORT=5057 .venv/bin/python app.py
+  Headless Chrome 154 via Selenium against http://127.0.0.1:5057/rooms/1/sheet
+  PDF text and page size: pdftotext, pdfinfo
+  The temporary database stayed under /tmp/hrl-print. instance/hotroom.db was not created. The server was stopped after the checks.
+
+Test results
+  pytest: 110 passed in 0.98s. Exit code 0.
+  All browser checks below were headless and automated.
+
+  Typing: [recipient] was replaced with Room manager through the textarea (input event). #letter-print matched the textarea before any print call.
+
+  Print button: #letter-print was set to a stale marker, the textarea still said Room manager, and #print-sheet was clicked for real. The click handler called window.print(). The beforeprint text was the edited letter and matched the textarea. Page.printToPDF then produced a 2-page A4 PDF (595.92 × 841.92 pts) containing "Dear Room manager," once. It did not contain "[recipient]" or the stale marker. Nav links were not in the PDF, so print CSS was in effect.
+
+  Native print pipeline (the path Ctrl+P, the Print menu, and Save as PDF use): the textarea was set to Room manager without an input event, and #letter-print was set to a stale marker. Page.printToPDF fired beforeprint once. The DOM and the PDF both showed "Dear Room manager," and not the stale marker. Page count was 2 A4 pages. window.print() also fired beforeprint with the edited letter already in #letter-print. The unedited room 1 sheet was also 2 A4 pages and still contained "[recipient]". The letter was not duplicated (one "Dear " line).
+
+  JavaScript disabled (Emulation.setScriptExecutionDisabled before navigation): clicking Copy letter left the label "Copy letter", so page script did not run. The A4 PDF was 2 pages and contained the server letter, including "[recipient]" and "We are students who use Demo Estate Study Room."
+
+  An earlier PDF was 3 pages because emulated screen media was still on, so the screen layout (including nav) was printed. Reprinting with print media was 2 pages. That 3-page file was a check error, not a layout regression.
+
+Remaining gaps
+  Headless Chrome did not fire beforeprint when Ctrl+P was sent as a key event (textarea send_keys and CDP Input.dispatchKeyEvent). That shortcut is handled by the browser UI, and no visible print dialog was opened. The native print pipeline that Ctrl+P invokes was verified through beforeprint on window.print() and through Page.printToPDF, as above.
+  Firefox and Safari were not run.
+  The system clipboard was not read. Copy-button behavior was not part of this fix; with JavaScript disabled the button correctly did nothing.
+  Optional N1–N4 polish, GitHub push, Devpost submission, and a demo video were out of scope and were not done.

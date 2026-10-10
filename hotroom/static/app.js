@@ -45,14 +45,26 @@
     });
   }
 
+  function syncLetterForPrint() {
+    var letter = document.getElementById("letter");
+    var printed = document.getElementById("letter-print");
+    if (letter && printed) {
+      printed.textContent = letter.value;
+    }
+  }
+
+  var letterField = document.getElementById("letter");
+  if (letterField) {
+    letterField.addEventListener("input", syncLetterForPrint);
+  }
+
+  // Print CSS hides the textarea and shows #letter-print, including Ctrl+P.
+  window.addEventListener("beforeprint", syncLetterForPrint);
+
   var printButton = document.getElementById("print-sheet");
   if (printButton) {
     printButton.addEventListener("click", function () {
-      var letter = document.getElementById("letter");
-      var printed = document.getElementById("letter-print");
-      if (letter && printed) {
-        printed.textContent = letter.value;
-      }
+      syncLetterForPrint();
       window.print();
     });
   }

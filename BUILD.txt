@@ -20,3 +20,12 @@ Notes:
   Cases 124-127 used python app.py and curl. The server bound 127.0.0.1:5050 (and 5051 when PORT=5051). HOTROOM_READONLY=1 made POST /reset return 403. Servers were stopped afterwards.
   Headless Chrome checked the dashboard, room chart tooltips, copy button ("Copied", then "Copy letter" after about 2 seconds; the system clipboard was not read back), print-to-PDF (room 1 fits on 2 A4 pages and includes the edited letter), confirm-and-cancel for delete reading, delete room, and reset, JavaScript disabled (add room still works), 375 px width, keyboard focus outlines, and 200% zoom.
   The HTTP check created instance/hotroom.db. That file was removed after the checks, so the next `python app.py` creates the database and loads the sample data.
+
+Print-sync fix (2026-10-10):
+  hotroom/static/app.js copies #letter into #letter-print on window "beforeprint", on textarea "input", and still inside the #print-sheet click handler before window.print(). Print CSS keeps hiding the textarea and showing #letter-print. With JavaScript disabled, the server-rendered letter in #letter-print is unchanged.
+  About and README already name Grok (xAI) as the tool that wrote the application code. No new AI tool was used, so that disclosure was not changed.
+  pytest: `cd /workspace/hot-room-log && .venv/bin/pytest -q` → 110 passed in 0.98s.
+  Print checks were headless and automated (Chrome 154, Selenium, Page.printToPDF, A4 595.92 × 841.92 pts). The dev server used HOTROOM_DB=/tmp/hrl-print/hotroom.db and PORT=5057, then was stopped. It did not write instance/hotroom.db.
+  Button: a real click on #print-sheet, after [recipient] was changed to Room manager and #letter-print was set to a stale marker, synced the textarea before print. The beforeprint text matched the textarea. The PDF was 2 pages and contained "Dear Room manager," once, not "[recipient]" and not the stale marker.
+  Native print: the same edit was applied without an input event, #letter-print was stale, then Chrome's print pipeline ran (window.print() and Page.printToPDF). beforeprint fired and the PDF showed "Dear Room manager,". Room 1, edited and unedited, was 2 A4 pages. Headless Chrome did not fire beforeprint for a Ctrl+P key event; that shortcut is a browser accelerator and was not opened as a visible dialog. See BUILD-FIX.txt.
+  JavaScript disabled (CDP Emulation.setScriptExecutionDisabled): the copy button stayed "Copy letter" after a click, and the A4 PDF was 2 pages with the original "[recipient]" letter.
