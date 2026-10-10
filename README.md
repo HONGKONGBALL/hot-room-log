@@ -65,7 +65,7 @@ CSV import results:
 
 ![Import results](screenshots/import-results.png)
 
-A 1920×1080 demo, `hot-room-log-demo-v2.mp4`, was recorded from the running app for the submission. It is about 2 minutes 32 seconds, with English title cards and subtitles, and it is not part of this repository.
+The delivery demo is `/workspace/demo/hot-room-log-demo-v4.mp4`. It is 1920×1080, duration 152.067 seconds, sha256 `f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1`. Narration is DashScope/Bailian TTS (`qwen3-tts-flash`, voice Cherry), with burned-in English captions. The running app does not call that service. The file is not part of this repository. A check that lines the speech up with the scene cues is in [docs/narration-check.md](docs/narration-check.md).
 
 ## Formulas
 
@@ -87,9 +87,9 @@ The humidex definition `T + 0.5555 × (e − 10)` is the Canadian humidex (Maste
 
 ## AI tools and third-party resources
 
-- Third-party resources: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. The pages use the system font stack. There are no third-party images, fonts, or chart libraries.
+- Running app, third-party resources: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. The pages use the system font stack. The running app has no third-party images, fonts, or icons: no font files, no icon font, and no chart library. That sentence is about the running app only. It does not describe the demo video pipeline.
 - Formula sources: the Canadian humidex (Masterton & Richardson, 1979, Environment Canada) and the Magnus-type approximation above.
-- AI tools: Grok (xAI) was used to write the application code. The planning documents (idea, requirements, and QA plan) were drafted with Claude (Anthropic). Zhenhua reviews this list before submission.
+- AI tools and the demo: Grok (xAI) wrote the application code, the docs, the scripts, the screenshots, and the recording scripts. Claude (Anthropic) drafted the planning documents (the idea, the requirements, and the QA plan). DashScope/Bailian text-to-speech narrated the demo only (model qwen3-tts-flash, voice Cherry), with burned-in English captions. The running app does not call DashScope or any other external API. Playwright, Chrome, ffmpeg, and DejaVu Sans were used to produce the demo. Zhenhua reviews this list before submission.
 
 ## Honesty
 

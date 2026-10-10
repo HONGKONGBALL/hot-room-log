@@ -1,0 +1,19 @@
+﻿room,taken_at,temp_c,rh_percent,dew_point_c,humidex,band,note
+Demo Estate Study Room,2026-09-14 10:00,29,78,24.8,40.7,Great discomfort,
+Demo Estate Study Room,2026-09-14 15:00,32,68,25.3,44.3,Great discomfort,
+Demo Estate Study Room,2026-09-15 10:00,29.5,76,24.8,41.3,Great discomfort,
+Demo Estate Study Room,2026-09-15 15:00,33,66,25.8,45.8,Dangerous,"Fan on, windows open"
+Demo Estate Study Room,2026-09-16 10:00,30,75,25.1,42.1,Great discomfort,
+Demo Estate Study Room,2026-09-16 15:00,34,65,26.5,47.6,Dangerous,
+Demo Classroom 3F,2026-09-14 10:00,26,60,17.6,31.6,Some discomfort,
+Demo Classroom 3F,2026-09-14 15:00,28,63,20.3,35.6,Some discomfort,
+Demo Classroom 3F,2026-09-15 10:00,26.5,62,18.6,32.8,Some discomfort,
+Demo Classroom 3F,2026-09-15 15:00,30,68,23.4,40.4,Great discomfort,Full class after lunch
+Demo Classroom 3F,2026-09-16 10:00,26,58,17.1,31.2,Some discomfort,
+Demo Classroom 3F,2026-09-16 15:00,28,60,19.5,35.0,Some discomfort,
+Demo Library Corner,2026-09-14 10:00,23.5,55,13.9,26.8,Comfortable,
+Demo Library Corner,2026-09-14 15:00,24,58,15.2,28.0,Comfortable,
+Demo Library Corner,2026-09-15 10:00,23,60,14.8,26.8,Comfortable,
+Demo Library Corner,2026-09-15 15:00,24.5,55,14.9,28.3,Comfortable,
+Demo Library Corner,2026-09-16 10:00,23.5,52,13.1,26.3,Comfortable,
+Demo Library Corner,2026-09-16 15:00,25,50,13.8,28.2,Comfortable,

@@ -1,0 +1,136 @@
+{
+  "viewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "svg": {
+    "width": 1152,
+    "height": 505.125
+  },
+  "labels": [
+    {
+      "className": "axis-label",
+      "text": "30",
+      "inlineFontSize": "7.22px",
+      "computedFontSize": "7.22px",
+      "bbox": {
+        "x": 140,
+        "y": 686.2413940429688,
+        "width": 14.84375,
+        "height": 18
+      }
+    },
+    {
+      "className": "axis-label",
+      "text": "40",
+      "inlineFontSize": "7.22px",
+      "computedFontSize": "7.22px",
+      "bbox": {
+        "x": 140,
+        "y": 577.4046630859375,
+        "width": 14.84375,
+        "height": 18
+      }
+    },
+    {
+      "className": "axis-label",
+      "text": "45",
+      "inlineFontSize": "7.22px",
+      "computedFontSize": "7.22px",
+      "bbox": {
+        "x": 140,
+        "y": 522.977294921875,
+        "width": 14.84375,
+        "height": 18.00006103515625
+      }
+    },
+    {
+      "className": "time-label",
+      "text": "2026-09-14 10:00",
+      "inlineFontSize": "7.22px",
+      "computedFontSize": "7.22px",
+      "bbox": {
+        "x": 165.625,
+        "y": 856.296875,
+        "width": 104.21875,
+        "height": 18
+      }
+    },
+    {
+      "className": "time-label",
+      "text": "2026-09-16 15:00",
+      "inlineFontSize": "7.22px",
+      "computedFontSize": "7.22px",
+      "bbox": {
+        "x": 1082.03125,
+        "y": 856.296875,
+        "width": 104.21875,
+        "height": 18
+      }
+    }
+  ],
+  "circles": [
+    {
+      "r": "3.89",
+      "strokeWidth": "1.11px",
+      "cx": "56.00",
+      "cy": "102.62",
+      "bbox": {
+        "width": 13.97967529296875,
+        "height": 13.97967529296875
+      }
+    },
+    {
+      "r": "3.89",
+      "strokeWidth": "1.11px",
+      "cx": "169.60",
+      "cy": "80.81",
+      "bbox": {
+        "width": 13.979705810546875,
+        "height": 13.97967529296875
+      }
+    },
+    {
+      "r": "3.89",
+      "strokeWidth": "1.11px",
+      "cx": "283.20",
+      "cy": "98.98",
+      "bbox": {
+        "width": 13.97967529296875,
+        "height": 13.97967529296875
+      }
+    },
+    {
+      "r": "3.89",
+      "strokeWidth": "1.11px",
+      "cx": "396.80",
+      "cy": "71.73",
+      "bbox": {
+        "width": 13.97967529296875,
+        "height": 13.97967529296875
+      }
+    },
+    {
+      "r": "3.89",
+      "strokeWidth": "1.11px",
+      "cx": "510.40",
+      "cy": "94.14",
+      "bbox": {
+        "width": 13.97967529296875,
+        "height": 13.97967529296875
+      }
+    },
+    {
+      "r": "3.89",
+      "strokeWidth": "1.11px",
+      "cx": "624.00",
+      "cy": "60.82",
+      "bbox": {
+        "width": 13.979736328125,
+        "height": 13.97967529296875
+      }
+    }
+  ],
+  "trendStroke": "1.25px",
+  "axisStroke": "0.69px"
+}

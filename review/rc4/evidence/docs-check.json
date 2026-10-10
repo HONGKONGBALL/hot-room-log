@@ -1,0 +1,32 @@
+{
+  "git_head": "e7a7d83eaf1c5d95934dfe98d729aec7e92fe539",
+  "git_diff_head_sha256": "b88001a03024e6f3d0aec7826aecd34bc90d866360af5963e17795407ebe9d9f",
+  "git_rev_parse_HEAD": "e7a7d83eaf1c5d95934dfe98d729aec7e92fe539",
+  "git_diff_HEAD_sha256": "b88001a03024e6f3d0aec7826aecd34bc90d866360af5963e17795407ebe9d9f",
+  "video": {
+    "source": "/workspace/demo/hot-room-log-demo-v4.mp4",
+    "packaged": "review/rc4/hot-room-log-demo-v4.mp4",
+    "sha256_source": "f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1",
+    "sha256_packaged": "f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1",
+    "bytes_identical": true,
+    "ffprobe_duration_seconds": "152.067000",
+    "expected_sha256": "f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1",
+    "expected_duration": "152.067",
+    "recomputed": true,
+    "reencoded": false
+  },
+  "phrases_missing": [],
+  "running_app_external_hits": [],
+  "narration_check": {
+    "path": "docs/narration-check.md",
+    "claims_human_listened": false,
+    "claims_speech_recognizer": false,
+    "note": "File says no person listened and no speech recognizer was run."
+  },
+  "conflicts_unchanged": {
+    "chinese_paragraph_kept": true,
+    "one_page_kept": true,
+    "decisions_file_chooses_none": true
+  },
+  "pass": true
+}

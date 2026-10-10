@@ -1,0 +1,219 @@
+diff --git a/BUILD-RC3.txt b/BUILD-RC3.txt
+index dfe5136..d36a121 100644
+--- a/BUILD-RC3.txt
++++ b/BUILD-RC3.txt
+@@ -32,7 +32,9 @@ What changed in rc3 (on top of the rc2 print sync):
+     Chart text, point size, and stroke width are fitted to the rendered SVG so
+     labels stay readable on a phone. Y-axis labels shrink until neighbouring
+     boxes have at least a 3px gap (floor 8px). Table scroll shadows update on
+-    scroll. Hovering or focusing a point shows its title in the tooltip.
++    scroll. Hovering or clicking a point shows its title in the tooltip.
++    The circles have no tabindex, and app.js has no focus listener, so focusing
++    a datapoint does not show the tip.
+     The rc2 print sync is unchanged: textarea input, beforeprint, and the
+     Print button all copy #letter into #letter-print.
+   Templates
+@@ -163,9 +165,11 @@ Browser evidence paths (this machine, not in git):
+ 
+ Known limits (not counted as failed cases):
+   Headless Ctrl+P does not fire beforeprint. Real print does. See case 132.
+-  At 320px the room-1 y labels "45" and "40" are about 10px tall and 4px apart.
+-  They are separate boxes and inside the SVG. The axis span is fixed by the
+-  product rules (20–55), so those two marks stay close on a short chart.
++  At 320px the note only measured the gap between the room-1 y labels "45" and
++  "40" (about 10px tall and about 4px apart, separate boxes inside the SVG).
++  That gap does not show whether a datapoint covers a label. The axis span is
++  fixed by the product rules (20–55), so those two marks stay close on a short
++  chart.
+   Calculator and import pages do not show the sample banner. The banner is for
+   pages that are showing sample rooms.
+   The import-results page is a short list on a tall viewport. The screenshot
+diff --git a/README.md b/README.md
+index 38ee1a9..cf7ffff 100644
+--- a/README.md
++++ b/README.md
+@@ -65,7 +65,7 @@ CSV import results:
+ 
+ ![Import results](screenshots/import-results.png)
+ 
+-A 1920×1080 demo, `hot-room-log-demo-v2.mp4`, was recorded from the running app for the submission. It is about 2 minutes 32 seconds, with English title cards and subtitles, and it is not part of this repository.
++The delivery demo is `/workspace/demo/hot-room-log-demo-v4.mp4`. It is 1920×1080, duration 152.067 seconds, sha256 `f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1`. Narration is DashScope/Bailian TTS (`qwen3-tts-flash`, voice Cherry), with burned-in English captions. The running app does not call that service. The file is not part of this repository. A check that lines the speech up with the scene cues is in [docs/narration-check.md](docs/narration-check.md).
+ 
+ ## Formulas
+ 
+@@ -87,9 +87,9 @@ The humidex definition `T + 0.5555 × (e − 10)` is the Canadian humidex (Maste
+ 
+ ## AI tools and third-party resources
+ 
+-- Third-party resources: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. The pages use the system font stack. There are no third-party images, fonts, or chart libraries.
++- Running app, third-party resources: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. The pages use the system font stack. The running app has no third-party images, fonts, or icons: no font files, no icon font, and no chart library. That sentence is about the running app only. It does not describe the demo video pipeline.
+ - Formula sources: the Canadian humidex (Masterton & Richardson, 1979, Environment Canada) and the Magnus-type approximation above.
+-- AI tools: Grok (xAI) was used to write the application code. The planning documents (idea, requirements, and QA plan) were drafted with Claude (Anthropic). Zhenhua reviews this list before submission.
++- AI tools and the demo: Grok (xAI) wrote the application code, the docs, the scripts, the screenshots, and the recording scripts. Claude (Anthropic) drafted the planning documents (the idea, the requirements, and the QA plan). DashScope/Bailian text-to-speech narrated the demo only (model qwen3-tts-flash, voice Cherry), with burned-in English captions. The running app does not call DashScope or any other external API. Playwright, Chrome, ffmpeg, and DejaVu Sans were used to produce the demo. Zhenhua reviews this list before submission.
+ 
+ ## Honesty
+ 
+diff --git a/docs/devpost.md b/docs/devpost.md
+index 416c4da..6c3290a 100644
+--- a/docs/devpost.md
++++ b/docs/devpost.md
+@@ -28,13 +28,13 @@ Leave **Challenges** and **What I learned** blank here. Those two answers should
+ 
+ **Honesty notes.** The rooms and readings in the demo and screenshots are fictional sample data. Hot Room Log is not deployed at, endorsed by or used by any school, estate or organisation. Humidex bands are a comfort guide, not medical advice. This is a solo project by Zhenhua Liu, built new for STEMergent Hacks 2026.
+ 
+-**AI tools and third-party resources.** AI tools: Claude (Anthropic) helped draft the idea, requirements and test plan. Grok (xAI) helped write the application code. Zhenhua reviews this list before submission. Third-party: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. Formulas: the Canadian humidex (Masterton & Richardson, 1979, Environment Canada) and a Magnus-type vapour-pressure approximation. No third-party images, fonts or icons. The pages use the system font stack.
++**AI tools and third-party resources.** Grok (xAI) wrote the application code, the docs, the scripts, the screenshots, and the recording scripts. Claude (Anthropic) drafted the planning documents (the idea, the requirements, and the QA plan). DashScope/Bailian text-to-speech narrated the demo only (model qwen3-tts-flash, voice Cherry), with burned-in English captions. The running app does not call DashScope or any other external API. Playwright, Chrome, ffmpeg, and DejaVu Sans were used to produce the demo. Zhenhua reviews this list before submission. Running app, third-party: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. Formulas: the Canadian humidex (Masterton & Richardson, 1979, Environment Canada) and a Magnus-type vapour-pressure approximation. The running app has no third-party images, fonts, or icons: the pages use the system font stack, with no font files, no icon font, and no chart library. That limit is about the running app only. It does not describe the demo video pipeline.
+ 
+ ## Screenshots and video
+ 
+ The screenshots in `screenshots/` show the fictional sample banner. No personal data is shown.
+ 
+-The demo video for this candidate is `hot-room-log-demo-v2.mp4`: 1920×1080, 2 minutes 32 seconds, H.264 with silent AAC audio, English title cards and burned-in English subtitles. Playwright recorded the running app (no terminal and no address bar). It uses the fictional sample rooms, then adds one library reading and imports one new room. Upload it only if the open Devpost form asks for a video. It is not stored in this repository.
++The delivery demo is `/workspace/demo/hot-room-log-demo-v4.mp4`: 1920×1080, duration 152.067 seconds, sha256 `f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1`. Narration is DashScope/Bailian TTS (`qwen3-tts-flash`, voice Cherry), with burned-in English captions. The running app does not call that service. Playwright recorded the running app (no terminal and no address bar). It uses the fictional sample rooms, then adds one library reading and imports one new room. Upload it only if the open Devpost form asks for a video. It is not stored in this repository.
+ 
+ - `screenshots/dashboard.png` — three sample rooms
+ - `screenshots/room.png` — Demo Estate Study Room, chart and readings
+diff --git a/hotroom/static/app.js b/hotroom/static/app.js
+index 084a832..24f71e7 100644
+--- a/hotroom/static/app.js
++++ b/hotroom/static/app.js
+@@ -71,18 +71,17 @@
+ 
+   // SVG text and strokes use the viewBox, so a fixed size becomes tiny on a phone.
+   // Scale them so labels stay about 13px and points stay easy to point at.
+-  function fitChartText() {
+-    var printing = window.matchMedia && window.matchMedia("print").matches;
++  // Print CSS lays the chart out at max-height 180px. With viewBox 640×280
++  // that width is 180 * 640/280 when the page is wide enough. beforeprint
++  // runs while matchMedia("print") is still false, so the print pass must
++  // not read the on-screen bounding width.
++  var PRINT_CHART_WIDTH = 180 * 640 / 280;
++
++  function fitChartText(layoutWidth) {
+     var charts = document.querySelectorAll("svg.chart");
+     for (var i = 0; i < charts.length; i++) {
+       var svg = charts[i];
+-      var width = svg.getBoundingClientRect().width;
+-      if (printing) {
+-        var capped = width && width < 500 ? width : 411;
+-        if (capped >= 8) {
+-          width = capped;
+-        }
+-      }
++      var width = layoutWidth || svg.getBoundingClientRect().width;
+       if (!width || width < 8) {
+         continue;
+       }
+@@ -202,8 +201,35 @@
+     markScrollers();
+   }
+ 
++  function refitPrint() {
++    var charts = document.querySelectorAll("svg.chart");
++    var saved = [];
++    for (var i = 0; i < charts.length; i++) {
++      var svg = charts[i];
++      saved.push({
++        svg: svg,
++        width: svg.style.width,
++        height: svg.style.height,
++        maxHeight: svg.style.maxHeight
++      });
++      // Lay the chart out in the print box so the gap check sees that box.
++      // The font and radius formula still uses PRINT_CHART_WIDTH, not
++      // getBoundingClientRect().width.
++      svg.style.width = PRINT_CHART_WIDTH + "px";
++      svg.style.height = "180px";
++      svg.style.maxHeight = "180px";
++    }
++    fitChartText(PRINT_CHART_WIDTH);
++    for (var s = 0; s < saved.length; s++) {
++      saved[s].svg.style.width = saved[s].width;
++      saved[s].svg.style.height = saved[s].height;
++      saved[s].svg.style.maxHeight = saved[s].maxHeight;
++    }
++    markScrollers();
++  }
++
+   window.addEventListener("resize", refit);
+-  window.addEventListener("beforeprint", refit);
++  window.addEventListener("beforeprint", refitPrint);
+   window.addEventListener("afterprint", refit);
+   refit();
+ })();
+diff --git a/hotroom/static/style.css b/hotroom/static/style.css
+index b4db477..08b5406 100644
+--- a/hotroom/static/style.css
++++ b/hotroom/static/style.css
+@@ -246,16 +246,21 @@ input[aria-invalid="true"] {
+ .facts {
+   display: flex;
+   flex-wrap: wrap;
+-  gap: 0.3rem 0.85rem;
++  gap: 0.3rem 0;
++  align-items: baseline;
+ }
+ 
+-.facts span:not(:last-child)::after {
+-  content: " ·";
++.facts .sep {
++  white-space: pre;
+ }
+ 
+ @media (max-width: 640px) {
+-  .facts span:not(:last-child)::after {
+-    content: none;
++  .facts .sep {
++    display: none;
++  }
++
++  .facts {
++    gap: 0.3rem 0.85rem;
+   }
+ }
+ 
+@@ -574,6 +579,15 @@ header a:focus-visible {
+     -webkit-print-color-adjust: exact;
+   }
+ 
++  /* The screen root is beige. exact on the root paints that beige on the
++     rest of a short page, including when background graphics are off.
++     Keep exact on the bands and other elements; the page itself stays white. */
++  :root {
++    background: #fff;
++    print-color-adjust: economy;
++    -webkit-print-color-adjust: economy;
++  }
++
+   header nav,
+   .flash,
+   button,
+diff --git a/hotroom/templates/about.html b/hotroom/templates/about.html
+index 4758fe4..17588d4 100644
+--- a/hotroom/templates/about.html
++++ b/hotroom/templates/about.html
+@@ -63,9 +63,9 @@
+ <section>
+   <h2>AI tools and third-party resources</h2>
+   <ul>
+-    <li>Third-party resources: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. The pages use the system font stack. There are no third-party images, fonts or chart libraries.</li>
++    <li>Running app, third-party resources: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. The pages use the system font stack. The running app has no third-party images, fonts, or icons: no font files, no icon font, and no chart library. That sentence is about the running app only. It does not describe the demo video pipeline.</li>
+     <li>Formula sources: the Canadian humidex (Masterton &amp; Richardson, 1979, Environment Canada) and a Magnus-type vapour-pressure approximation with the constants above. The dew point uses the inverse of that approximation.</li>
+-    <li>AI tools: Grok (xAI) was used to write the application code. The planning documents (idea, requirements and QA plan) were drafted with Claude (Anthropic). Zhenhua reviews this list before submission.</li>
++    <li>AI tools and the demo: Grok (xAI) wrote the application code, the docs, the scripts, the screenshots, and the recording scripts. Claude (Anthropic) drafted the planning documents (the idea, the requirements, and the QA plan). DashScope/Bailian text-to-speech narrated the demo only (model qwen3-tts-flash, voice Cherry), with burned-in English captions. The running app does not call DashScope or any other external API. Playwright, Chrome, ffmpeg, and DejaVu Sans were used to produce the demo. Zhenhua reviews this list before submission.</li>
+   </ul>
+ </section>
+ {% endblock %}
+diff --git a/hotroom/templates/room.html b/hotroom/templates/room.html
+index 531a3bd..0a24b87 100644
+--- a/hotroom/templates/room.html
++++ b/hotroom/templates/room.html
+@@ -5,7 +5,7 @@
+ <section id="latest" class="tone-{{ summary.latest.band_key }}">
+   <p class="humidex-big">{{ summary.latest.humidex_text }}</p>
+   <p><span class="band band-{{ summary.latest.band_key }}">{{ summary.latest.band }}</span></p>
+-  <p class="facts"><span>Air {{ summary.latest.temp_text }} °C</span><span>Humidity {{ summary.latest.rh_text }} %</span><span>Dew point {{ summary.latest.dew_text }} °C</span><span>Humidity adds {{ summary.latest.effect_text }}</span></p>
++  <p class="facts"><span>Air {{ summary.latest.temp_text }} °C</span><span class="sep"> · </span><span>Humidity {{ summary.latest.rh_text }} %</span><span class="sep"> · </span><span>Dew point {{ summary.latest.dew_text }} °C</span><span class="sep"> · </span><span>Humidity adds {{ summary.latest.effect_text }}</span></p>
+   <p>Taken {{ summary.latest.taken_at }}</p>
+ </section>
+ <ul id="stats">

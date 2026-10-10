@@ -246,16 +246,21 @@ input[aria-invalid="true"] {
 .facts {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem 0.85rem;
+  gap: 0.3rem 0;
+  align-items: baseline;
 }
 
-.facts span:not(:last-child)::after {
-  content: " ·";
+.facts .sep {
+  white-space: pre;
 }
 
 @media (max-width: 640px) {
-  .facts span:not(:last-child)::after {
-    content: none;
+  .facts .sep {
+    display: none;
+  }
+
+  .facts {
+    gap: 0.3rem 0.85rem;
   }
 }
 
@@ -572,6 +577,15 @@ header a:focus-visible {
   * {
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
+  }
+
+  /* The screen root is beige. exact on the root paints that beige on the
+     rest of a short page, including when background graphics are off.
+     Keep exact on the bands and other elements; the page itself stays white. */
+  :root {
+    background: #fff;
+    print-color-adjust: economy;
+    -webkit-print-color-adjust: economy;
   }
 
   header nav,

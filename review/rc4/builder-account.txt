@@ -1,0 +1,14 @@
+whoami:
+grok-build
+
+id:
+uid=1002(grok-build) gid=1002(grok-build) groups=1002(grok-build),1003(grokproj)
+
+HOME:
+/home/grok-build
+
+Directory names under $HOME/.grok/sessions:
+%2Fworkspace%2Fdemo%2Fvoice-bailian
+%2Fworkspace%2Fharness%2Ftest-scratch
+%2Fworkspace%2Fhot-room-log-rc3
+session_search.sqlite

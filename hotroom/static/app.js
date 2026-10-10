@@ -71,18 +71,17 @@
 
   // SVG text and strokes use the viewBox, so a fixed size becomes tiny on a phone.
   // Scale them so labels stay about 13px and points stay easy to point at.
-  function fitChartText() {
-    var printing = window.matchMedia && window.matchMedia("print").matches;
+  // Print CSS lays the chart out at max-height 180px. With viewBox 640×280
+  // that width is 180 * 640/280 when the page is wide enough. beforeprint
+  // runs while matchMedia("print") is still false, so the print pass must
+  // not read the on-screen bounding width.
+  var PRINT_CHART_WIDTH = 180 * 640 / 280;
+
+  function fitChartText(layoutWidth) {
     var charts = document.querySelectorAll("svg.chart");
     for (var i = 0; i < charts.length; i++) {
       var svg = charts[i];
-      var width = svg.getBoundingClientRect().width;
-      if (printing) {
-        var capped = width && width < 500 ? width : 411;
-        if (capped >= 8) {
-          width = capped;
-        }
-      }
+      var width = layoutWidth || svg.getBoundingClientRect().width;
       if (!width || width < 8) {
         continue;
       }
@@ -202,8 +201,35 @@
     markScrollers();
   }
 
+  function refitPrint() {
+    var charts = document.querySelectorAll("svg.chart");
+    var saved = [];
+    for (var i = 0; i < charts.length; i++) {
+      var svg = charts[i];
+      saved.push({
+        svg: svg,
+        width: svg.style.width,
+        height: svg.style.height,
+        maxHeight: svg.style.maxHeight
+      });
+      // Lay the chart out in the print box so the gap check sees that box.
+      // The font and radius formula still uses PRINT_CHART_WIDTH, not
+      // getBoundingClientRect().width.
+      svg.style.width = PRINT_CHART_WIDTH + "px";
+      svg.style.height = "180px";
+      svg.style.maxHeight = "180px";
+    }
+    fitChartText(PRINT_CHART_WIDTH);
+    for (var s = 0; s < saved.length; s++) {
+      saved[s].svg.style.width = saved[s].width;
+      saved[s].svg.style.height = saved[s].height;
+      saved[s].svg.style.maxHeight = saved[s].maxHeight;
+    }
+    markScrollers();
+  }
+
   window.addEventListener("resize", refit);
-  window.addEventListener("beforeprint", refit);
+  window.addEventListener("beforeprint", refitPrint);
   window.addEventListener("afterprint", refit);
   refit();
 })();

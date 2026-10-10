@@ -32,7 +32,9 @@ What changed in rc3 (on top of the rc2 print sync):
     Chart text, point size, and stroke width are fitted to the rendered SVG so
     labels stay readable on a phone. Y-axis labels shrink until neighbouring
     boxes have at least a 3px gap (floor 8px). Table scroll shadows update on
-    scroll. Hovering or focusing a point shows its title in the tooltip.
+    scroll. Hovering or clicking a point shows its title in the tooltip.
+    The circles have no tabindex, and app.js has no focus listener, so focusing
+    a datapoint does not show the tip.
     The rc2 print sync is unchanged: textarea input, beforeprint, and the
     Print button all copy #letter into #letter-print.
   Templates
@@ -163,9 +165,11 @@ Browser evidence paths (this machine, not in git):
 
 Known limits (not counted as failed cases):
   Headless Ctrl+P does not fire beforeprint. Real print does. See case 132.
-  At 320px the room-1 y labels "45" and "40" are about 10px tall and 4px apart.
-  They are separate boxes and inside the SVG. The axis span is fixed by the
-  product rules (20–55), so those two marks stay close on a short chart.
+  At 320px the note only measured the gap between the room-1 y labels "45" and
+  "40" (about 10px tall and about 4px apart, separate boxes inside the SVG).
+  That gap does not show whether a datapoint covers a label. The axis span is
+  fixed by the product rules (20–55), so those two marks stay close on a short
+  chart.
   Calculator and import pages do not show the sample banner. The banner is for
   pages that are showing sample rooms.
   The import-results page is a short list on a tall viewport. The screenshot

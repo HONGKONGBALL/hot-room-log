@@ -1,0 +1,213 @@
+Hot Room Log — candidate rc4
+Date: 2026-10-11
+Branch: rc3-work
+HEAD: e7a7d83eaf1c5d95934dfe98d729aec7e92fe539 (tag rc3)
+Parent of this rework: e7a7d83 (Candidate rc3)
+Worktree: /workspace/hot-room-log-rc3
+sha256 of `git diff HEAD` at packaging: b88001a03024e6f3d0aec7826aecd34bc90d866360af5963e17795407ebe9d9f
+candidate commit: pending supervisor
+Not committed by the builder. Not tagged rc4. Not pushed. Not deployed. Not submitted to Devpost.
+
+Start command, from /workspace/hot-room-log-rc3:
+
+  python -m venv .venv
+  source .venv/bin/activate
+  pip install -r requirements.txt
+  python app.py
+
+URL: http://127.0.0.1:5050
+Port: 5050
+Bind: 127.0.0.1 unless HOST is set
+Login: none
+
+Environment for the checks below:
+  Linux
+  Python 3.13.5 (.venv)
+  Google Chrome 154.0.8037.97, headless, Playwright
+  pdftotext -bbox, pdfinfo, pdftoppm
+
+Delivery video (not in the git tree; copied into review/rc4/):
+  /workspace/demo/hot-room-log-demo-v4.mp4
+  packaged copy: review/rc4/hot-room-log-demo-v4.mp4
+  sha256 f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1
+  ffprobe duration 152.067 seconds
+  Narration: DashScope/Bailian TTS, model qwen3-tts-flash, voice Cherry
+  Burned-in English captions
+  The running app does not call DashScope or any other external API.
+  docs/narration-check.md aligns speech energy with the 23 scene cues.
+  No person listened for that check. No speech recognizer was run.
+
+What rc4 changes on top of rc3:
+  hotroom/static/app.js
+    beforeprint fits chart labels to a fixed print width, 180 * 640/280,
+    because beforeprint runs while the on-screen width is still in effect.
+    afterprint restores the screen fit.
+  hotroom/static/style.css
+    Print :root background is white, with print-color-adjust economy, so the
+    rest of a short page stays white. Bands may still print in colour.
+    Latest-reading separators are real text (.facts .sep), display:none at
+    max-width 640px.
+  hotroom/templates/room.html
+    Middle dots in the latest-reading sentence are text nodes.
+  README.md, docs/devpost.md, hotroom/templates/about.html
+    Delivery video is v4. Disclosure names Grok, Claude, DashScope/Bailian
+    TTS, and Playwright/Chrome, ffmpeg, and DejaVu Sans. The sentence about
+    no third-party images, fonts, or icons is limited to the running app.
+  BUILD-RC3.txt
+    The datapoint focus-tooltip claim and the 320px label-gap claim are
+    corrected. Those false claims are not restored.
+  docs/narration-check.md, DECISIONS-NEEDED.txt, review/rc4/
+    New. DECISIONS-NEEDED.txt lists five conflicts and chooses none.
+
+Acceptance. PASS only where the saved evidence shows it.
+
+A1 PASS. Print chart labels.
+  Evidence: review/rc4/evidence/print/a1-a2-a3.json
+  PDFs: review/rc4/evidence/print/pdfs/
+  bbox: review/rc4/evidence/print/bbox/
+  Room 1 sheet, fresh sample database, viewports 1280 and 1920.
+  Print button calls window.print(), which fires beforeprint (axis font
+  18.67px, time font 17.11px, circle r 10.89). The PDF is captured with
+  Chrome Page.printToPDF, the print-preview and Save-as-PDF pipeline.
+  The same pipeline was also run directly. printBackground true and false.
+  JavaScript-disabled PDFs at both viewports.
+  Headless Ctrl+P does not open a dialog and does not fire beforeprint.
+  Chart axis labels ("45", "40", "30") bbox height 12.075 pt.
+  Chart time labels bbox height 11.067 pt.
+  The same labels on the JavaScript-disabled PDF are 7.758 pt.
+  Each chart label is at least 7 pt and at least as tall as the noscript label.
+  Table dates and the letter are not the labels in that comparison.
+  JS PDFs: 6 separate dark point fills in the chart area.
+  Room 1 is 2 A4 pages (595.92 x 841.92 pts).
+  After afterprint, the on-screen room chart at 1280 is inline font-size
+  7.22px on every SVG label and circle r 3.89. SVG width 1152.
+  That matches review/rc4/evidence/screen-before/metrics.json.
+
+A2 PASS. Printed page background.
+  Same JSON. Page 2 of every PDF, background graphics on and off, has 0
+  non-white pixels below the last content row. The sampled grid is 527 rows
+  deep and is white across the width, not a single corner. The sheet is 2 pages.
+  Band colours on the page may still print.
+
+A3 PASS. Latest-reading sentence.
+  Same JSON. p.facts textContent at 1280, 640, and 320 is exactly
+  Air 34 °C · Humidity 65 % · Dew point 26.5 °C · Humidity adds +13.6
+  The dots are text nodes inside .sep. At 320px those separators are display:none.
+  At 1280 they are shown.
+
+A4 PASS. Delivery video docs.
+  README.md, docs/devpost.md, and this file name
+  /workspace/demo/hot-room-log-demo-v4.mp4, sha256
+  f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1,
+  duration 152.067 seconds, DashScope/Bailian TTS qwen3-tts-flash voice Cherry,
+  burned-in English captions.
+  docs/narration-check.md does not claim a person listened.
+  Recomputed from the file during this build. See review/rc4/evidence/docs-check.json.
+
+A5 PASS. Disclosure.
+  About, README, and Devpost agree: Grok wrote the app, docs, scripts,
+  screenshots, and recording scripts; Claude drafted the planning docs;
+  DashScope/Bailian TTS narrated the demo only; Playwright, Chrome, ffmpeg,
+  and DejaVu Sans produced the demo. No third-party images, fonts, or icons
+  is stated for the running app only.
+  hotroom/ and app.js contain no external API client. QA 137 recorded
+  requests only to 127.0.0.1.
+
+A6 PASS. Final-build evidence.
+  pytest: review/rc4/evidence/pytest.txt — 110 passed, exit 0.
+  QA 124–127: review/rc4/evidence/qa-124-127.sh and review/rc4/evidence/http/
+  The ss line while the app was bound was
+  "127.0.0.1:5050  0.0.0.0:*". The check used the local-address column only.
+  After the servers stopped, nothing was listening on 5050 or 5051
+  (review/rc4/evidence/http/residual-status.txt). set -e did not skip that check.
+  QA 129–138: review/rc4/evidence/qa-129-138.json and review/rc4/evidence/qa-shots/
+  Each of those JSON files records git rev-parse HEAD e7a7d83eaf1c5d95934dfe98d729aec7e92fe539
+  and sha256 of git diff HEAD b88001a03024e6f3d0aec7826aecd34bc90d866360af5963e17795407ebe9d9f.
+  Their mtimes are later than docs/narration-check.md, the latest product edit (01:25:33).
+  BUILD-RC3.txt does not claim a focus tooltip on datapoints and does not claim
+  a label-gap measurement that ignored point occlusion.
+
+A7 FAIL. Candidate package is written. The commit and tag are not.
+  review/rc4/ holds REQUIREMENTS.md, SOURCE.txt, diff-from-rc3.patch,
+  START.txt, ACCEPTANCE-TABLE.md, KNOWN-ISSUES.md, the run evidence, and
+  hot-room-log-demo-v4.mp4 (same bytes as the v4 file).
+  There is no local rc4 commit. Tag rc4 does not exist. git status is dirty.
+  The builder was told not to commit and not to tag.
+  candidate commit: pending supervisor
+  Nothing was pushed. Nothing was submitted to Devpost.
+
+A8 PASS. Regression.
+  Pytest sections A–O are the 110 passed tests.
+  QA 129 dashboard cards, 130 chart tooltip, 131 edited-letter copy,
+  132 edited-letter print, and 133 confirm-cancel all passed in
+  review/rc4/evidence/qa-129-138.json.
+
+A9 PASS. Decisions file.
+  DECISIONS-NEEDED.txt lists all five conflicts, including whether "no paid API"
+  covers the demo narration. It chooses no resolution. The A5 disclosure stays.
+
+A10 PASS. Video identity.
+  review/rc4/hot-room-log-demo-v4.mp4 sha256
+  f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1
+  ffprobe duration 152.067 seconds.
+  cmp against /workspace/demo/hot-room-log-demo-v4.mp4 matched. The file was copied, not re-encoded.
+
+QA results on this tree
+
+124 PASS. Clean copy, no instance db at start. Flask on 127.0.0.1:5050.
+    GET / 200. GET /api/rooms returns 3 rooms. instance/hotroom.db created.
+125 PASS. POST /rooms 302 Location /rooms/4. After restart, 4 rooms include Curl Room.
+126 PASS. /static/style.css 200, /nope 404, /export.csv text/csv and attachment.
+127 PASS. PORT=5051 GET / 200. HOTROOM_READONLY=1 POST /reset 403.
+    Local address column is 127.0.0.1:5050. Peer column is 0.0.0.0:* and was not used.
+    After stop, nothing listens on 5050 or 5051.
+128 PASS. pytest, 110 passed. Same run as the pytest line above.
+129 PASS. Dashboard at 1280: 47.6 Dangerous #ffd6d6, 35.0 Some discomfort #fff3bf,
+    28.2 Comfortable #d3f9d8. Sample banner visible.
+130 PASS. Six point tooltips. Last is "2026-09-16 15:00 · humidex 47.6 · Dangerous".
+131 PASS. Copy letter shows Copied, then Copy letter. Clipboard is the edited letter
+    starting "Dear Room manager,".
+132 PASS. Edited letter PDF is 2 A4 pages. Contains "Dear Room manager," once.
+    Does not contain [recipient], the stale marker, Copy letter, Print / Save as PDF,
+    Skip to content, Calculator, or Reset demo data. Table note "Fan on, windows open"
+    is present. Chart value 47.6 is present.
+133 PASS. Cancel on delete reading, delete room, and reset. Counts unchanged.
+    Dialog texts are the data-confirm strings.
+134 PASS. JavaScript off: add room, add reading, delete reading, delete room,
+    calculator humidex 44.4, CSV export, CSV import (1 added, 1 new room), reset
+    back to the three sample rooms. No confirm dialog. Copy stays "Copy letter".
+    Print stays "Print / Save as PDF".
+135 PASS at 320 and at 375 on dashboard, room, sheet, and calculator.
+    No page-level horizontal scroll. The readings table scrolls inside .table-scroll.
+    Forms accept input.
+    Known limit: at 320 and at 375 the first datapoint box covers the "40" axis label.
+    Recorded in the JSON. Not treated as a failure. No focus tooltip is claimed.
+136 PASS. Tab order recorded for dashboard, room, sheet, and calculator.
+    Focus outline is 3px. Header link outline is #ffe08a. Other controls are #0b57d0.
+    Screenshot review/rc4/evidence/qa-shots/136-dashboard-focus.png shows the Rooms
+    link outline. Enter on the calculator temperature field submits and shows humidex 44.4.
+    Datapoints have no tabindex and no focus listener.
+137 PASS as a request log. Cable was not unplugged.
+    93 requests, host 127.0.0.1 only. No external src or href. Style and app.js load.
+138 PASS. 200% browser zoom modelled as a 1280×900 window: layout viewport 640×450,
+    devicePixelRatio 2, on dashboard, room, sheet, and calculator.
+    No overlapping text boxes and no clipped text in the geometric check.
+
+139–146 NOT RUN. Submission checks are for Zhenhua on the open Devpost form.
+Nothing was submitted.
+
+Evidence index
+  review/rc4/evidence/pytest.txt
+  review/rc4/evidence/qa-124-127.sh
+  review/rc4/evidence/http/qa-124-127.log
+  review/rc4/evidence/http/residual-status.txt
+  review/rc4/evidence/print/a1-a2-a3.json
+  review/rc4/evidence/print/pdfs/
+  review/rc4/evidence/print/bbox/
+  review/rc4/evidence/print/png/
+  review/rc4/evidence/qa-129-138.json
+  review/rc4/evidence/qa-shots/
+  review/rc4/evidence/qa132-edited-letter.pdf
+  review/rc4/evidence/screen-before/metrics.json
+  review/rc4/evidence/docs-check.json
+  review/rc4/hot-room-log-demo-v4.mp4

@@ -63,9 +63,9 @@
 <section>
   <h2>AI tools and third-party resources</h2>
   <ul>
-    <li>Third-party resources: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. The pages use the system font stack. There are no third-party images, fonts or chart libraries.</li>
+    <li>Running app, third-party resources: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. The pages use the system font stack. The running app has no third-party images, fonts, or icons: no font files, no icon font, and no chart library. That sentence is about the running app only. It does not describe the demo video pipeline.</li>
     <li>Formula sources: the Canadian humidex (Masterton &amp; Richardson, 1979, Environment Canada) and a Magnus-type vapour-pressure approximation with the constants above. The dew point uses the inverse of that approximation.</li>
-    <li>AI tools: Grok (xAI) was used to write the application code. The planning documents (idea, requirements and QA plan) were drafted with Claude (Anthropic). Zhenhua reviews this list before submission.</li>
+    <li>AI tools and the demo: Grok (xAI) wrote the application code, the docs, the scripts, the screenshots, and the recording scripts. Claude (Anthropic) drafted the planning documents (the idea, the requirements, and the QA plan). DashScope/Bailian text-to-speech narrated the demo only (model qwen3-tts-flash, voice Cherry), with burned-in English captions. The running app does not call DashScope or any other external API. Playwright, Chrome, ffmpeg, and DejaVu Sans were used to produce the demo. Zhenhua reviews this list before submission.</li>
   </ul>
 </section>
 {% endblock %}

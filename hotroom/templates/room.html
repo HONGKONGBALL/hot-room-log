@@ -5,7 +5,7 @@
 <section id="latest" class="tone-{{ summary.latest.band_key }}">
   <p class="humidex-big">{{ summary.latest.humidex_text }}</p>
   <p><span class="band band-{{ summary.latest.band_key }}">{{ summary.latest.band }}</span></p>
-  <p class="facts"><span>Air {{ summary.latest.temp_text }} °C</span><span>Humidity {{ summary.latest.rh_text }} %</span><span>Dew point {{ summary.latest.dew_text }} °C</span><span>Humidity adds {{ summary.latest.effect_text }}</span></p>
+  <p class="facts"><span>Air {{ summary.latest.temp_text }} °C</span><span class="sep"> · </span><span>Humidity {{ summary.latest.rh_text }} %</span><span class="sep"> · </span><span>Dew point {{ summary.latest.dew_text }} °C</span><span class="sep"> · </span><span>Humidity adds {{ summary.latest.effect_text }}</span></p>
   <p>Taken {{ summary.latest.taken_at }}</p>
 </section>
 <ul id="stats">

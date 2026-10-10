@@ -1,0 +1,26 @@
+Hot Room Log — decisions needed before submission
+
+No answer is chosen here. Zhenhua decides.
+
+1. README Chinese paragraph.
+   The brief says English product docs, with Chinese only in idea.md.
+   /workspace/pipeline/run.sh asks the builder for a README in English plus a short Chinese paragraph.
+   README.md still has that Chinese paragraph.
+
+2. Sample banner on screenshots.
+   The PRD screenshot rule says the sample banner is visible in each screenshot.
+   The calculator page and the import page do not show the sample banner. The banner is on the dashboard, on a sample room, and on a sample room's evidence sheet.
+
+3. JavaScript beyond copy, print, and confirm.
+   The PRD says the one script is only for the Copy button, the Print button, and confirm dialogs.
+   The script also fits chart text, updates table-scroll shadows, and shows a custom tooltip.
+   Add room, add reading, delete, calculator, export, import, and reset still work with JavaScript off. Copy and Print do nothing in that case, and there is no confirm dialog.
+
+4. "One-page" versus the printed sheet.
+   About, the README pitch, and the Devpost tagline say "one-page".
+   Room 1 prints on 2 A4 pages. QA 132 allows at most 2.
+
+5. Whether "no paid API" constrains only the running app.
+   The running app calls no external API.
+   The demo narration was produced with DashScope/Bailian TTS (qwen3-tts-flash, voice Cherry).
+   This file does not decide whether the brief's "no paid API" rule covers that demo pipeline.
