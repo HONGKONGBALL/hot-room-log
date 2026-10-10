@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Humidex calculator</h1>
+<p><a href="/calc?temp_c=35&amp;rh_percent=40&amp;temp_c_b=30&amp;rh_percent_b=85">Example: dry 35 °C at 40 % vs humid 30 °C at 85 %</a></p>
+<form class="calc-form" method="get" action="/calc" novalidate>
+  <fieldset>
+    <legend>Condition A</legend>
+    <div class="field">
+      <label for="temp_c">Temperature (°C)</label>
+      <input id="temp_c" name="temp_c" type="number" step="0.1" min="0" max="50" value="{{ values.temp_c }}"{% if errors.temp_c %} aria-invalid="true" aria-describedby="temp_c-error"{% endif %}>
+      {% if errors.temp_c %}
+      <p class="error" id="temp_c-error">{{ errors.temp_c }}</p>
+      {% endif %}
+    </div>
+    <div class="field">
+      <label for="rh_percent">Relative humidity (%)</label>
+      <input id="rh_percent" name="rh_percent" type="number" step="0.1" min="1" max="100" value="{{ values.rh_percent }}"{% if errors.rh_percent %} aria-invalid="true" aria-describedby="rh_percent-error"{% endif %}>
+      {% if errors.rh_percent %}
+      <p class="error" id="rh_percent-error">{{ errors.rh_percent }}</p>
+      {% endif %}
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Condition B (optional)</legend>
+    <div class="field">
+      <label for="temp_c_b">Temperature (°C)</label>
+      <input id="temp_c_b" name="temp_c_b" type="number" step="0.1" min="0" max="50" value="{{ values.temp_c_b }}"{% if errors.temp_c_b %} aria-invalid="true" aria-describedby="temp_c_b-error"{% endif %}>
+      {% if errors.temp_c_b %}
+      <p class="error" id="temp_c_b-error">{{ errors.temp_c_b }}</p>
+      {% endif %}
+    </div>
+    <div class="field">
+      <label for="rh_percent_b">Relative humidity (%)</label>
+      <input id="rh_percent_b" name="rh_percent_b" type="number" step="0.1" min="1" max="100" value="{{ values.rh_percent_b }}"{% if errors.rh_percent_b %} aria-invalid="true" aria-describedby="rh_percent_b-error"{% endif %}>
+      {% if errors.rh_percent_b %}
+      <p class="error" id="rh_percent_b-error">{{ errors.rh_percent_b }}</p>
+      {% endif %}
+    </div>
+  </fieldset>
+  <button type="submit">Calculate</button>
+</form>
+<ul class="legend">
+  {% for key, label, range in bands %}
+  <li><span class="band band-{{ key }}">{{ label }}</span> {{ range }}</li>
+  {% endfor %}
+</ul>
+{% if result_a %}
+<section class="result" data-condition="a" data-humidex="{{ result_a.humidex_text }}" data-band="{{ result_a.band_key }}">
+  <h2>Condition A</h2>
+  <p class="humidex-big">Humidex {{ result_a.humidex_text }}</p>
+  <p><span class="band band-{{ result_a.band_key }}">{{ result_a.band }}</span></p>
+  <p>Dew point {{ result_a.dew_text }} °C</p>
+  <p>Humidity adds {{ result_a.effect_text }}</p>
+  <details open>
+    <summary>Show working</summary>
+    <ol>
+      {% for step in result_a.steps %}
+      <li>{{ step }}</li>
+      {% endfor %}
+    </ol>
+    <p>Steps show rounded numbers; results use full precision.</p>
+  </details>
+</section>
+{% endif %}
+{% if result_b %}
+<section class="result" data-condition="b" data-humidex="{{ result_b.humidex_text }}" data-band="{{ result_b.band_key }}">
+  <h2>Condition B</h2>
+  <p class="humidex-big">Humidex {{ result_b.humidex_text }}</p>
+  <p><span class="band band-{{ result_b.band_key }}">{{ result_b.band }}</span></p>
+  <p>Dew point {{ result_b.dew_text }} °C</p>
+  <p>Humidity adds {{ result_b.effect_text }}</p>
+  <details open>
+    <summary>Show working</summary>
+    <ol>
+      {% for step in result_b.steps %}
+      <li>{{ step }}</li>
+      {% endfor %}
+    </ol>
+    <p>Steps show rounded numbers; results use full precision.</p>
+  </details>
+</section>
+{% endif %}
+{% if compare %}
+<p id="compare">{{ compare }}</p>
+{% endif %}
+{% endblock %}

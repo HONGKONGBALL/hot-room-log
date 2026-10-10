@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Import results</h1>
+<ul id="import-summary">
+  <li>Readings added: {{ result.added }}</li>
+  <li>New rooms: {{ result.new_rooms }}</li>
+  <li>Duplicates skipped: {{ result.duplicates }}</li>
+  <li>Invalid rows skipped: {{ result.invalid }}</li>
+</ul>
+<ul id="import-errors">
+  {% for item in result.errors %}
+  <li>{{ item }}</li>
+  {% endfor %}
+  {% if result.extra %}
+  <li>…and {{ result.extra }} more</li>
+  {% endif %}
+</ul>
+<p><a href="/">Back to rooms</a></p>
+{% endblock %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} · Hot Room Log</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <a class="brand" href="/">Hot Room Log</a>
+    <nav>
+      <a href="/">Rooms</a>
+      <a href="/calc">Calculator</a>
+      <a href="/import">Import</a>
+      <a href="/about">About</a>
+    </nav>
+  </header>
+  <main>
+    {% if config.READONLY %}
+    <p class="banner-readonly">Read-only demo: changes are turned off. Run the app on your own computer to add readings.</p>
+    {% endif %}
+    {% if show_sample_banner %}
+    <p class="banner-sample">Sample data — fictional rooms and readings for demonstration.</p>
+    {% endif %}
+    {% with messages = get_flashed_messages() %}
+      {% for message in messages %}
+      <p class="flash">{{ message }}</p>
+      {% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    <p>Humidex bands are a comfort guide, not medical advice.</p>
+    <p>Hot Room Log · solo project by Zhenhua Liu for STEMergent Hacks 2026</p>
+    <p><a href="/about">About</a></p>
+  </footer>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

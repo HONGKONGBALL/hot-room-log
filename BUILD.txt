@@ -1,0 +1,22 @@
+Start command:
+  python -m venv .venv
+  source .venv/bin/activate
+  pip install -r requirements.txt
+  python app.py
+
+URL: http://127.0.0.1:5050
+Port: 5050
+Login: none
+
+Passed QA cases: 1-136, 138
+Failed QA cases: none
+
+Not run (not product failures):
+  137  Network was not disconnected. Pages, CSS, and script are served by the local app, and the HTML has no external resources.
+  139-146  Devpost submission checks for Zhenhua Liu.
+
+Notes:
+  Cases 1-123 are covered by pytest (110 tests, exit 0). Case 128 is `pip install -r requirements-dev.txt && pytest -q`.
+  Cases 124-127 used python app.py and curl. The server bound 127.0.0.1:5050 (and 5051 when PORT=5051). HOTROOM_READONLY=1 made POST /reset return 403. Servers were stopped afterwards.
+  Headless Chrome checked the dashboard, room chart tooltips, copy button ("Copied", then "Copy letter" after about 2 seconds; the system clipboard was not read back), print-to-PDF (room 1 fits on 2 A4 pages and includes the edited letter), confirm-and-cancel for delete reading, delete room, and reset, JavaScript disabled (add room still works), 375 px width, keyboard focus outlines, and 200% zoom.
+  The HTTP check created instance/hotroom.db. That file was removed after the checks, so the next `python app.py` creates the database and loads the sample data.

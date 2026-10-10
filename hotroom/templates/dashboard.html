@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Rooms</h1>
+<p class="intro">Log temperature and humidity, see how hot each room really feels, and print evidence to ask for a fix.</p>
+{% if not cards %}
+<p>No rooms yet. Add one below, or reset to load the sample data.</p>
+{% endif %}
+{% if cards %}
+<div class="cards">
+  {% for card in cards %}
+  <article class="room-card" data-room-id="{{ card.room.id }}" data-band="{{ card.band }}">
+    <h2>
+      <a href="/rooms/{{ card.room.id }}">{{ card.room.name }}</a>
+      {% if card.room.is_sample %}<span class="tag-sample">Sample</span>{% endif %}
+    </h2>
+    {% if card.summary %}
+    <p class="humidex-big">{{ card.summary.latest.humidex_text }}</p>
+    <p><span class="band band-{{ card.summary.latest.band_key }}">{{ card.summary.latest.band }}</span></p>
+    <p>Latest {{ card.summary.latest.taken_at }}</p>
+    <p>{{ card.summary.count_text }}</p>
+    <p>Great discomfort or above: {{ card.summary.great_line }}</p>
+    {% else %}
+    <p>No readings yet.</p>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>
+{% endif %}
+{% if not config.READONLY %}
+<form class="stack" method="post" action="/rooms" novalidate>
+  <div class="field">
+    <label for="name">Room name</label>
+    <input id="name" name="name" maxlength="60" value="{{ name_value }}"{% if name_error %} aria-invalid="true" aria-describedby="name-error"{% endif %}>
+    {% if name_error %}
+    <p class="error" id="name-error">{{ name_error }}</p>
+    {% endif %}
+  </div>
+  <button type="submit">Add room</button>
+</form>
+{% endif %}
+<div class="tools">
+  <a href="/export.csv">Export all readings (CSV)</a>
+  <a href="/import">Import CSV</a>
+  {% if not config.READONLY %}
+  <form method="post" action="/reset" data-confirm="Replace all rooms and readings with the sample data?">
+    <button type="submit">Reset demo data</button>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}

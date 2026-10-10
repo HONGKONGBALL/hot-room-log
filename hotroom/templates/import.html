@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Import readings from CSV</h1>
+{% if import_error %}
+<p class="error">{{ import_error }}</p>
+{% endif %}
+<div class="prose">
+  <p>Required columns: room, taken_at, temp_c, rh_percent. Optional: note. Other columns are ignored, so a Hot Room Log export imports directly.</p>
+  <p>Times use YYYY-MM-DD HH:MM. Files must be UTF-8 (Excel's "CSV UTF-8" works). Limits: 1 MB and 2,000 rows.</p>
+  <p>Rooms are matched by name, and missing rooms are created. Exact duplicates are skipped.</p>
+</div>
+{% if not config.READONLY %}
+<form method="post" action="/import" enctype="multipart/form-data">
+  <div class="field">
+    <label for="file">CSV file</label>
+    <input id="file" type="file" name="file" accept=".csv,text/csv">
+  </div>
+  <button type="submit">Import</button>
+</form>
+{% else %}
+<p>Import is turned off in the read-only demo.</p>
+{% endif %}
+{% endblock %}

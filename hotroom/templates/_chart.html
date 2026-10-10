@@ -1,0 +1,24 @@
+<svg class="chart" role="img" viewBox="0 0 640 280">
+  <title>Humidex over time for {{ room.name }}</title>
+  <desc>{{ chart.description }}</desc>
+  {% for strip in chart.strips %}
+  <rect class="strip band-{{ strip.key }}" x="{{ strip.x }}" y="{{ strip.y }}" width="{{ strip.width }}" height="{{ strip.height }}"></rect>
+  {% endfor %}
+  <line class="axis" x1="{{ chart.axis_left }}" y1="{{ chart.axis_top }}" x2="{{ chart.axis_left }}" y2="{{ chart.axis_bottom }}"></line>
+  <line class="axis" x1="{{ chart.axis_left }}" y1="{{ chart.axis_bottom }}" x2="{{ chart.axis_right }}" y2="{{ chart.axis_bottom }}"></line>
+  {% for label in chart.y_labels %}
+  <text class="axis-label" x="50" y="{{ label.y }}" text-anchor="end" dominant-baseline="middle">{{ label.text }}</text>
+  {% endfor %}
+  {% if chart.polyline %}
+  <polyline class="trend" points="{{ chart.polyline }}" fill="none"></polyline>
+  {% endif %}
+  {% for point in chart.points %}
+  <circle class="point band-{{ point.band_key }}" cx="{{ point.cx }}" cy="{{ point.cy }}" r="6" data-taken-at="{{ point.taken_at }}" data-humidex="{{ point.humidex }}">
+    <title>{{ point.taken_at }} · humidex {{ point.humidex }} · {{ point.band }}</title>
+  </circle>
+  {% endfor %}
+  <text class="time-label" x="{{ chart.first_x }}" y="252" text-anchor="{% if chart.first_time == chart.last_time %}middle{% else %}start{% endif %}">{{ chart.first_time }}</text>
+  {% if chart.first_time != chart.last_time %}
+  <text class="time-label" x="{{ chart.last_x }}" y="252" text-anchor="end">{{ chart.last_time }}</text>
+  {% endif %}
+</svg>

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>About Hot Room Log</h1>
+
+<section>
+  <h2>What it is and who it is for</h2>
+  <p>Hot Room Log is a small local web app for a student, class monitor or volunteer who wants a room to be more comfortable to study in. You type the temperature and relative humidity from any thermometer or humidity display. The app shows the humidex, the dew point and how much the humidity adds, then builds a one-page evidence sheet with a polite letter. Nothing is sent anywhere.</p>
+  <p>It is also for anyone who wants to see why humid heat can feel worse than dry heat.</p>
+</section>
+
+<section>
+  <h2>How the numbers work</h2>
+  <p>T is the air temperature in °C. RH is the relative humidity in %.</p>
+  <p>es = 6.105 × exp(17.27 × T ÷ (237.7 + T))</p>
+  <p>e = RH ÷ 100 × es</p>
+  <p>humidex = T + 0.5555 × (e − 10)</p>
+  <p>gamma = ln(RH ÷ 100) + 17.27 × T ÷ (237.7 + T)</p>
+  <p>dew point = 237.7 × gamma ÷ (17.27 − gamma)</p>
+  <p>Humidex and dew point are rounded half away from zero to one decimal place. The humidity effect is that rounded humidex minus the air temperature, also rounded to one decimal place. It can be negative when the air is very dry.</p>
+  <p>The dew point is the temperature at which the air would become saturated if it cooled without a change in moisture. The humidity effect is the gap between the humidex and the air temperature.</p>
+  <table>
+    <thead>
+      <tr><th>Band</th><th>Humidex</th></tr>
+    </thead>
+    <tbody>
+      {% for key, label, range in bands %}
+      <tr>
+        <td><span class="band band-{{ key }}">{{ label }}</span></td>
+        <td>{{ range }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p>A humid 30 °C at 85 % scores 44.4. A dry 35 °C at 40 % scores 41.9. The cooler, wetter air feels hotter.</p>
+  <p>The humidex definition T + 0.5555 × (e − 10) is the Canadian humidex (Masterton &amp; Richardson, 1979, Environment Canada). The vapour-pressure line is a Magnus-type approximation with constants 6.105 hPa, 17.27 and 237.7 °C. The dew point is the inverse of the same formula, so the two stay consistent.</p>
+</section>
+
+<section>
+  <h2>Limits</h2>
+  <ul>
+    <li>Humidex bands are a comfort guide, not medical advice.</li>
+    <li>Humidex ignores sun, wind, clothing and activity.</li>
+    <li>Humidex is one of several published heat indices.</li>
+    <li>Readings are typed in by hand, so accuracy depends on the instrument.</li>
+    <li>The app does not judge cold rooms. It only looks at heat and humidity.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Privacy</h2>
+  <p>There are no accounts. Readings live in a SQLite file on the computer running the app. Nothing is sent anywhere. There is no analytics. The only cookie is the signed one Flask uses for one-line confirmation messages.</p>
+</section>
+
+<section>
+  <h2>Honesty notes</h2>
+  <ul>
+    <li>The sample rooms and readings are fictional. They are not measurements of any real room.</li>
+    <li>Hot Room Log is not deployed at, endorsed by or used by any school, estate or organisation.</li>
+    <li>This is a solo project by Zhenhua Liu for STEMergent Hacks 2026, Hackathon pathway.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>AI tools and third-party resources</h2>
+  <ul>
+    <li>Third-party resources: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. The pages use the system font stack. There are no third-party images, fonts or chart libraries.</li>
+    <li>Formula sources: the Canadian humidex (Masterton &amp; Richardson, 1979, Environment Canada) and a Magnus-type vapour-pressure approximation with the constants above. The dew point uses the inverse of that approximation.</li>
+    <li>AI tools: Grok (xAI) was used to write the application code. The planning documents (idea, requirements and QA plan) were drafted with Claude (Anthropic). Zhenhua reviews this list before submission.</li>
+  </ul>
+</section>
+{% endblock %}

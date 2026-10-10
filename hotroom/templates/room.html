@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ room.name }}{% if room.is_sample %} <span class="tag-sample">Sample</span>{% endif %}</h1>
+{% if summary %}
+<section id="latest" class="tone-{{ summary.latest.band_key }}">
+  <p class="humidex-big">{{ summary.latest.humidex_text }}</p>
+  <p><span class="band band-{{ summary.latest.band_key }}">{{ summary.latest.band }}</span></p>
+  <p>Air {{ summary.latest.temp_text }} °C · Humidity {{ summary.latest.rh_text }} % · Dew point {{ summary.latest.dew_text }} °C · Humidity adds {{ summary.latest.effect_text }}</p>
+  <p>Taken {{ summary.latest.taken_at }}</p>
+</section>
+<ul id="stats">
+  <li>Readings: {{ summary.count }}</li>
+  <li>Period: {{ summary.period }}</li>
+  <li>Highest: {{ summary.highest_line }}</li>
+  <li>Great discomfort or above: {{ summary.great_line }}</li>
+</ul>
+{% include "_chart.html" %}
+{% else %}
+<p>No readings yet.</p>
+{% endif %}
+{% if not config.READONLY %}
+<form class="stack" method="post" action="/rooms/{{ room.id }}/readings" novalidate>
+  <p class="help">Type the numbers shown on any thermometer or humidity display.</p>
+  <div class="field">
+    <label for="temp_c">Temperature (°C)</label>
+    <input id="temp_c" name="temp_c" type="number" step="0.1" min="0" max="50" value="{{ form_values.temp_c }}"{% if errors.temp_c %} aria-invalid="true" aria-describedby="temp_c-error"{% endif %}>
+    {% if errors.temp_c %}
+    <p class="error" id="temp_c-error">{{ errors.temp_c }}</p>
+    {% endif %}
+  </div>
+  <div class="field">
+    <label for="rh_percent">Relative humidity (%)</label>
+    <input id="rh_percent" name="rh_percent" type="number" step="0.1" min="1" max="100" value="{{ form_values.rh_percent }}"{% if errors.rh_percent %} aria-invalid="true" aria-describedby="rh_percent-error"{% endif %}>
+    {% if errors.rh_percent %}
+    <p class="error" id="rh_percent-error">{{ errors.rh_percent }}</p>
+    {% endif %}
+  </div>
+  <div class="field">
+    <label for="taken_at">Time</label>
+    <input id="taken_at" name="taken_at" type="datetime-local" value="{{ form_values.taken_at }}"{% if errors.taken_at %} aria-invalid="true" aria-describedby="taken_at-error"{% endif %}>
+    {% if errors.taken_at %}
+    <p class="error" id="taken_at-error">{{ errors.taken_at }}</p>
+    {% endif %}
+  </div>
+  <div class="field">
+    <label for="note">Note (optional)</label>
+    <input id="note" name="note" type="text" maxlength="140" value="{{ form_values.note }}"{% if errors.note %} aria-invalid="true" aria-describedby="note-error"{% endif %}>
+    {% if errors.note %}
+    <p class="error" id="note-error">{{ errors.note }}</p>
+    {% endif %}
+  </div>
+  <button type="submit">Add reading</button>
+</form>
+{% endif %}
+{% if readings %}
+{% set show_delete = not config.READONLY %}
+{% include "_readings.html" %}
+{% endif %}
+<div class="tools">
+  <a href="/rooms/{{ room.id }}/sheet">Evidence sheet</a>
+  <a href="/rooms/{{ room.id }}/export.csv">Export this room (CSV)</a>
+  {% if not config.READONLY %}
+  <form method="post" action="/rooms/{{ room.id }}/delete" data-confirm="Delete this room and all its readings?">
+    <button type="submit">Delete room</button>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+<div class="table-scroll">
+  <table id="readings">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Temperature (°C)</th>
+        <th>Humidity (%)</th>
+        <th>Dew point (°C)</th>
+        <th>Humidex</th>
+        <th>Band</th>
+        <th>Note</th>
+        {% if show_delete %}
+        <th>Delete</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for reading in readings %}
+      <tr data-reading-id="{{ reading.id }}">
+        <td>{{ reading.taken_at }}</td>
+        <td>{{ reading.temp_text }}</td>
+        <td>{{ reading.rh_text }}</td>
+        <td>{{ reading.dew_text }}</td>
+        <td>{{ reading.humidex_text }}</td>
+        <td><span class="band band-{{ reading.band_key }}">{{ reading.band }}</span></td>
+        <td>{{ reading.note_text }}</td>
+        {% if show_delete %}
+        <td>
+          <form method="post" action="/readings/{{ reading.id }}/delete" data-confirm="Delete this reading?">
+            <button type="submit" aria-label="Delete reading from {{ reading.taken_at }}">Delete</button>
+          </form>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
