@@ -1,0 +1,12 @@
+$ sha256sum review/rc5/hot-room-log-demo-v4.mp4
+f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1  review/rc5/hot-room-log-demo-v4.mp4
+
+$ ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 review/rc5/hot-room-log-demo-v4.mp4
+152.067000
+
+$ cmp review/rc4/hot-room-log-demo-v4.mp4 review/rc5/hot-room-log-demo-v4.mp4 && echo cmp_ok
+cmp_ok
+
+$ stat -c "%i %s" review/rc4/hot-room-log-demo-v4.mp4 review/rc5/hot-room-log-demo-v4.mp4
+1183517 8995573
+1183517 8995573

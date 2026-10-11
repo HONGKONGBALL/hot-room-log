@@ -1,0 +1,14 @@
+$ .venv/bin/pytest -q
+........................................................................ [ 63%]
+..........................................                               [100%]
+114 passed in 1.17s
+pytest_exit:0
+
+$ .venv/bin/pytest -q --collect-only tests/test_o_pages.py -k "119 or 147 or 148 or 149 or 150"
+tests/test_o_pages.py::test_119_about_copy
+tests/test_o_pages.py::test_147_no_cjk_in_readme_and_docs
+tests/test_o_pages.py::test_148_no_one_page_wording
+tests/test_o_pages.py::test_149_script_whitelist
+tests/test_o_pages.py::test_150_flask_only_no_network_imports
+
+5/11 tests collected (6 deselected) in 0.01s

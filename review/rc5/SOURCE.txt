@@ -1,0 +1,9 @@
+parent of the rework: f79ad403afb1a24730ef3a31c5b0d670979b7104 (tag rc4)
+branch: rc3-work
+product and evidence commit: recorded by the following hash-record commit
+tag rc5: the hash-record commit that follows the product commit; its parent is that product commit
+diff from rc4: review/rc5/diff-from-rc4.patch
+  That patch is `git diff --cached rc4` of the product commit's tree before this patch file was added.
+  It does not include its own addition. The following hash-record commit is not in the patch.
+push: no
+submit: no

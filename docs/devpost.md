@@ -9,7 +9,7 @@ Leave **Challenges** and **What I learned** blank here. Those two answers should
 | Field | Content |
 |---|---|
 | Project title | Hot Room Log |
-| Tagline, if the form asks | Turn "it's too hot to study" into evidence: log a room's temperature and humidity, see how hot it really feels, and print a one-page sheet asking for a fix. |
+| Tagline, if the form asks | Turn "it's too hot to study" into evidence: log a room's temperature and humidity, see how hot it really feels, and print an evidence sheet asking for a fix. |
 | Pathway | Hackathon |
 | Team | Solo: Zhenhua Liu (Devpost: Zhenhua; GitHub: HONGKONGBALL). No teammates. |
 | Code link | `https://github.com/HONGKONGBALL/hot-room-log` — create the public repo before submitting, and confirm the README quick start works on a fresh clone. |
@@ -28,13 +28,13 @@ Leave **Challenges** and **What I learned** blank here. Those two answers should
 
 **Honesty notes.** The rooms and readings in the demo and screenshots are fictional sample data. Hot Room Log is not deployed at, endorsed by or used by any school, estate or organisation. Humidex bands are a comfort guide, not medical advice. This is a solo project by Zhenhua Liu, built new for STEMergent Hacks 2026.
 
-**AI tools and third-party resources.** Grok (xAI) wrote the application code, the docs, the scripts, the screenshots, and the recording scripts. Claude (Anthropic) drafted the planning documents (the idea, the requirements, and the QA plan). DashScope/Bailian text-to-speech narrated the demo only (model qwen3-tts-flash, voice Cherry), with burned-in English captions. The running app does not call DashScope or any other external API. Playwright, Chrome, ffmpeg, and DejaVu Sans were used to produce the demo. Zhenhua reviews this list before submission. Running app, third-party: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. Formulas: the Canadian humidex (Masterton & Richardson, 1979, Environment Canada) and a Magnus-type vapour-pressure approximation. The running app has no third-party images, fonts, or icons: the pages use the system font stack, with no font files, no icon font, and no chart library. That limit is about the running app only. It does not describe the demo video pipeline.
+**AI tools and third-party resources.** AI tools and the demo: Grok (xAI) wrote the application code and tests, the docs, the screenshots, the demo recording scripts, and the demo's narration text and captions. Claude (Anthropic) drafted the planning documents (the idea, the requirements, and the QA plan). The demo video's voice-over is an AI-generated voice from Alibaba Cloud Model Studio (DashScope/Bailian) text-to-speech: model qwen3-tts-flash, voice Cherry. It was used only to make the video. The running app does not call DashScope or any other external service, and needs no API key. Playwright, Google Chrome, ffmpeg, and the DejaVu Sans font were used to produce the demo. Zhenhua reviews this list before submission. Running app, third-party: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. Formulas: the Canadian humidex (Masterton & Richardson, 1979, Environment Canada) and a Magnus-type vapour-pressure approximation. The running app has no third-party images, fonts, or icons: the pages use the system font stack, with no font files, no icon font, and no chart library. That limit is about the running app only. It does not describe the demo video pipeline.
 
 ## Screenshots and video
 
-The screenshots in `screenshots/` show the fictional sample banner. No personal data is shown.
+The dashboard, room and evidence-sheet screenshots show the fictional sample banner. The calculator and import-results pages show no stored rooms, so they have no banner. The calculator uses the example inputs, and the import used a small fictional CSV file. No personal data is shown.
 
-The delivery demo is `/workspace/demo/hot-room-log-demo-v4.mp4`: 1920×1080, duration 152.067 seconds, sha256 `f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1`. Narration is DashScope/Bailian TTS (`qwen3-tts-flash`, voice Cherry), with burned-in English captions. The running app does not call that service. Playwright recorded the running app (no terminal and no address bar). It uses the fictional sample rooms, then adds one library reading and imports one new room. Upload it only if the open Devpost form asks for a video. It is not stored in this repository.
+The delivery demo is hot-room-log-demo-v4.mp4: 1920×1080, duration 152.067 seconds. The voice-over is an AI-generated voice (Alibaba Cloud Model Studio text-to-speech, qwen3-tts-flash, voice Cherry), with burned-in English captions. The running app does not call that service. Playwright recorded the running app (no terminal and no address bar). It uses the fictional sample rooms, then adds one library reading and imports one new room. Upload it only if the open Devpost form asks for a video.
 
 - `screenshots/dashboard.png` — three sample rooms
 - `screenshots/room.png` — Demo Estate Study Room, chart and readings

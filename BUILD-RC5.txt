@@ -1,0 +1,133 @@
+Hot Room Log — candidate rc5
+Date: 2026-10-11
+Branch: rc3-work
+Parent: rc4 f79ad403afb1a24730ef3a31c5b0d670979b7104
+Worktree: /workspace/hot-room-log-rc3
+Product and evidence commit: recorded by the following hash-record commit.
+Tag rc5 points at the following hash-record commit. Its parent is the product and evidence commit.
+Nothing was pushed. Nothing was deployed. Nothing was submitted to Devpost.
+
+Start command, from /workspace/hot-room-log-rc3:
+
+  python -m venv .venv
+  source .venv/bin/activate
+  pip install -r requirements.txt
+  python app.py
+
+URL: http://127.0.0.1:5050
+Port: 5050
+Bind: 127.0.0.1 unless HOST is set
+Login: none
+
+Environment for the checks below:
+  Linux
+  Python 3.13.5 (.venv)
+  pytest 9.1.1
+  ffprobe 7.1.5
+
+Contract v2 SHA-256, recomputed after the edits. brief.md was not edited.
+
+  brief.md  a784723622afead05a8e029cc77dc65743911e418973f21a168d1b836f142688  a7847236
+  idea.md   5cb30bfecfb9877c431f6bdc1a8305743373e5bbb5ec3159fd26fc4450859a83  5cb30bfe
+  prd.md    bd0a2a29219fbeab8a6c0732943379224bedcfe8c75c1ade2da7d5d2f75c769e  bd0a2a29
+  qa.md     1961075a80ebb305dfc084394e7136ae0a868c72661883945b31e5fade4049c6  1961075a
+
+Before any edit, the top-level files and contract-v1/ copies were the same bytes.
+Those v1 hashes stay on contract-v1/ (not edited):
+
+  brief.md  a784723622afead05a8e029cc77dc65743911e418973f21a168d1b836f142688  a7847236
+  idea.md   3e8c68b41116dcfa2b83fd5b4a698e7c5f38bcd4c20de1998ee1845780bdc451  3e8c68b4
+  prd.md    599f65d627149b243962625d71552904f96411c73a6547e42ce8e59a0e52577c  599f65d6
+  qa.md     6653f1b6e70da8a24b5cfd3b7c5f37469516d43b484d0d648a5353866a58e486  6653f1b6
+
+The old v1/ draft folder was not used. run.sh was not run.
+
+Pytest. Command: .venv/bin/pytest -q
+Exit 0. 114 passed in 1.17s.
+Log: review/rc5/evidence/pytest.txt
+The same log names the new and extended tests:
+  tests/test_o_pages.py::test_119_about_copy
+  tests/test_o_pages.py::test_147_no_cjk_in_readme_and_docs
+  tests/test_o_pages.py::test_148_no_one_page_wording
+  tests/test_o_pages.py::test_149_script_whitelist
+  tests/test_o_pages.py::test_150_flask_only_no_network_imports
+
+Grep. Log: review/rc5/evidence/grep.txt
+  CJK scan of README.md, docs, and hotroom/templates: no output (exit 1).
+  one-page / one page / 一页 scan of README.md, docs, hotroom/templates, idea.md, and prd.md: no output (exit 1).
+  app.js ban list: no output (exit 1).
+  Banner scan: one line, docs/devpost.md:35, the rewritten sentence. README.md has no banner line.
+  The secret-pattern git grep is not empty. The only match, before this evidence file was tracked, is ACCEPTANCE.md line 69. That line is the supervisor contract naming the patterns for this check. It is not an endpoint, a key, or a token. ACCEPTANCE.md was not edited in this build. After review/rc5/evidence/grep.txt is committed, the same command also matches that file, because the file quotes the command and the ACCEPTANCE.md line.
+
+Reuse decision. Command and output:
+
+  git diff rc4 --stat -- hotroom app.py requirements.txt
+   hotroom/templates/about.html | 4 ++--
+   1 file changed, 2 insertions(+), 2 deletions(-)
+
+The about.html diff is text inside one <p> and one <li>. No other template line changed.
+app.js, style.css, Python modules, app.py, requirements.txt, and requirements-dev.txt are unchanged.
+screenshots/*.png are unchanged. Print CSS is unchanged.
+The optional print CSS letter-block cleanup was not done.
+
+Because that diff is only about.html text, rc5 reuses the rc4 evidence below.
+No rc4 FINAL PASS is on record. This reuse follows FIX-TASK-RC5.md section D.
+It is not a claim that a FINAL review accepted the files.
+QA 124–127, QA 129–138, and the A1/A2/A3 print measurements were not re-run.
+
+Reused (not re-run):
+  review/rc4/evidence/qa-124-127.sh
+  review/rc4/evidence/http/
+  review/rc4/evidence/qa-129-138.json
+  review/rc4/evidence/qa-shots/
+  review/rc4/evidence/print/a1-a2-a3.json
+  review/rc4/evidence/print/pdfs/
+  review/rc4/evidence/print/bbox/
+
+Re-run on this tree:
+  review/rc5/evidence/pytest.txt
+  review/rc5/evidence/grep.txt
+  review/rc5/evidence/video-identity.txt
+
+QA 151. Pending human confirmation by Zhenhua.
+This file does not say the qwen3-tts-flash call was free, billed, allowed, or forbidden.
+The silent cut was not substituted. The video was not regenerated. No TTS API was called.
+
+Demo file.
+  Packaged path: review/rc5/hot-room-log-demo-v4.mp4
+  Hardlink of review/rc4/hot-room-log-demo-v4.mp4 (same inode, cmp matched). Not transcoded.
+  sha256 f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1
+  ffprobe duration 152.067000, which is 152.067 seconds
+  Voice-over: Alibaba Cloud Model Studio text-to-speech, model qwen3-tts-flash, voice Cherry
+  Burned-in English captions. The running app does not call that service.
+  Local path and sha256 are recorded here, not in the README.
+
+Acceptance A1–A14. These notes are the builder's record of this candidate. They are not a FINAL PASS.
+
+A1. Contract v1 is unchanged. Prefixes before the edit matched, and contract-v1/ still has those bytes. brief.md still starts with a7847236. The old v1/ folder was not used.
+
+A2. Top-level idea.md, prd.md, and qa.md contain I1, P1, P2, P3, P4, P5a, P5b, P6, P7, P8a, P8b, P9a, P9b, P9c, P9d, Q0, Q119, Q132, Q134, Q142, Q143, Q144, Q147, Q148, Q149, Q150, and Q151. QA numbers 1–146 are still present. New rows are 147–151 only. Hashes are above.
+
+A3. README. The Chinese paragraph is gone. One blank line remains between the pitch and Quick start. The pitch says "printable evidence sheet". The video paragraph has no /workspace/ path and does not say the file is absent from the repository. It names the AI-generated voice (Alibaba Cloud Model Studio text-to-speech, qwen3-tts-flash, voice Cherry) with burned-in English captions, and it keeps the docs/narration-check.md link. The AI bullet is the unified paragraph.
+
+A4. Devpost. The tagline is the P8a slogan. The AI section starts with the unified paragraph, then the existing third-party, formulas, and running-app image sentences. The banner sentence is the ruling's dashboard/room/sheet sentence. The video paragraph has no /workspace/ path and does not say the file is absent from the repository.
+
+A5. About. The first paragraph says "builds a printable evidence sheet". The AI list item is the unified paragraph. The diff is those two text changes inside <p> and <li>.
+
+A6. tests/test_o_pages.py checks the QA 119 phrases and adds QA 147, 148, 149, and 150. pytest exited 0. Log: review/rc5/evidence/pytest.txt.
+
+A7. Grep log: review/rc5/evidence/grep.txt. CJK, one-page, and app.js ban-list scans are empty. The banner line is only the rewritten Devpost sentence. The secret-pattern scan matches ACCEPTANCE.md:69, as recorded above.
+
+A8. DECISIONS-NEEDED.txt marks all five items 已决（contract v2), one conclusion line each. Item 5 leaves QA 151 open.
+
+A9. REUSED. The diff stat above is only about.html text. The rc4 paths listed above are the reused evidence. No rc4 FINAL review exists.
+
+A10. QA 151 is pending human confirmation by Zhenhua. No billing result is stated.
+
+A11. Out of scope held. app.js, style.css, other templates, Python, requirements files, screenshots, and the demo bytes are unchanged. Print CSS is unchanged.
+
+A12. This candidate is committed on rc3-work. Tag rc5 points at the hash-record commit that follows the product commit. review/rc5/ holds the requirements pointer, source note, diff from rc4, start command, acceptance table, known issues, the logs, and the demo file. Nothing was pushed. Nothing was submitted.
+
+A13. The packaged demo sha256 is f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1 and the duration is 152.067 seconds. Command output: review/rc5/evidence/video-identity.txt.
+
+A14. The unified AI paragraph is the same text in hotroom/templates/about.html, README.md, and docs/devpost.md. It names Grok, Claude, Alibaba Cloud Model Studio, DashScope/Bailian, qwen3-tts-flash, voice Cherry, and that the running app does not call an external service. test_119 reads those phrases from the rendered About page.

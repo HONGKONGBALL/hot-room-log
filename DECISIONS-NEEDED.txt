@@ -1,26 +1,9 @@
-Hot Room Log — decisions needed before submission
+Hot Room Log — decisions under contract v2
 
-No answer is chosen here. Zhenhua decides.
+All five items are 已决（contract v2, 2026-10-11). Product logic, styles, and scripts stay as they are.
 
-1. README Chinese paragraph.
-   The brief says English product docs, with Chinese only in idea.md.
-   /workspace/pipeline/run.sh asks the builder for a README in English plus a short Chinese paragraph.
-   README.md still has that Chinese paragraph.
-
-2. Sample banner on screenshots.
-   The PRD screenshot rule says the sample banner is visible in each screenshot.
-   The calculator page and the import page do not show the sample banner. The banner is on the dashboard, on a sample room, and on a sample room's evidence sheet.
-
-3. JavaScript beyond copy, print, and confirm.
-   The PRD says the one script is only for the Copy button, the Print button, and confirm dialogs.
-   The script also fits chart text, updates table-scroll shadows, and shows a custom tooltip.
-   Add room, add reading, delete, calculator, export, import, and reset still work with JavaScript off. Copy and Print do nothing in that case, and there is no confirm dialog.
-
-4. "One-page" versus the printed sheet.
-   About, the README pitch, and the Devpost tagline say "one-page".
-   Room 1 prints on 2 A4 pages. QA 132 allows at most 2.
-
-5. Whether "no paid API" constrains only the running app.
-   The running app calls no external API.
-   The demo narration was produced with DashScope/Bailian TTS (qwen3-tts-flash, voice Cherry).
-   This file does not decide whether the brief's "no paid API" rule covers that demo pipeline.
+1. README Chinese paragraph. 已决（contract v2): the brief wins. The README is English only. The Chinese paragraph is removed. Chinese stays only in the short summary at the top of idea.md.
+2. Sample banner on screenshots. 已决（contract v2): the §7.0 banner rule stays. The banner is only on pages that show sample rooms. The §15 screenshot rule is rewritten so screenshots 4 and 5 do not claim a banner.
+3. JavaScript beyond copy, print, and confirm. 已决（contract v2): the existing script is accepted as progressive enhancement. The contract whitelist covers copy, print, confirm dialogs, chart fitting, scroll-edge shadows, and the chart tooltip. The script is not removed.
+4. "printable" versus the printed sheet. 已决（contract v2): the wording is "printable evidence sheet". The layout stays. Room 1 still prints on at most 2 A4 pages.
+5. Whether "no paid API" constrains only the running app. 已决（contract v2): the brief's "No paid API" rule applies to the product at runtime. The demo voice-over is disclosed as an AI-generated voice. Zhenhua still checks billing and terms before submission (QA 151). That check is not done in this file.

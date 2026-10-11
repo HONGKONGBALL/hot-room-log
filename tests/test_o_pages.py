@@ -1,6 +1,47 @@
 """QA section O. Pages, static files, security and accessibility."""
 
+import ast
+import re
+from pathlib import Path
+
 from tests.htmltool import find_all, html_text, one, parse
+
+ROOT = Path(__file__).resolve().parents[1]
+CJK_RANGES = re.compile(
+    "[\u3000-\u303f\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff00-\uffef]"
+)
+ONE_PAGE = re.compile(r"one[- ]page", re.IGNORECASE)
+JS_BANNED = (
+    "fetch(",
+    "XMLHttpRequest",
+    "WebSocket",
+    "EventSource",
+    "sendBeacon",
+    "import(",
+    "eval(",
+    "new Function",
+    "innerHTML",
+    "outerHTML",
+    "insertAdjacentHTML",
+    "document.write",
+    ".submit(",
+    "requestSubmit",
+    "localStorage",
+    "sessionStorage",
+    "document.cookie",
+    "http:",
+    "https:",
+)
+IMPORT_BANNED = (
+    "urllib",
+    "http.client",
+    "requests",
+    "httpx",
+    "aiohttp",
+    "socket",
+    "dashscope",
+    "openai",
+)
 
 PAGES = ["/", "/rooms/1", "/rooms/1/sheet", "/calc", "/import", "/about"]
 FOOTER = "Humidex bands are a comfort guide, not medical advice."
@@ -58,6 +99,11 @@ def test_119_about_copy(client):
         "Masterton",
         "Flask",
         "pytest",
+        "Grok",
+        "Claude",
+        "qwen3-tts-flash",
+        "AI-generated voice",
+        "does not call",
     ):
         assert phrase in text
     root = parse(client.get("/about").get_data(as_text=True))
@@ -134,3 +180,78 @@ def test_123_labels_and_bands(client):
             assert len(labels) == 1, (path, control_id, len(labels))
         for band in find_all(root, "span", cls="band"):
             assert band.text() in BANDS
+
+
+def _imported_module_names(tree):
+    """Real import targets. Relative imports such as hotroom.http are skipped."""
+    names = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                names.append(alias.name)
+        elif isinstance(node, ast.ImportFrom):
+            if node.level:
+                continue
+            module = node.module or ""
+            if module:
+                names.append(module)
+            for alias in node.names:
+                if alias.name == "*":
+                    continue
+                names.append(f"{module}.{alias.name}" if module else alias.name)
+    return names
+
+
+def _import_is_banned(name):
+    for banned in IMPORT_BANNED:
+        if name == banned or name.startswith(banned + "."):
+            return banned
+    return None
+
+
+def test_147_no_cjk_in_readme_and_docs():
+    paths = [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md"))]
+    assert paths
+    for path in paths:
+        text = path.read_text(encoding="utf-8")
+        match = CJK_RANGES.search(text)
+        assert match is None, (str(path.relative_to(ROOT)), hex(ord(match.group())))
+
+
+def test_148_no_one_page_wording(client):
+    bodies = {
+        "/about": client.get("/about").get_data(as_text=True),
+        "README.md": (ROOT / "README.md").read_text(encoding="utf-8"),
+        "docs/devpost.md": (ROOT / "docs" / "devpost.md").read_text(encoding="utf-8"),
+    }
+    for label, body in bodies.items():
+        assert ONE_PAGE.search(body) is None, label
+
+
+def test_149_script_whitelist(client):
+    script = (ROOT / "hotroom" / "static" / "app.js").read_text(encoding="utf-8")
+    for needle in JS_BANNED:
+        assert needle not in script, needle
+    for path in PAGES:
+        root = parse(client.get(path).get_data(as_text=True))
+        scripts = find_all(root, "script")
+        assert len(scripts) == 1, (path, len(scripts))
+        assert scripts[0].attrs.get("src") == "/static/app.js", path
+
+
+def test_150_flask_only_no_network_imports():
+    lines = []
+    for raw in (ROOT / "requirements.txt").read_text(encoding="utf-8").splitlines():
+        stripped = raw.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        lines.append(stripped)
+    assert len(lines) == 1
+    assert lines[0].startswith("Flask")
+    python_files = [ROOT / "app.py", *sorted((ROOT / "hotroom").rglob("*.py"))]
+    assert python_files
+    for path in python_files:
+        tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+        for name in _imported_module_names(tree):
+            banned = _import_is_banned(name)
+            assert banned is None, (str(path.relative_to(ROOT)), name, banned)

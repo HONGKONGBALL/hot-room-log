@@ -1,16 +1,16 @@
-# Hot Room Log — acceptance contract (rc4)
+# Hot Room Log — acceptance contract (rc5)
 
-Candidate under test: rc4, built on rc3 (`e7a7d83eaf1c5d95934dfe98d729aec7e92fe539`, tag `rc3`, branch `rc3-work`).
+Candidate under test: rc5, built on rc4 (`f79ad403afb1a24730ef3a31c5b0d670979b7104`, tag `rc4`, branch `rc3-work`).
 
-Source of this rework: external FINAL review of rc3, decision CHANGES_REQUIRED. Required items are the numbered fixes in `/workspace/pipeline/review/hot-room-log-rc3-fix-task.md`. This contract is the checkable form of those items plus the flows that must still work. It is not a pass of the external review.
+Source of this rework: `/workspace/pipeline/stemergent/FIX-TASK-RC5.md` and `/workspace/pipeline/stemergent/contract-v2-ruling.md`. Contract text follows the ruling section 「contract_version: v2 完整变更清单」. This contract is the checkable form of that work. It is not a pass of an external review.
 
 ## Goal
 
-A student can log temperature and humidity for a room on one local machine, see humidex, dew point, and how much humidity adds, and produce a polite evidence sheet they can copy or print. rc4 keeps that behavior and repairs the rc3 print regression, the printed page background, the latest-reading sentence, delivery docs, and the disclosure.
+Apply contract v2. The five open conflicts are decided in the documents and in the disclosure text. Product logic, CSS layout, `app.js` behaviour, Python, requirements, screenshots, and the demo video stay as they are in rc4. Room 1 still prints on at most 2 A4 pages. The running app still calls no external service.
 
 ## Target environment
 
-- OS: Linux. Browser: Chrome (headless or headed) for the checks below.
+- OS: Linux. Browser checks for rc5 are the reused rc4 runs, unless a product file outside `about.html` text changes and those runs must be repeated.
 - Start, from `/workspace/hot-room-log-rc3`:
 
 ```
@@ -22,9 +22,11 @@ python app.py
 
 - App URL: `http://127.0.0.1:5050` (override with `PORT`). Binds to `127.0.0.1` unless `HOST` is set.
 - No account and no login. Sample data loads once into `instance/hotroom.db`.
-- The running app must not call a network API. The delivery video is the existing file `/workspace/demo/hot-room-log-demo-v4.mp4`. Do not re-narrate it.
+- Do not re-narrate or regenerate the demo. The delivery file remains `hot-room-log-demo-v4.mp4` (sha256 `f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1`, duration 152.067 seconds).
 
 ## Core flows
+
+These flows are unchanged from rc4. rc5 does not re-test them in the browser when `git diff rc4 --stat -- hotroom app.py requirements.txt` lists only `hotroom/templates/about.html` and that diff is text inside `<p>` or `<li>`.
 
 1. First launch creates the database and three fictional sample rooms. The dashboard shows three banded cards.
 2. Opening a room shows the latest humidex, the latest-reading sentence, a chart, and a table. Adding a valid reading updates the card, chart, and table. An invalid reading returns 400, keeps the typed values, and shows a field error.
@@ -34,39 +36,48 @@ python app.py
 
 ## Scope
 
-In scope for rc4: print chart labels, printed page background, latest-reading DOM text, docs and disclosure for demo v4, QA evidence on the rc4 tree, `BUILD-RC4.txt`, local commit and tag `rc4`.
+In scope for rc5:
+
+- Top-level `/workspace/pipeline/stemergent/idea.md`, `prd.md`, and `qa.md`, edited to contract v2. `brief.md` is not edited. `contract-v1/` is the frozen v1 copy and is not edited. Do not run `run.sh` on stemergent.
+- `README.md`, `docs/devpost.md`, `hotroom/templates/about.html` (wording only), `tests/test_o_pages.py`, `DECISIONS-NEEDED.txt`, `BUILD-RC5.txt`.
+- Full pytest, including QA 147–150, and the ruling's grep checks.
+- Local commit on `rc3-work` and tag `rc5`. Package `review/rc5/`.
 
 ## Non-goals
 
-Do not invent a product decision for these conflicts. List them in `DECISIONS-NEEDED.txt` and leave the behavior as it is:
-
-- README Chinese paragraph versus the brief (Chinese only in `idea.md`).
-- Sample banner on the calculator and import pages versus the screenshot rule.
-- JavaScript beyond copy, print, and confirm, versus the requirements.
-- The words "one-page" versus a 2-page Room 1 sheet.
-
-- Whether the brief's "no paid API" rule covers the DashScope/Bailian narration used only to produce the demo. Disclose that tool (A5). Do not rule on compliance, and do not remove or regenerate the narration.
-
-Also out of scope: optional UI polish (autofocus on the first error, 320 px point-versus-label overlap, `type="text"` on the room name, hiding screen-only print hints, letter textarea growth, scrolling to the calculator result, copy-failure UI, import error heading, sheet "back to room" link, deep-JSON 500 / CSV message fixes), backend behavior changes, push, deploy, and Devpost submission. Do not regenerate the demo with edge-tts or a new TTS call.
+- Do not modify `hotroom/static/app.js`, `hotroom/static/style.css`, templates other than the two text spots in `about.html`, any Python app module, `requirements.txt`, `requirements-dev.txt`, `screenshots/*.png`, or `hot-room-log-demo-v4.mp4`.
+- Do not do the optional print CSS letter-block cleanup.
+- Do not change `run.sh`.
+- Do not push, deploy, or submit to Devpost.
+- QA 151 is Zhenhua's billing and terms check. Record it as pending. Do not invent a billing result. Do not switch the video to the silent cut.
+- Do not add product judgments beyond the five rulings.
 
 ## Acceptance criteria
 
-A1. Print chart labels. The Print button, the browser print path (print preview / Ctrl+P's print pipeline), and Save as PDF, at both 1280 and 1920 CSS px viewports, produce an A4 PDF of Room 1 where every axis label and time label has a `pdftotext -bbox` box height of at least 7 pt, and not smaller than the same labels on a JavaScript-disabled print of the same page. Datapoints are visible as separate points. After leaving print, the on-screen chart matches the pre-fix screen metrics (label font size and point radius at 1280). Room 1 is still at most 2 pages.
+A1. Contract v1 is unchanged on disk. Before any edit, the top-level v1 files match the recorded prefixes: brief `a7847236`, idea `3e8c68b4`, prd `599f65d6`, qa `6653f1b6`. `contract-v1/` holds those same bytes. `brief.md` is not modified. `v1/` is not used as the contract.
 
-A2. Printed page background. Page 2 below the footer is white when background graphics are printed and when they are not. The sheet is still 2 pages. Band colours on the page may still print.
+A2. Contract v2 text. Top-level `idea.md`, `prd.md`, and `qa.md` contain every required edit in the ruling list: I1, P1, P2, P3, P4, P5a, P5b, P6, P7, P8a, P8b, P9a, P9b, P9c, P9d, Q0, Q119, Q132, Q134, Q142, Q143, Q144, Q147, Q148, Q149, Q150, Q151. Existing QA numbers 1–146 stay. New rows are 147–151 only. `BUILD-RC5.txt` records the new SHA-256 of brief, idea, prd, and qa (full hash and 8-character prefix).
 
-A3. Latest-reading sentence. On the sample study room, the DOM text of the latest-facts line is exactly `Air 34 °C · Humidity 65 % · Dew point 26.5 °C · Humidity adds +13.6`. The middle dots are real text nodes. Narrow layouts may wrap or hide separators with CSS; they must not invent the dots only with CSS.
+A3. README. The Chinese paragraph is gone, and so is the blank line it would leave. The pitch says "printable evidence sheet". The video section does not say the file is absent from the repository, does not contain a `/workspace/` path, and says the voice-over is an AI-generated voice (Alibaba Cloud Model Studio text-to-speech, qwen3-tts-flash, voice Cherry) with burned-in English captions. The AI disclosure bullet is the unified paragraph from the ruling.
 
-A4. Delivery video docs. `README.md`, `docs/devpost.md`, and `BUILD-RC4.txt` name `/workspace/demo/hot-room-log-demo-v4.mp4`, its sha256, its duration, and that the narration is DashScope/Bailian TTS (`qwen3-tts-flash`, voice Cherry) with burned-in English captions. They must not present silent v2 or edge-tts v3 as the delivery video. `docs/` contains a narration check that aligns the v4 speech with the scene script and does not claim a human listened unless a person did.
+A4. Devpost draft. The tagline is the P8a slogan. The AI section starts with the same unified paragraph, then keeps the third-party and formula sentences. The banner sentence is the ruling's dashboard/room/sheet sentence (calculator and import-results have no banner). The video sentence does not say the file is absent from the repository, does not contain a `/workspace/` path, and uses the same AI-generated voice sentence.
 
-A5. Disclosure. About, README, and Devpost say the same facts: Grok wrote the app, docs, scripts, screenshots, and recording scripts; Claude drafted the planning docs; DashScope/Bailian TTS narrated the demo; Playwright/Chrome, ffmpeg, and DejaVu Sans were used to produce the demo. The phrase about no third-party images, fonts, or icons is limited to the running app, not the demo pipeline. The running app still does not call an external API.
+A5. About page. The pitch says "builds a printable evidence sheet". The AI list item is the same unified paragraph. No other template markup or layout change.
 
-A6. Final-build evidence. On the rc4 tree, after the last product edit: `pytest` exits 0; HTTP checks QA 124–127 pass, and the "after stop, nothing listens on 5050 or 5051" check actually runs (a failing `ss` probe must not skip it); browser checks QA 129–138 pass, including QA 134 with JavaScript off for add room, add reading, delete, calculator, export, import, and reset; 320 and 375 px widths; 200% zoom; keyboard traversal of dashboard, room, sheet, and calculator. Each evidence JSON records `git rev-parse HEAD` at generation time and the sha256 of `git diff HEAD`. Evidence file mtimes are later than the last product-code edit. `BUILD-RC3.txt` no longer claims a focus tooltip on datapoints unless a focus listener exists, and no longer claims a label-gap measurement that ignored point occlusion.
+A6. Tests. `tests/test_o_pages.py` checks the QA 119 phrases Grok, Claude, qwen3-tts-flash, AI-generated voice, and does not call. It adds QA 147 (no CJK in `README.md` and `docs/*.md` for the ranges in the ruling), QA 148 (no "one-page" or "one page" in `/about`, `README.md`, and `docs/devpost.md`), QA 149 (app.js ban list and exactly one `/static/app.js` script on each case-117 page), and QA 150 (one Flask requirement; no banned imports in `app.py` and `hotroom/**/*.py`). `pytest` exits 0. The log is saved under `review/rc5/evidence/`.
 
-A7. Candidate package. Branch `rc3-work` has a local commit for this work, tag `rc4` points at the candidate, and `BUILD-RC4.txt` records the start command, port, environment, per-item pass/fail, evidence paths, and the v4 sha256. `review/rc4/` holds the requirements pointer, source hash, diff from rc3, start command, acceptance table, run evidence, known issues, and the demo (same bytes as the v4 file). No push and no Devpost activity. `git status` is clean aside from ignored files.
+A7. Grep checks from the ruling, saved under `review/rc5/evidence/`: no CJK in `README.md`, `docs/`, or `hotroom/templates/`; no "one-page" or "one page" or "一页" in `README.md`, `docs/`, `hotroom/templates/`, `idea.md`, or `prd.md`; app.js ban list empty; no `aliyuncs`, `DASHSCOPE_API_KEY`, or `sk-` secret pattern in the git tree; banner mentions in `README.md` and `docs/devpost.md` are only the rewritten sentence.
 
-A8. Regression. Pytest sections A–O still pass. Browser flows for the dashboard cards, chart tooltip, edited-letter copy, confirm-cancel, and the evidence sheet still match QA 129–133.
+A8. Decisions. `DECISIONS-NEEDED.txt` marks all five items 已决（contract v2）, with one conclusion line each: English-only README; banner rule kept and screenshot rule rewritten; existing JavaScript accepted as progressive enhancement; wording is printable and Room 1 stays at most 2 pages; "No paid API" applies to the running product and the voice-over is disclosed, with QA 151 still open.
 
-A9. Decisions file. `DECISIONS-NEEDED.txt` lists all five conflicts in Non-goals, including whether "no paid API" covers the demo narration, with no chosen resolution. The A5 disclosure stays. The file must not add a sentence that rules any of the five.
+A9. Evidence reuse. After the edits, `git diff rc4 --stat -- hotroom app.py requirements.txt` shows only `hotroom/templates/about.html`. That diff is text inside `<p>` or `<li>` only. rc5 reuses rc4 QA 124–127, QA 129–138, and A1–A3 print evidence and names the rc4 paths in `BUILD-RC5.txt`. It does not claim an rc4 FINAL review accepted those files. There is no rc4 FINAL PASS on record. If the diff is wider, those checks are re-run on the new tree and the new logs replace the reuse claim.
 
-A10. Video identity. The packaged demo's sha256 equals `f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1` and the duration is 152.067 seconds. Those values must be recomputed from the file, not copied on trust.
+A10. QA 151. `BUILD-RC5.txt` says the billing and terms check is pending human confirmation by Zhenhua. It does not state that the call was free, billed, allowed, or forbidden.
+
+A11. Out of scope held. `git diff rc4` does not change `app.js`, `style.css`, Python app modules, `app.py`, `requirements.txt`, `requirements-dev.txt`, `screenshots/`, or the demo mp4 bytes. Print CSS is unchanged.
+
+A12. Candidate package. Branch `rc3-work` has the rc5 commit. Tag `rc5` points at the commit that records the candidate hash in `BUILD-RC5.txt`, same pattern as rc4. `review/rc5/` holds the requirements pointer, source hash, diff from rc4, start command, acceptance table, pytest and grep logs, known issues (QA 151 pending; optional print cleanup not done), and `hot-room-log-demo-v4.mp4` with the same sha256 as rc4. No push and no Devpost activity. `git status` is clean aside from ignored files. Unrelated uncommitted work is kept.
+
+A13. Video identity. The packaged demo's sha256 equals `f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1` and the duration is 152.067 seconds, recomputed from the file.
+
+A14. Disclosure match. The unified AI paragraph is the same text on the rendered About page, in `README.md`, and in `docs/devpost.md`. It names Grok, Claude, Alibaba Cloud Model Studio, DashScope/Bailian, qwen3-tts-flash, voice Cherry, and that the running app does not call an external service.

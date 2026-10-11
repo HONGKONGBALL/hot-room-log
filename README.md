@@ -1,8 +1,6 @@
 # Hot Room Log
 
-Hot Room Log is a small local web app for a student, class monitor, or volunteer who wants a shared room to be more comfortable to study in. You type the temperature and relative humidity from any thermometer or humidity display. The app shows the humidex, the dew point, and how much the humidity adds, charts the room over time, and builds a one-page evidence sheet with a polite letter you can edit, copy, or print. Nothing is sent anywhere. There is no account and no login.
-
-热室记录是一个在你自己的电脑上运行的小网页。你记下房间的温度和相对湿度，它会算出 humidex、露点，以及湿度额外增加的闷热程度，并生成一页可以打印的改善请求。演示中的房间和读数都是虚构样本。
+Hot Room Log is a small local web app for a student, class monitor, or volunteer who wants a shared room to be more comfortable to study in. You type the temperature and relative humidity from any thermometer or humidity display. The app shows the humidex, the dew point, and how much the humidity adds, charts the room over time, and builds a printable evidence sheet with a polite letter you can edit, copy, or print. Nothing is sent anywhere. There is no account and no login.
 
 ## Quick start
 
@@ -65,7 +63,7 @@ CSV import results:
 
 ![Import results](screenshots/import-results.png)
 
-The delivery demo is `/workspace/demo/hot-room-log-demo-v4.mp4`. It is 1920×1080, duration 152.067 seconds, sha256 `f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1`. Narration is DashScope/Bailian TTS (`qwen3-tts-flash`, voice Cherry), with burned-in English captions. The running app does not call that service. The file is not part of this repository. A check that lines the speech up with the scene cues is in [docs/narration-check.md](docs/narration-check.md).
+The delivery demo for submission is hot-room-log-demo-v4.mp4 (1920×1080, duration 152.067 seconds). The voice-over is an AI-generated voice (Alibaba Cloud Model Studio text-to-speech, qwen3-tts-flash, voice Cherry), with burned-in English captions. The running app does not call that service. A check that lines the speech up with the scene cues is in [docs/narration-check.md](docs/narration-check.md).
 
 ## Formulas
 
@@ -89,7 +87,7 @@ The humidex definition `T + 0.5555 × (e − 10)` is the Canadian humidex (Maste
 
 - Running app, third-party resources: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. The pages use the system font stack. The running app has no third-party images, fonts, or icons: no font files, no icon font, and no chart library. That sentence is about the running app only. It does not describe the demo video pipeline.
 - Formula sources: the Canadian humidex (Masterton & Richardson, 1979, Environment Canada) and the Magnus-type approximation above.
-- AI tools and the demo: Grok (xAI) wrote the application code, the docs, the scripts, the screenshots, and the recording scripts. Claude (Anthropic) drafted the planning documents (the idea, the requirements, and the QA plan). DashScope/Bailian text-to-speech narrated the demo only (model qwen3-tts-flash, voice Cherry), with burned-in English captions. The running app does not call DashScope or any other external API. Playwright, Chrome, ffmpeg, and DejaVu Sans were used to produce the demo. Zhenhua reviews this list before submission.
+- AI tools and the demo: Grok (xAI) wrote the application code and tests, the docs, the screenshots, the demo recording scripts, and the demo's narration text and captions. Claude (Anthropic) drafted the planning documents (the idea, the requirements, and the QA plan). The demo video's voice-over is an AI-generated voice from Alibaba Cloud Model Studio (DashScope/Bailian) text-to-speech: model qwen3-tts-flash, voice Cherry. It was used only to make the video. The running app does not call DashScope or any other external service, and needs no API key. Playwright, Google Chrome, ffmpeg, and the DejaVu Sans font were used to produce the demo. Zhenhua reviews this list before submission.
 
 ## Honesty
 

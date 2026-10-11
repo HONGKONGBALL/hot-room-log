@@ -1,0 +1,16 @@
+$ git grep -n -P "[\x{3000}-\x{303F}\x{3400}-\x{4DBF}\x{4E00}-\x{9FFF}\x{F900}-\x{FAFF}\x{FF00}-\x{FFEF}]" -- README.md docs hotroom/templates
+exit:1
+
+$ grep -rniE "one[- ]page|一页" README.md docs hotroom/templates /workspace/pipeline/stemergent/idea.md /workspace/pipeline/stemergent/prd.md
+exit:1
+
+$ grep -nE "fetch\(|XMLHttpRequest|WebSocket|EventSource|sendBeacon|import\(|eval\(|new Function|innerHTML|outerHTML|insertAdjacentHTML|document\.write|\.submit\(|requestSubmit|localStorage|sessionStorage|document\.cookie|http:|https:" hotroom/static/app.js
+exit:1
+
+$ git grep -n -I -i -E "aliyuncs|DASHSCOPE_API_KEY|sk-[A-Za-z0-9]{20,}"
+ACCEPTANCE.md:69:A7. Grep checks from the ruling, saved under `review/rc5/evidence/`: no CJK in `README.md`, `docs/`, or `hotroom/templates/`; no "one-page" or "one page" or "一页" in `README.md`, `docs/`, `hotroom/templates/`, `idea.md`, or `prd.md`; app.js ban list empty; no `aliyuncs`, `DASHSCOPE_API_KEY`, or `sk-` secret pattern in the git tree; banner mentions in `README.md` and `docs/devpost.md` are only the rewritten sentence.
+exit:0
+
+$ grep -n -i banner docs/devpost.md README.md
+docs/devpost.md:35:The dashboard, room and evidence-sheet screenshots show the fictional sample banner. The calculator and import-results pages show no stored rooms, so they have no banner. The calculator uses the example inputs, and the import used a small fictional CSV file. No personal data is shown.
+exit:0
