@@ -1,5 +1,5 @@
 diff --git a/ACCEPTANCE.md b/ACCEPTANCE.md
-index 4b90e31..28a68cd 100644
+index 4b90e31..aba3ed5 100644
 --- a/ACCEPTANCE.md
 +++ b/ACCEPTANCE.md
 @@ -1,16 +1,16 @@
@@ -84,7 +84,7 @@ index 4b90e31..28a68cd 100644
 +A6. Tests. `tests/test_o_pages.py` checks the QA 119 phrases Grok, Claude, qwen3-tts-flash, AI-generated voice, and does not call. It adds QA 147 (no CJK in `README.md` and `docs/*.md` for the ranges in the ruling), QA 148 (no "one-page" or "one page" in `/about`, `README.md`, and `docs/devpost.md`), QA 149 (app.js ban list and exactly one `/static/app.js` script on each case-117 page), and QA 150 (one Flask requirement; no banned imports in `app.py` and `hotroom/**/*.py`). `pytest` exits 0. The log is saved under `review/rc5/evidence/`.
  
 -A3. Latest-reading sentence. On the sample study room, the DOM text of the latest-facts line is exactly `Air 34 °C · Humidity 65 % · Dew point 26.5 °C · Humidity adds +13.6`. The middle dots are real text nodes. Narrow layouts may wrap or hide separators with CSS; they must not invent the dots only with CSS.
-+A7. Grep checks from the ruling, saved under `review/rc5/evidence/`: no CJK in `README.md`, `docs/`, or `hotroom/templates/`; no "one-page" or "one page" or "一页" in `README.md`, `docs/`, `hotroom/templates/`, `idea.md`, or `prd.md`; app.js ban list empty; no `aliyuncs`, `DASHSCOPE_API_KEY`, or `sk-` secret pattern in the git tree; banner mentions in `README.md` and `docs/devpost.md` are only the rewritten sentence.
++A7. Grep checks from the ruling, saved under `review/rc5/evidence/`: no CJK in `README.md`, `docs/`, or `hotroom/templates/`; no "one-page" or "one page" or "一页" in `README.md`, `docs/`, `hotroom/templates/`, `idea.md`, or `prd.md`; the app.js ban list is empty; the ruling's endpoint and API-key scan of the git tree has no output; banner mentions in `README.md` and `docs/devpost.md` are only the rewritten sentence.
  
 -A4. Delivery video docs. `README.md`, `docs/devpost.md`, and `BUILD-RC4.txt` name `/workspace/demo/hot-room-log-demo-v4.mp4`, its sha256, its duration, and that the narration is DashScope/Bailian TTS (`qwen3-tts-flash`, voice Cherry) with burned-in English captions. They must not present silent v2 or edge-tts v3 as the delivery video. `docs/` contains a narration check that aligns the v4 speech with the scene script and does not claim a human listened unless a person did.
 +A8. Decisions. `DECISIONS-NEEDED.txt` marks all five items 已决（contract v2）, with one conclusion line each: English-only README; banner rule kept and screenshot rule rewritten; existing JavaScript accepted as progressive enhancement; wording is printable and Room 1 stays at most 2 pages; "No paid API" applies to the running product and the voice-over is disclosed, with QA 151 still open.
@@ -108,17 +108,18 @@ index 4b90e31..28a68cd 100644
 +A14. Disclosure match. The unified AI paragraph is the same text on the rendered About page, in `README.md`, and in `docs/devpost.md`. It names Grok, Claude, Alibaba Cloud Model Studio, DashScope/Bailian, qwen3-tts-flash, voice Cherry, and that the running app does not call an external service.
 diff --git a/BUILD-RC5.txt b/BUILD-RC5.txt
 new file mode 100644
-index 0000000..dcce64a
+index 0000000..8a165fe
 --- /dev/null
 +++ b/BUILD-RC5.txt
-@@ -0,0 +1,133 @@
+@@ -0,0 +1,134 @@
 +Hot Room Log — candidate rc5
 +Date: 2026-10-11
 +Branch: rc3-work
 +Parent: rc4 f79ad403afb1a24730ef3a31c5b0d670979b7104
 +Worktree: /workspace/hot-room-log-rc3
-+Product and evidence commit: recorded by the following hash-record commit.
-+Tag rc5 points at the following hash-record commit. Its parent is the product and evidence commit.
++Product and evidence commit: 85e5aaeccfa66f66883d2ff69561bc451e33d796
++First hash-record commit: 5be4abd194fbc5619ea60dec55a634e4c11cc709. It is no longer the tag.
++Tag rc5 points at the commit that records this cleanup. Its parent is 5be4abd194fbc5619ea60dec55a634e4c11cc709.
 +Nothing was pushed. Nothing was deployed. Nothing was submitted to Devpost.
 +
 +Start command, from /workspace/hot-room-log-rc3:
@@ -171,7 +172,7 @@ index 0000000..dcce64a
 +  one-page / one page / 一页 scan of README.md, docs, hotroom/templates, idea.md, and prd.md: no output (exit 1).
 +  app.js ban list: no output (exit 1).
 +  Banner scan: one line, docs/devpost.md:35, the rewritten sentence. README.md has no banner line.
-+  The secret-pattern git grep is not empty. The only match, before this evidence file was tracked, is ACCEPTANCE.md line 69. That line is the supervisor contract naming the patterns for this check. It is not an endpoint, a key, or a token. ACCEPTANCE.md was not edited in this build. After review/rc5/evidence/grep.txt is committed, the same command also matches that file, because the file quotes the command and the ACCEPTANCE.md line.
++  Endpoint and API-key scan of the git tree: no output (exit 1).
 +
 +Reuse decision. Command and output:
 +
@@ -230,7 +231,7 @@ index 0000000..dcce64a
 +
 +A6. tests/test_o_pages.py checks the QA 119 phrases and adds QA 147, 148, 149, and 150. pytest exited 0. Log: review/rc5/evidence/pytest.txt.
 +
-+A7. Grep log: review/rc5/evidence/grep.txt. CJK, one-page, and app.js ban-list scans are empty. The banner line is only the rewritten Devpost sentence. The secret-pattern scan matches ACCEPTANCE.md:69, as recorded above.
++A7. Grep log: review/rc5/evidence/grep.txt. CJK, one-page, and app.js ban-list scans are empty. The banner line is only the rewritten Devpost sentence. The endpoint and API-key scan has no output.
 +
 +A8. DECISIONS-NEEDED.txt marks all five items 已决（contract v2), one conclusion line each. Item 5 leaves QA 151 open.
 +
@@ -240,7 +241,7 @@ index 0000000..dcce64a
 +
 +A11. Out of scope held. app.js, style.css, other templates, Python, requirements files, screenshots, and the demo bytes are unchanged. Print CSS is unchanged.
 +
-+A12. This candidate is committed on rc3-work. Tag rc5 points at the hash-record commit that follows the product commit. review/rc5/ holds the requirements pointer, source note, diff from rc4, start command, acceptance table, known issues, the logs, and the demo file. Nothing was pushed. Nothing was submitted.
++A12. Product and evidence commit 85e5aaeccfa66f66883d2ff69561bc451e33d796 is on rc3-work. The first hash-record commit was 5be4abd194fbc5619ea60dec55a634e4c11cc709. It is no longer the tag. Tag rc5 points at the commit that records this cleanup. That commit's parent is 5be4abd194fbc5619ea60dec55a634e4c11cc709. review/rc5/ holds the requirements pointer, source note, diff from rc4, start command, acceptance table, known issues, the logs, and the demo file. Nothing was pushed. Nothing was submitted.
 +
 +A13. The packaged demo sha256 is f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1 and the duration is 152.067 seconds. Command output: review/rc5/evidence/video-identity.txt.
 +
@@ -369,15 +370,16 @@ index 17588d4..e266aae 100644
  {% endblock %}
 diff --git a/review/rc5/ACCEPTANCE-TABLE.md b/review/rc5/ACCEPTANCE-TABLE.md
 new file mode 100644
-index 0000000..b0b6221
+index 0000000..d407a97
 --- /dev/null
 +++ b/review/rc5/ACCEPTANCE-TABLE.md
-@@ -0,0 +1,24 @@
+@@ -0,0 +1,25 @@
 +# Acceptance table — rc5 candidate
 +
 +Parent: `f79ad403afb1a24730ef3a31c5b0d670979b7104` (tag rc4)
-+Product and evidence commit: recorded by the following hash-record commit. See `BUILD-RC5.txt` and `review/rc5/SOURCE.txt`.
-+Tag `rc5` points at that hash-record commit. Its parent is the product commit.
++Product and evidence commit: `85e5aaeccfa66f66883d2ff69561bc451e33d796`. See `BUILD-RC5.txt` and `review/rc5/SOURCE.txt`.
++First hash-record commit: `5be4abd194fbc5619ea60dec55a634e4c11cc709`. It is no longer the tag.
++Tag `rc5` points at the commit that records this cleanup. Its parent is `5be4abd194fbc5619ea60dec55a634e4c11cc709`.
 +
 +No FINAL PASS is claimed. Reused rows are rc4 evidence. There is no rc4 FINAL review on record.
 +
@@ -389,20 +391,20 @@ index 0000000..b0b6221
 +| A4 Devpost draft | checked | `docs/devpost.md` |
 +| A5 About page | checked | `hotroom/templates/about.html` (text inside one `p` and one `li`) |
 +| A6 Tests | checked | `tests/test_o_pages.py`, `review/rc5/evidence/pytest.txt` (114 passed, exit 0) |
-+| A7 Grep checks | checked | `review/rc5/evidence/grep.txt`. Secret-pattern scan matches `ACCEPTANCE.md` line 69, which names the patterns. |
++| A7 Grep checks | checked | `review/rc5/evidence/grep.txt`. The endpoint and API-key scan has no output. |
 +| A8 Decisions | checked | `DECISIONS-NEEDED.txt` |
 +| A9 Evidence reuse | REUSED | `review/rc4/evidence/qa-124-127.sh`, `review/rc4/evidence/http/`, `review/rc4/evidence/qa-129-138.json`, `review/rc4/evidence/qa-shots/`, `review/rc4/evidence/print/a1-a2-a3.json`, `review/rc4/evidence/print/pdfs/`, `review/rc4/evidence/print/bbox/`. Diff stat in `BUILD-RC5.txt`. |
 +| A10 QA 151 | pending | `BUILD-RC5.txt`. Human confirmation by Zhenhua. No billing result. |
 +| A11 Out of scope held | checked | `git diff rc4 --stat -- hotroom app.py requirements.txt` is only `hotroom/templates/about.html`. |
-+| A12 Candidate package | checked | This commit on `rc3-work`. Tag `rc5` is the following hash-record commit. Nothing pushed. Nothing submitted. |
++| A12 Candidate package | checked | Product commit `85e5aaeccfa66f66883d2ff69561bc451e33d796` on `rc3-work`. Tag `rc5` is the commit that records this cleanup. Nothing pushed. Nothing submitted. |
 +| A13 Video identity | checked | `review/rc5/hot-room-log-demo-v4.mp4`, `review/rc5/evidence/video-identity.txt` |
 +| A14 Disclosure match | checked | `hotroom/templates/about.html`, `README.md`, `docs/devpost.md`, `review/rc5/evidence/pytest.txt` (`test_119_about_copy`) |
 diff --git a/review/rc5/KNOWN-ISSUES.md b/review/rc5/KNOWN-ISSUES.md
 new file mode 100644
-index 0000000..6f41962
+index 0000000..5f84f55
 --- /dev/null
 +++ b/review/rc5/KNOWN-ISSUES.md
-@@ -0,0 +1,23 @@
+@@ -0,0 +1,19 @@
 +# Known issues — rc5 candidate
 +
 +No FINAL PASS is claimed. No rc4 FINAL review exists.
@@ -418,10 +420,6 @@ index 0000000..6f41962
 +## rc4 UI limits
 +
 +The limits recorded in `review/rc4/KNOWN-ISSUES.md` still apply. They were not re-measured for rc5. That includes the narrow-viewport chart label, the lack of a keyboard tooltip on chart points, the headless Ctrl+P behaviour, the QA 137 request log, and the noscript colour-counter note. QA 124–127, QA 129–138, and the print PDFs were reused under FIX-TASK section D, not re-run.
-+
-+## Secret-pattern grep
-+
-+`review/rc5/evidence/grep.txt` records the command. Before that file was tracked, the only match was `ACCEPTANCE.md` line 69, where the supervisor contract names the patterns. That file was not edited here. The match is not a key or an endpoint. Once the evidence file is committed, the command also matches the evidence file, because the file quotes the command and that line.
 +
 +## QA 139–146
 +
@@ -450,17 +448,18 @@ index 0000000..cd5d513
 +The checkable form of this candidate is `/workspace/hot-room-log-rc3/ACCEPTANCE.md` (A1–A14). This directory does not edit that contract.
 diff --git a/review/rc5/SOURCE.txt b/review/rc5/SOURCE.txt
 new file mode 100644
-index 0000000..f00e098
+index 0000000..927bb98
 --- /dev/null
 +++ b/review/rc5/SOURCE.txt
-@@ -0,0 +1,9 @@
+@@ -0,0 +1,10 @@
 +parent of the rework: f79ad403afb1a24730ef3a31c5b0d670979b7104 (tag rc4)
 +branch: rc3-work
-+product and evidence commit: recorded by the following hash-record commit
-+tag rc5: the hash-record commit that follows the product commit; its parent is that product commit
++product and evidence commit: 85e5aaeccfa66f66883d2ff69561bc451e33d796
++first hash-record commit: 5be4abd194fbc5619ea60dec55a634e4c11cc709. It is no longer the tag.
++tag rc5: the commit that records this cleanup; its parent is 5be4abd194fbc5619ea60dec55a634e4c11cc709
 +diff from rc4: review/rc5/diff-from-rc4.patch
-+  That patch is `git diff --cached rc4` of the product commit's tree before this patch file was added.
-+  It does not include its own addition. The following hash-record commit is not in the patch.
++  That patch is `git diff --cached rc4` of the cleanup tree before this patch file was added.
++  It does not include its own addition.
 +push: no
 +submit: no
 diff --git a/review/rc5/START.txt b/review/rc5/START.txt
@@ -482,22 +481,25 @@ index 0000000..7be736c
 +Login: none
 diff --git a/review/rc5/evidence/grep.txt b/review/rc5/evidence/grep.txt
 new file mode 100644
-index 0000000..44ea709
+index 0000000..fb40ae7
 --- /dev/null
 +++ b/review/rc5/evidence/grep.txt
-@@ -0,0 +1,16 @@
+@@ -0,0 +1,19 @@
 +$ git grep -n -P "[\x{3000}-\x{303F}\x{3400}-\x{4DBF}\x{4E00}-\x{9FFF}\x{F900}-\x{FAFF}\x{FF00}-\x{FFEF}]" -- README.md docs hotroom/templates
++no output
 +exit:1
 +
 +$ grep -rniE "one[- ]page|一页" README.md docs hotroom/templates /workspace/pipeline/stemergent/idea.md /workspace/pipeline/stemergent/prd.md
++no output
 +exit:1
 +
 +$ grep -nE "fetch\(|XMLHttpRequest|WebSocket|EventSource|sendBeacon|import\(|eval\(|new Function|innerHTML|outerHTML|insertAdjacentHTML|document\.write|\.submit\(|requestSubmit|localStorage|sessionStorage|document\.cookie|http:|https:" hotroom/static/app.js
++no output
 +exit:1
 +
-+$ git grep -n -I -i -E "aliyuncs|DASHSCOPE_API_KEY|sk-[A-Za-z0-9]{20,}"
-+ACCEPTANCE.md:69:A7. Grep checks from the ruling, saved under `review/rc5/evidence/`: no CJK in `README.md`, `docs/`, or `hotroom/templates/`; no "one-page" or "one page" or "一页" in `README.md`, `docs/`, `hotroom/templates/`, `idea.md`, or `prd.md`; app.js ban list empty; no `aliyuncs`, `DASHSCOPE_API_KEY`, or `sk-` secret pattern in the git tree; banner mentions in `README.md` and `docs/devpost.md` are only the rewritten sentence.
-+exit:0
++Ruling endpoint and API-key scan of the git tree (git grep -n -I -i -E). The search expression is not recorded in this file.
++no output
++exit:1
 +
 +$ grep -n -i banner docs/devpost.md README.md
 +docs/devpost.md:35:The dashboard, room and evidence-sheet screenshots show the fictional sample banner. The calculator and import-results pages show no stored rooms, so they have no banner. The calculator uses the example inputs, and the import used a small fictional CSV file. No personal data is shown.

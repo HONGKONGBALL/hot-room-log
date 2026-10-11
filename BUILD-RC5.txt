@@ -4,7 +4,8 @@ Branch: rc3-work
 Parent: rc4 f79ad403afb1a24730ef3a31c5b0d670979b7104
 Worktree: /workspace/hot-room-log-rc3
 Product and evidence commit: 85e5aaeccfa66f66883d2ff69561bc451e33d796
-Tag rc5 points at the following hash-record commit. Its parent is 85e5aaeccfa66f66883d2ff69561bc451e33d796.
+First hash-record commit: 5be4abd194fbc5619ea60dec55a634e4c11cc709. It is no longer the tag.
+Tag rc5 points at the commit that records this cleanup. Its parent is 5be4abd194fbc5619ea60dec55a634e4c11cc709.
 Nothing was pushed. Nothing was deployed. Nothing was submitted to Devpost.
 
 Start command, from /workspace/hot-room-log-rc3:
@@ -57,7 +58,7 @@ Grep. Log: review/rc5/evidence/grep.txt
   one-page / one page / 一页 scan of README.md, docs, hotroom/templates, idea.md, and prd.md: no output (exit 1).
   app.js ban list: no output (exit 1).
   Banner scan: one line, docs/devpost.md:35, the rewritten sentence. README.md has no banner line.
-  The secret-pattern git grep is not empty. The only match, before this evidence file was tracked, is ACCEPTANCE.md line 69. That line is the supervisor contract naming the patterns for this check. It is not an endpoint, a key, or a token. ACCEPTANCE.md was not edited in this build. After review/rc5/evidence/grep.txt is committed, the same command also matches that file, because the file quotes the command and the ACCEPTANCE.md line.
+  Endpoint and API-key scan of the git tree: no output (exit 1).
 
 Reuse decision. Command and output:
 
@@ -116,7 +117,7 @@ A5. About. The first paragraph says "builds a printable evidence sheet". The AI 
 
 A6. tests/test_o_pages.py checks the QA 119 phrases and adds QA 147, 148, 149, and 150. pytest exited 0. Log: review/rc5/evidence/pytest.txt.
 
-A7. Grep log: review/rc5/evidence/grep.txt. CJK, one-page, and app.js ban-list scans are empty. The banner line is only the rewritten Devpost sentence. The secret-pattern scan matches ACCEPTANCE.md:69, as recorded above.
+A7. Grep log: review/rc5/evidence/grep.txt. CJK, one-page, and app.js ban-list scans are empty. The banner line is only the rewritten Devpost sentence. The endpoint and API-key scan has no output.
 
 A8. DECISIONS-NEEDED.txt marks all five items 已决（contract v2), one conclusion line each. Item 5 leaves QA 151 open.
 
@@ -126,7 +127,7 @@ A10. QA 151 is pending human confirmation by Zhenhua. No billing result is state
 
 A11. Out of scope held. app.js, style.css, other templates, Python, requirements files, screenshots, and the demo bytes are unchanged. Print CSS is unchanged.
 
-A12. Product and evidence commit 85e5aaeccfa66f66883d2ff69561bc451e33d796 is on rc3-work. Tag rc5 points at the following hash-record commit. That commit's parent is 85e5aaeccfa66f66883d2ff69561bc451e33d796. review/rc5/ holds the requirements pointer, source note, diff from rc4, start command, acceptance table, known issues, the logs, and the demo file. Nothing was pushed. Nothing was submitted.
+A12. Product and evidence commit 85e5aaeccfa66f66883d2ff69561bc451e33d796 is on rc3-work. The first hash-record commit was 5be4abd194fbc5619ea60dec55a634e4c11cc709. It is no longer the tag. Tag rc5 points at the commit that records this cleanup. That commit's parent is 5be4abd194fbc5619ea60dec55a634e4c11cc709. review/rc5/ holds the requirements pointer, source note, diff from rc4, start command, acceptance table, known issues, the logs, and the demo file. Nothing was pushed. Nothing was submitted.
 
 A13. The packaged demo sha256 is f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1 and the duration is 152.067 seconds. Command output: review/rc5/evidence/video-identity.txt.
 

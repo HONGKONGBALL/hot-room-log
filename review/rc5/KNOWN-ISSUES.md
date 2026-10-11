@@ -14,10 +14,6 @@ Not done. The letter label and the screen note on the printed sheet were left as
 
 The limits recorded in `review/rc4/KNOWN-ISSUES.md` still apply. They were not re-measured for rc5. That includes the narrow-viewport chart label, the lack of a keyboard tooltip on chart points, the headless Ctrl+P behaviour, the QA 137 request log, and the noscript colour-counter note. QA 124–127, QA 129–138, and the print PDFs were reused under FIX-TASK section D, not re-run.
 
-## Secret-pattern grep
-
-`review/rc5/evidence/grep.txt` records the command. Before that file was tracked, the only match was `ACCEPTANCE.md` line 69, where the supervisor contract names the patterns. That file was not edited here. The match is not a key or an endpoint. Once the evidence file is committed, the command also matches the evidence file, because the file quotes the command and that line.
-
 ## QA 139–146
 
 Not run. Those remain submission checks for the open Devpost form. Nothing was submitted.

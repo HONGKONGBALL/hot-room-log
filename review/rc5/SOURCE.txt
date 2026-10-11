@@ -1,9 +1,10 @@
 parent of the rework: f79ad403afb1a24730ef3a31c5b0d670979b7104 (tag rc4)
 branch: rc3-work
 product and evidence commit: 85e5aaeccfa66f66883d2ff69561bc451e33d796
-tag rc5: the following hash-record commit; its parent is 85e5aaeccfa66f66883d2ff69561bc451e33d796
+first hash-record commit: 5be4abd194fbc5619ea60dec55a634e4c11cc709. It is no longer the tag.
+tag rc5: the commit that records this cleanup; its parent is 5be4abd194fbc5619ea60dec55a634e4c11cc709
 diff from rc4: review/rc5/diff-from-rc4.patch
-  That patch is `git diff --cached rc4` of the product commit's tree before this patch file was added.
-  It does not include its own addition. The following hash-record commit is not in the patch.
+  That patch is `git diff --cached rc4` of the cleanup tree before this patch file was added.
+  It does not include its own addition.
 push: no
 submit: no
