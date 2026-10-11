@@ -34,7 +34,7 @@ Leave **Challenges** and **What I learned** blank here. Those two answers should
 
 The dashboard, room and evidence-sheet screenshots show the fictional sample banner. The calculator and import-results pages show no stored rooms, so they have no banner. The calculator uses the example inputs, and the import used a small fictional CSV file. No personal data is shown.
 
-The delivery demo is hot-room-log-demo-v4.mp4: 1920×1080, duration 152.067 seconds. The voice-over is an AI-generated voice (Alibaba Cloud Model Studio text-to-speech, qwen3-tts-flash, voice Cherry), with burned-in English captions. The running app does not call that service. Playwright recorded the running app (no terminal and no address bar). It uses the fictional sample rooms, then adds one library reading and imports one new room. Upload it only if the open Devpost form asks for a video.
+The delivery demo is hot-room-log-demo-v4.mp4: 1920×1080, duration 152.067 seconds. The voice-over is an AI-generated voice (Alibaba Cloud Model Studio text-to-speech, qwen3-tts-flash, voice Cherry), with burned-in English captions. The running app does not call that service. Playwright recorded the running app (no terminal and no address bar). It uses the fictional sample rooms, then adds one library reading and imports one new room. Public video URL: TBD. Upload it only if the open Devpost form asks for a video.
 
 - `screenshots/dashboard.png` — three sample rooms
 - `screenshots/room.png` — Demo Estate Study Room, chart and readings

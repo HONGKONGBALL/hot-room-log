@@ -640,6 +640,13 @@ header a:focus-visible {
     max-height: 180px;
   }
 
+  /* Hiding the screen label and the screen sentence shortens the sheet.
+     Keep the edited letter on page 2 with the chart and table on page 1. */
+  .letter-block {
+    break-before: page;
+    page-break-before: always;
+  }
+
   h1 {
     font-size: 16pt;
   }

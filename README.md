@@ -63,7 +63,7 @@ CSV import results:
 
 ![Import results](screenshots/import-results.png)
 
-The delivery demo for submission is hot-room-log-demo-v4.mp4 (1920×1080, duration 152.067 seconds). The voice-over is an AI-generated voice (Alibaba Cloud Model Studio text-to-speech, qwen3-tts-flash, voice Cherry), with burned-in English captions. The running app does not call that service. A check that lines the speech up with the scene cues is in [docs/narration-check.md](docs/narration-check.md).
+The delivery demo for submission is hot-room-log-demo-v4.mp4 (1920×1080, duration 152.067 seconds). The voice-over is an AI-generated voice (Alibaba Cloud Model Studio text-to-speech, qwen3-tts-flash, voice Cherry), with burned-in English captions. The running app does not call that service. A check that lines the speech up with the scene cues is in [docs/narration-check.md](docs/narration-check.md). Public video URL: TBD.
 
 ## Formulas
 

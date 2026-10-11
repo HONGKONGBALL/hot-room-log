@@ -77,7 +77,7 @@
   // not read the on-screen bounding width.
   var PRINT_CHART_WIDTH = 180 * 640 / 280;
 
-  function fitChartText(layoutWidth) {
+  function fitChartText(layoutWidth, forPrint) {
     var charts = document.querySelectorAll("svg.chart");
     for (var i = 0; i < charts.length; i++) {
       var svg = charts[i];
@@ -114,22 +114,114 @@
         }
         ySize -= 1;
       }
+      // Screen formula. Print must not use it: at the ~411px print box it
+      // inflates the first point (cx 56) over the right-aligned "40" label.
       var pointRadius = (7 * 640) / width;
       var pointStroke = (2 * 640) / width;
-      var circles = svg.querySelectorAll("circle.point");
-      for (var k = 0; k < circles.length; k++) {
-        circles[k].setAttribute("r", pointRadius.toFixed(2));
-        circles[k].style.strokeWidth = pointStroke.toFixed(2) + "px";
+      var trendWidth = (2.25 * 640) / width;
+      if (forPrint) {
+        pointRadius = 6;
+        pointStroke = 2;
+        trendWidth = 2.5;
       }
-      var trend = svg.querySelector("polyline.trend");
-      if (trend) {
-        trend.style.strokeWidth = ((2.25 * 640) / width).toFixed(2) + "px";
-      }
-      var axes = svg.querySelectorAll("line.axis");
-      for (var a = 0; a < axes.length; a++) {
-        axes[a].style.strokeWidth = ((1.25 * 640) / width).toFixed(2) + "px";
+      applyChartInk(svg, pointRadius, pointStroke, trendWidth, width);
+      if (forPrint) {
+        var guard = 0;
+        while (printInkCoversLabels(svg) && pointRadius > 3 && guard < 24) {
+          pointRadius -= 0.25;
+          if (guard % 2 === 1) {
+            pointStroke = Math.max(1, pointStroke - 0.25);
+          }
+          if (guard % 3 === 2) {
+            trendWidth = Math.max(1.25, trendWidth - 0.25);
+          }
+          applyChartInk(svg, pointRadius, pointStroke, trendWidth, width);
+          guard += 1;
+        }
       }
     }
+  }
+
+  function applyChartInk(svg, pointRadius, pointStroke, trendWidth, width) {
+    var circles = svg.querySelectorAll("circle.point");
+    for (var k = 0; k < circles.length; k++) {
+      circles[k].setAttribute("r", pointRadius.toFixed(2));
+      circles[k].style.strokeWidth = pointStroke.toFixed(2) + "px";
+    }
+    var trend = svg.querySelector("polyline.trend");
+    if (trend) {
+      trend.style.strokeWidth = trendWidth.toFixed(2) + "px";
+    }
+    var axes = svg.querySelectorAll("line.axis");
+    for (var a = 0; a < axes.length; a++) {
+      axes[a].style.strokeWidth = ((1.25 * 640) / width).toFixed(2) + "px";
+    }
+  }
+
+  function boxesHit(a, b) {
+    return a.left <= b.right && a.right >= b.left && a.top <= b.bottom && a.bottom >= b.top;
+  }
+
+  function expandedBBox(node, pad) {
+    var box = node.getBBox();
+    return {
+      left: box.x - pad,
+      top: box.y - pad,
+      right: box.x + box.width + pad,
+      bottom: box.y + box.height + pad
+    };
+  }
+
+  // Print test: axis-label getBBox against each point box expanded by the
+  // full stroke width, and against each trend segment expanded by the full
+  // trend stroke. That is outside the painted ink (SVG strokes are centered)
+  // and still counts a touch as a hit.
+  function printInkCoversLabels(svg) {
+    var labels = svg.querySelectorAll("text.axis-label");
+    var circles = svg.querySelectorAll("circle.point");
+    var trend = svg.querySelector("polyline.trend");
+    for (var i = 0; i < labels.length; i++) {
+      var label = expandedBBox(labels[i], 0);
+      for (var c = 0; c < circles.length; c++) {
+        var stroke = parseFloat(circles[c].style.strokeWidth);
+        if (!stroke) {
+          stroke = 2;
+        }
+        if (boxesHit(label, expandedBBox(circles[c], stroke))) {
+          return true;
+        }
+      }
+      if (!trend) {
+        continue;
+      }
+      var trendStroke = parseFloat(trend.style.strokeWidth);
+      if (!trendStroke) {
+        trendStroke = 2.5;
+      }
+      var parts = trend.getAttribute("points").trim().split(/\s+/);
+      var coords = [];
+      for (var p = 0; p < parts.length; p++) {
+        var pair = parts[p].split(",");
+        coords.push({ x: parseFloat(pair[0]), y: parseFloat(pair[1]) });
+      }
+      var pad = trendStroke;
+      for (var s = 1; s < coords.length; s++) {
+        var x1 = coords[s - 1].x;
+        var y1 = coords[s - 1].y;
+        var x2 = coords[s].x;
+        var y2 = coords[s].y;
+        var segment = {
+          left: Math.min(x1, x2) - pad,
+          top: Math.min(y1, y2) - pad,
+          right: Math.max(x1, x2) + pad,
+          bottom: Math.max(y1, y2) + pad
+        };
+        if (boxesHit(label, segment)) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   function markScrollers() {
@@ -219,7 +311,7 @@
       svg.style.height = "180px";
       svg.style.maxHeight = "180px";
     }
-    fitChartText(PRINT_CHART_WIDTH);
+    fitChartText(PRINT_CHART_WIDTH, true);
     for (var s = 0; s < saved.length; s++) {
       saved[s].svg.style.width = saved[s].width;
       saved[s].svg.style.height = saved[s].height;

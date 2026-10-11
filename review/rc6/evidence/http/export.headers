@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.9 Python/3.13.5
+Date: Sun, 11 Oct 2026 20:06:26 GMT
+Content-Type: text/csv; charset=utf-8
+Content-Length: 1373
+Content-Disposition: attachment; filename="hot-room-log.csv"
+Connection: close
+

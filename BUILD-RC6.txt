@@ -1,0 +1,145 @@
+Hot Room Log — candidate rc6
+Date: 2026-10-12
+Branch: rc3-work
+Parent: rc5 14f04de30d4cf591efd57e1564a49e574e22000c
+Product and evidence commit: recorded by the following hash-record commit.
+Tag rc6 points at the following hash-record commit. Its parent is the product and evidence commit.
+This file does not embed the hash-record commit's own hash.
+Nothing was pushed. Nothing was deployed. Nothing was submitted to Devpost.
+
+Start command, from the project directory:
+
+  python -m venv .venv
+  source .venv/bin/activate
+  pip install -r requirements.txt
+  python app.py
+
+URL: http://127.0.0.1:5050
+Port: 5050
+Bind: 127.0.0.1 unless HOST is set
+Login: none
+
+Environment for the checks below:
+  Linux
+  Python 3.13.5 (.venv)
+  pytest 9.1.1
+  ffprobe 7.1.5
+
+Contract v2 SHA-256, recomputed. The files were not edited. run.sh was not run.
+
+  brief.md  a784723622afead05a8e029cc77dc65743911e418973f21a168d1b836f142688
+  idea.md   5cb30bfecfb9877c431f6bdc1a8305743373e5bbb5ec3159fd26fc4450859a83
+  prd.md    bd0a2a29219fbeab8a6c0732943379224bedcfe8c75c1ade2da7d5d2f75c769e
+  qa.md     1961075a80ebb305dfc084394e7136ae0a868c72661883945b31e5fade4049c6
+
+These match BUILD-RC5.txt.
+
+A1. Printed y-axis labels. Self-check pass.
+  Evidence: review/rc6/evidence/print/a1-a2-occlusion.json
+  pass true, failures empty.
+  1280 and 1920, Print button and native beforeprint, backgrounds on and off.
+  Each axis-label getBBox misses every point box expanded by the full stroke and misses the trend stroke box.
+  Six distinct points. Axis and time label heights are at least 7 pt and at least the noscript PDF from the same run.
+  Magnified label crops: review/rc6/evidence/print/magnified/
+
+A2. Screen at 1280 px. Self-check pass.
+  screen_after in the same JSON: first point cx 56.00, live r 3.89, formula (7 * 640) / 1152 = 3.89.
+  Screenshot: review/rc6/evidence/print/room-1280-screen.png
+  PLOT_LEFT, label x, and the screen radius formula were not changed.
+
+A3. Print chrome. Self-check pass.
+  Page 1 does not contain "Letter (edit before sending)" or "Hot Room Log does not send anything".
+  Page 2 contains "Dear Room manager" after the letter was edited to that greeting.
+  Buttons are not on page 2. Room 1 is 2 A4 pages. A print page-break keeps the letter on page 2.
+  Server-rendered titles remain on the points.
+
+A4. Pytest. Self-check pass.
+  Command: .venv/bin/pytest -q
+  Exit 0. 114 passed in 1.05s.
+  Log: review/rc6/evidence/pytest.txt
+  Last product edit: hotroom/static/app.js at 2026-10-12 04:01:10 +0800.
+  Pytest log mtime: 2026-10-12 04:03:21 +0800.
+
+A5. QA 124–127. Self-check pass.
+  review/rc6/evidence/qa-124-127.sh
+  review/rc6/evidence/http/qa-124-127.log (fail=0)
+  Clean database copy. The script trap stopped its servers. Nothing was left listening on 5050 or 5051.
+
+A6. QA 129–138, including QA 134 v2. Self-check pass.
+  review/rc6/evidence/qa-129-138.json (pass true, failures empty)
+  JavaScript off: six point titles match the QA 130 strings, and no .chart-tip is in the DOM.
+  Headed hover screenshot: review/rc6/evidence/qa-shots/134-noscript-hover-headed.png
+  JavaScript off, 375 and 320: .table-scroll overflows inside the page, and the page itself does not.
+  Screenshots: review/rc6/evidence/qa-shots/134-noscript-room-375.png and 134-noscript-room-320.png
+  #taken_at focus ring is visible (outline 3px solid rgb(11, 87, 208), 3421 blue pixels). No CSS change.
+  Screenshot: review/rc6/evidence/qa-shots/136-room-taken-at-focus.png
+
+A7. Print measurements. Self-check pass.
+  PDFs, bbox text, magnified crops, and a1-a2-occlusion.json are under review/rc6/evidence/print/.
+  The JSON records the method (full-stroke expansion; a touch counts) and the product commit.
+  Evidence mtimes are after the last product-file edit.
+
+A8. Demo video. Self-check pass.
+  review/rc6/hot-room-log-demo-v4.mp4
+  sha256 d42d05ef21227ccacbebce2ce36f693b3fe2810841399ae63bc3c71eaf3d2c9b
+  ffprobe duration 152.067000 seconds
+  1920×1080, H.264, 4562 frames
+  Audio is the existing v4 narration (byte-identical AAC). No TTS API was called.
+  About frames show "printable evidence sheet" and the AI disclosure naming Model Studio and qwen3-tts-flash.
+  Print frames show a readable 40 label, the chart, the 47.6 row, and the table on page 1, and Dear Room manager with no buttons on page 2.
+  Spot frames and timestamps: review/rc6/evidence/video-frames/ and review/rc6/evidence/video-identity.txt
+
+A9. Public export. Self-check pass.
+  docs/narration-check.md has no machine-local absolute path. Its sha256 and duration match the packaged file, named by filename only.
+  README and docs/devpost.md state duration 152.067 seconds and "Public video URL: TBD". They do not say the file is absent and do not name a local absolute path.
+  Procedure, from the project directory, into an empty temporary directory:
+
+    rsync -a --exclude '.git' --exclude '.venv' --exclude '__pycache__' --exclude 'instance' \
+      --exclude 'review' --exclude 'FIX-TASK-RC6.md' --exclude 'ACCEPTANCE.md' \
+      --exclude 'BUILD-FIX.txt' --exclude 'BUILD.txt' --exclude 'BUILD-RC3.txt' \
+      --exclude 'BUILD-RC4.txt' --exclude 'BUILD-RC5.txt' --exclude 'BUILD-RC6.txt' \
+      --exclude 'builder-account.txt' \
+      ./  <temporary-directory>/
+
+  That excludes review/ (which holds builder-account.txt and other local notes), FIX-TASK-RC6.md, ACCEPTANCE.md, BUILD*.txt, and BUILD-FIX.txt.
+  If the temporary directory is not a git checkout, the check is:
+
+    grep -R -n "/workspace" <temporary-directory> || true
+
+  The saved command and the empty result are review/rc6/evidence/public-export-grep.txt.
+  Do not git-rm review/. The candidate keeps review/rc6.
+
+A10. Decisions and known issues.
+  DECISIONS-NEEDED.txt was not edited. The five contract-v2 decisions stay closed.
+  QA 151 is pending for Zhenhua. No billing result is recorded.
+  QA 139–146 were not run.
+  review/rc6/KNOWN-ISSUES.md records the limits this evidence still shows.
+  At 320 px and 375 px the on-screen first point still covers the label "40". The screen formula was not changed.
+  Headless Chrome still does not fire beforeprint for Ctrl+P.
+  No FINAL PASS is claimed. Status: implementation and self-check done, awaiting acceptance.
+
+A11. Contract and scope held. Self-check pass.
+  Contract v2 hashes above match BUILD-RC5.txt.
+  About disclosure text, QA 119, and tests/test_o_pages.py were not changed.
+  Optional UX items (error scroll, calculator scroll, room-name input type, copy-failure honesty, deep-JSON API 400, tighter pytest asserts) were not done.
+
+A12. Candidate package.
+  Branch rc3-work.
+  One product commit contains the code, the evidence, the demo, and review/rc6/.
+  The following hash-record commit updates this file, review/rc6/SOURCE.txt, and review/rc6/ACCEPTANCE-TABLE.md so they name the product commit. It also stamps that hash into the evidence logs. It does not change product files (app.py, hotroom/**, tests/**, requirements*.txt).
+  Tag rc6 is local only and points at the hash-record commit.
+  Nothing was pushed. Nothing was submitted.
+
+A13. Evidence timing. Self-check pass.
+  Pytest, QA 124–127, QA 129–138, and the print JSON name the product commit (PRODUCT_COMMIT_PENDING until the hash-record commit stamps it).
+  Their mtimes are after the last product-file edit.
+
+A14. Video and disclosure identity. Self-check pass.
+  sha256 d42d05ef21227ccacbebce2ce36f693b3fe2810841399ae63bc3c71eaf3d2c9b
+  duration 152.067 seconds
+  The same values are in review/rc6/evidence/video-identity.txt, docs/narration-check.md, README.md, and docs/devpost.md.
+  The unified AI paragraph on About, in README, and in Devpost is still the rc5 paragraph.
+
+Demo sha256: d42d05ef21227ccacbebce2ce36f693b3fe2810841399ae63bc3c71eaf3d2c9b
+Demo duration: 152.067 seconds
+QA 151: pending for Zhenhua. No billing result.

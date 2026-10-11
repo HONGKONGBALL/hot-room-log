@@ -1,0 +1,7 @@
+product_commit: PRODUCT_COMMIT_PENDING
+git_head_at_run: 14f04de30d4cf591efd57e1564a49e574e22000c
+$ .venv/bin/pytest -q
+........................................................................ [ 63%]
+..........................................                               [100%]
+114 passed in 1.05s
+pytest_exit:0

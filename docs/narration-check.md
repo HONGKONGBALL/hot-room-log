@@ -4,34 +4,37 @@ No person listened to this file for this check. No automatic speech recognizer w
 
 ## What the file is
 
-Recomputed on this machine:
+Packaged file, named by filename only: `hot-room-log-demo-v4.mp4`
 
-- Path: `/workspace/demo/hot-room-log-demo-v4.mp4`
-- sha256: `f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1`
+- sha256: `d42d05ef21227ccacbebce2ce36f693b3fe2810841399ae63bc3c71eaf3d2c9b`
 - ffprobe duration: 152.067 s
 - Video: H.264, 1920×1080
 - Audio: AAC LC, stereo, 48000 Hz
 
-Engine and voice, from `/workspace/demo/voice-bailian/DONE.txt` (not from a listen):
+The picture in rc6 replaces the About segment and the print stills. The audio stream is the existing v4 narration, unchanged. No TTS call was made for this check.
+
+Engine and voice, from the v4 narration note (not from a listen):
 
 - engine: dashscope
 - model: qwen3-tts-flash
 - voice: Cherry
 - that note says edge-tts was not used
 
-`/workspace/demo/voice/hot-room-log-script.txt` still has the header line `Voice: en-US-JennyNeural`. That header is the older script label. The 23 spoken lines under it match the `hot` cues in `/workspace/demo/voice/timing.json` (same start time and the same text). This check treats those 23 cues as the scene script. It does not treat JennyNeural as the voice in v4.
+The narration script still has the header line `Voice: en-US-JennyNeural`. That header is the older script label. The 23 spoken lines under it match the `hot` cues in the timing file (same start time and the same text). This check treats those 23 cues as the scene script. It does not treat JennyNeural as the voice in v4.
 
 ## What was measured
 
-Command:
+Command, run on the packaged file:
 
 ```
-ffmpeg -i /workspace/demo/hot-room-log-demo-v4.mp4 -af silencedetect=noise=-30dB:d=0.25 -f null -
+ffmpeg -i hot-room-log-demo-v4.mp4 -af silencedetect=noise=-30dB:d=0.25 -f null -
 ```
 
 `silencedetect` marks audio below −30 dB for at least 0.25 s as silence. Speech bursts are the gaps between those silences. A cue counts as aligned when a burst starts inside the cue window `[start, deadline]`, within 0.3 s after `start`, and some of that burst falls inside the window. The detector splits a sentence on short pauses, so the energy inside a window is shorter than the cue's `spoken` field. That field is the timing file's planned length, not a measurement from this file.
 
 This shows where speech energy sits. It does not show that the words are the cue text.
+
+The rc6 picture change does not change the audio. The same command on the packaged file still shows the bursts below: leading silence from 0 to 0.438 s, and the last burst ending at 149.350 s.
 
 ## Result
 

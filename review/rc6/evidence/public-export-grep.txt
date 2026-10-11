@@ -1,0 +1,13 @@
+Public export of the rc6 tree into an empty temporary directory.
+The export is not a git checkout, so the check is grep -R rather than git grep.
+
+Excluded: .git, .venv, __pycache__, instance, review/, FIX-TASK-RC6.md, ACCEPTANCE.md, BUILD.txt, BUILD-FIX.txt, BUILD-RC3.txt, BUILD-RC4.txt, BUILD-RC5.txt, BUILD-RC6.txt, and builder-account.txt.
+
+Command:
+
+  grep -R -n "/workspace" <temporary-directory>
+
+Result: no matches (empty).
+
+A second scan of the same tree for /etc/ and /home/ also returned no matches.
+builder-account.txt was not in the export.
