@@ -1,4 +1,4 @@
-product_commit: PRODUCT_COMMIT_PENDING
+product_commit: a4e1542232d65dbdadf8195d4a6a55d856b87459
 git_head_at_run: 14f04de30d4cf591efd57e1564a49e574e22000c
 $ .venv/bin/pytest -q
 ........................................................................ [ 63%]

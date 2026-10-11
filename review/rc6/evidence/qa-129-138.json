@@ -1,5 +1,5 @@
 {
-  "product_commit": "PRODUCT_COMMIT_PENDING",
+  "product_commit": "a4e1542232d65dbdadf8195d4a6a55d856b87459",
   "git_head": "14f04de30d4cf591efd57e1564a49e574e22000c",
   "git_diff_head_sha256": "18acd8af8a0147f676f17ccf6af6fce5d704dd9dedac4cf62d2f19f9ab6529c8",
   "qa": {
@@ -1237,7 +1237,7 @@
   "requests_sample": [],
   "pass": true,
   "git_at_end": {
-    "product_commit": "PRODUCT_COMMIT_PENDING",
+    "product_commit": "a4e1542232d65dbdadf8195d4a6a55d856b87459",
     "git_head": "14f04de30d4cf591efd57e1564a49e574e22000c",
     "git_diff_head_sha256": "18acd8af8a0147f676f17ccf6af6fce5d704dd9dedac4cf62d2f19f9ab6529c8"
   },

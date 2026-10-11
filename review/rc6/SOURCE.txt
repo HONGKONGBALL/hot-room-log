@@ -1,9 +1,9 @@
 parent of the rework: 14f04de30d4cf591efd57e1564a49e574e22000c (tag rc5)
 branch: rc3-work
-product and evidence commit: recorded by the following hash-record commit
-tag rc6: the hash-record commit that follows the product commit; its parent is that product commit
+product and evidence commit: a4e1542232d65dbdadf8195d4a6a55d856b87459
+tag rc6: the commit that records this candidate. Its parent is the product and evidence commit. This file does not embed the tag commit's own hash.
 diff from rc5: review/rc6/diff-from-rc5.patch
-  That patch is `git diff --cached rc5` of the product commit's tree before this patch file was added.
-  It does not include its own addition. The following hash-record commit is not in the patch.
+  That patch is `git diff --cached rc5` of this tree before the patch file was added.
+  It does not include its own addition.
 push: no
 submit: no

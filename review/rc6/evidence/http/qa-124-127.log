@@ -1,4 +1,4 @@
-product_commit: PRODUCT_COMMIT_PENDING
+product_commit: a4e1542232d65dbdadf8195d4a6a55d856b87459
 git_head_at_run: 14f04de30d4cf591efd57e1564a49e574e22000c
 QA 124-127 started 2026-10-12T04:06:24+08:00
 === clean copy ===
@@ -40,7 +40,8 @@ Vary: Cookie
 Set-Cookie: session=eyJfZmxhc2hlcyI6W3siIHQiOlsibWVzc2FnZSIsIlJvb20gYWRkZWQuIl19XX0.asvsQQ.6XR2hUTEFCN7a6AiLQMJF9TQvoM; HttpOnly; Path=/
 Connection: close
 
-status [HTTP/1.1 302 FOUND] location [/rooms/4]
+status [HTTP/1.1 302 FOUND
+] location [/rooms/4]
 PASS 125 302 to /rooms/4
 PASS 125 restarted
 PASS 125 four rooms including Curl Room

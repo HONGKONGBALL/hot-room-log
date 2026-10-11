@@ -1,7 +1,7 @@
 # Acceptance table — rc6 candidate
 
 Parent: `14f04de30d4cf591efd57e1564a49e574e22000c` (tag rc5)
-Product and evidence commit: recorded by the following hash-record commit. See `BUILD-RC6.txt` and `review/rc6/SOURCE.txt`.
+Product and evidence commit: `a4e1542232d65dbdadf8195d4a6a55d856b87459`. See `BUILD-RC6.txt` and `review/rc6/SOURCE.txt`.
 Tag `rc6` points at the commit that records this candidate. Its parent is the product and evidence commit. This table does not embed that tag commit's own hash.
 
 Implementation and self-check are done. No FINAL PASS is claimed. Nothing was pushed. Nothing was submitted.
@@ -20,5 +20,5 @@ Implementation and self-check are done. No FINAL PASS is claimed. Nothing was pu
 | A10 Decisions and known issues | pending QA 151 | `DECISIONS-NEEDED.txt` unchanged. `review/rc6/KNOWN-ISSUES.md`. No billing result. No FINAL PASS. |
 | A11 Contract and scope held | self-check pass | Contract v2 hashes in `BUILD-RC6.txt` match `BUILD-RC5.txt`. About disclosure and `tests/test_o_pages.py` were not edited. |
 | A12 Candidate package | self-check pass | Branch `rc3-work`. Product commit, then the hash-record commit, local tag `rc6` on that commit. Nothing pushed. Nothing submitted. |
-| A13 Evidence timing | self-check pass | Pytest, QA, and print evidence mtimes are after `hotroom/static/app.js` (last product edit, 2026-10-12 04:01:10 +0800). The hash-record commit stamps the product hash and does not change product files. |
+| A13 Evidence timing | self-check pass | Pytest, QA, and print evidence name product commit `a4e1542232d65dbdadf8195d4a6a55d856b87459`. Mtimes are after `hotroom/static/app.js` (last product edit, 2026-10-12 04:01:10 +0800). This hash-record commit does not change product files. |
 | A14 Video and disclosure identity | self-check pass | sha256 `d42d05ef21227ccacbebce2ce36f693b3fe2810841399ae63bc3c71eaf3d2c9b`, duration 152.067 s, in `BUILD-RC6.txt`, `video-identity.txt`, `docs/narration-check.md`, README, and Devpost. The unified AI paragraph is still the rc5 paragraph. |

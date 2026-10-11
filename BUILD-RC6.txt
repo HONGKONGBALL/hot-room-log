@@ -2,8 +2,8 @@ Hot Room Log — candidate rc6
 Date: 2026-10-12
 Branch: rc3-work
 Parent: rc5 14f04de30d4cf591efd57e1564a49e574e22000c
-Product and evidence commit: recorded by the following hash-record commit.
-Tag rc6 points at the following hash-record commit. Its parent is the product and evidence commit.
+Product and evidence commit: a4e1542232d65dbdadf8195d4a6a55d856b87459
+Tag rc6 points at the commit that records this candidate. Its parent is the product and evidence commit.
 This file does not embed the hash-record commit's own hash.
 Nothing was pushed. Nothing was deployed. Nothing was submitted to Devpost.
 
@@ -131,7 +131,7 @@ A12. Candidate package.
   Nothing was pushed. Nothing was submitted.
 
 A13. Evidence timing. Self-check pass.
-  Pytest, QA 124–127, QA 129–138, and the print JSON name the product commit (PRODUCT_COMMIT_PENDING until the hash-record commit stamps it).
+  Pytest, QA 124–127, QA 129–138, and the print JSON name the product commit a4e1542232d65dbdadf8195d4a6a55d856b87459.
   Their mtimes are after the last product-file edit.
 
 A14. Video and disclosure identity. Self-check pass.
