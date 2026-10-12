@@ -2,6 +2,7 @@
 
 from datetime import datetime
 
+from hotroom.chart import PLOT_LEFT, PLOT_RIGHT, chart_model
 from tests.htmltool import find_all, html_text, one, parse, raw_html
 
 
@@ -66,6 +67,15 @@ def test_55_chart(client):
     ]
     xs = [float(point.attrs["cx"]) for point in points]
     assert xs == sorted(xs) and len(set(xs)) == 6
+    # First and last points sit 20 viewBox units inside the plot (56 and 624).
+    assert xs[0] == 76.0
+    assert xs[-1] == 604.0
+    for point in points:
+        title = one(point, "title")
+        assert "humidex" in title.text()
+    for label in find_all(charts[0], "text", cls="axis-label"):
+        assert label.attrs.get("x") == "50"
+        assert label.attrs.get("text-anchor") == "end"
     assert [point.attrs["data-humidex"] for point in points] == [
         "40.7",
         "44.3",
@@ -81,6 +91,22 @@ def test_55_chart(client):
     for key in ("band-comfortable", "band-some", "band-great", "band-dangerous"):
         assert any(key in item for item in classes)
     assert len(find_all(charts[0], "polyline", cls="trend")) == 1
+    center = PLOT_LEFT + (PLOT_RIGHT - PLOT_LEFT) / 2
+    single = chart_model(
+        [
+            {
+                "id": 1,
+                "humidex": 30.0,
+                "taken_at": "2026-09-14 10:00",
+                "band_key": "some",
+                "band": "Some discomfort",
+            }
+        ]
+    )
+    assert single["points"][0]["cx"] == f"{center:.2f}"
+    assert single["polyline"] is None
+    assert PLOT_LEFT == 56
+    assert PLOT_RIGHT == 624
 
 
 def test_56_table(client):

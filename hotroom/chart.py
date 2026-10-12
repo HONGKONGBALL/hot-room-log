@@ -29,9 +29,11 @@ def chart_model(readings):
         return PLOT_TOP + (y_max - humidex) / span * plot_h
 
     def x_at(index, count):
+        # Keep the first and last points 20 viewBox units inside the plot
+        # so point ink and the trend stroke stay clear of the y-axis labels.
         if count == 1:
             return PLOT_LEFT + plot_w / 2
-        return PLOT_LEFT + plot_w * index / (count - 1)
+        return (PLOT_LEFT + 20) + (plot_w - 40) * index / (count - 1)
 
     count = len(readings)
     strips = []

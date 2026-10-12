@@ -1,9 +1,9 @@
 Hot Room Log — decisions under contract v2
 
-All five items are 已决（contract v2, 2026-10-11). Product logic, styles, and scripts stay as they are.
+All five items are closed (contract v2, 2026-10-11). Product logic, styles, and scripts stay as they are.
 
-1. README Chinese paragraph. 已决（contract v2): the brief wins. The README is English only. The Chinese paragraph is removed. Chinese stays only in the short summary at the top of idea.md.
-2. Sample banner on screenshots. 已决（contract v2): the §7.0 banner rule stays. The banner is only on pages that show sample rooms. The §15 screenshot rule is rewritten so screenshots 4 and 5 do not claim a banner.
-3. JavaScript beyond copy, print, and confirm. 已决（contract v2): the existing script is accepted as progressive enhancement. The contract whitelist covers copy, print, confirm dialogs, chart fitting, scroll-edge shadows, and the chart tooltip. The script is not removed.
-4. "printable" versus the printed sheet. 已决（contract v2): the wording is "printable evidence sheet". The layout stays. Room 1 still prints on at most 2 A4 pages.
-5. Whether "no paid API" constrains only the running app. 已决（contract v2): the brief's "No paid API" rule applies to the product at runtime. The demo voice-over is disclosed as an AI-generated voice. Zhenhua still checks billing and terms before submission (QA 151). That check is not done in this file.
+1. README Chinese paragraph. Closed (contract v2): the brief wins. The README is English only. The Chinese paragraph is removed. Chinese stays only in the short summary at the top of idea.md.
+2. Sample banner on screenshots. Closed (contract v2): the section 7.0 banner rule stays. The banner is only on pages that show sample rooms. The section 15 screenshot rule is rewritten so screenshots 4 and 5 do not claim a banner.
+3. JavaScript beyond copy, print, and confirm. Closed (contract v2): the existing script is accepted as progressive enhancement. The contract whitelist covers copy, print, confirm dialogs, chart fitting, scroll-edge shadows, and the chart tooltip. The script is not removed.
+4. "printable" versus the printed sheet. Closed (contract v2): the wording is "printable evidence sheet". The layout stays. Room 1 still prints on at most 2 A4 pages.
+5. Whether "no paid API" constrains only the running app. Closed (contract v2): the brief's "No paid API" rule applies to the product at runtime. The demo voice-over is disclosed as an AI-generated voice. Owner decision, 2026-10-12 03:39:15 CST (UTC+8): qwen3-tts-flash calls used free quota (not billed); Model Studio terms allow publishing the generated audio in a public video; submit the narrated v4 demo, not the silent cut; keep the QA 119 / About TTS disclosure.
