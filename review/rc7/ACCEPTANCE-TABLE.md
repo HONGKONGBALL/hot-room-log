@@ -3,7 +3,7 @@
 Parent tag: `rc6` `16fc9352494d8643e1d36e6fdd996bb0adfd7c70`
 Product parent of that tag: `a4e1542232d65dbdadf8195d4a6a55d856b87459`
 Product commit: `cea644cec0e94c9cb0e8cd4faeae029adb499965`
-Evidence commit: (recorded by the following hash-record commit)
+Evidence commit: `d30e557fa2ed70e3a6b7d7d524a51480b78bc2e7`
 Tag `rc7` points at the hash-record commit. Its parent is the evidence commit. This table does not embed the tag commit's own hash.
 
 Implementation and self-check are done. This candidate is awaiting acceptance. No FINAL PASS is claimed. Nothing was pushed. Nothing was submitted.
