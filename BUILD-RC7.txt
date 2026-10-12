@@ -4,7 +4,7 @@ Branch: rc3-work
 Parent tag: rc6 16fc9352494d8643e1d36e6fdd996bb0adfd7c70
 Product parent of that tag: a4e1542232d65dbdadf8195d4a6a55d856b87459
 Product commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
-Evidence commit: (recorded by the following hash-record commit)
+Evidence commit: 2fcd27bc57fe7ab9f759d5376be231b8107d48e8
 Tag rc7 points at the hash-record commit. Its parent is the evidence commit.
 This file does not embed the hash-record commit's own hash.
 Nothing was pushed. Nothing was deployed. Nothing was submitted to Devpost.
@@ -154,7 +154,7 @@ A12. Candidate package.
   Branch rc3-work.
   The product commit contains the chart inset and the English decisions file. It does not contain its own hash.
   The evidence commit contains review/rc7/, this file, and ACCEPTANCE.md. It does not change product files. Evidence result files already contain the product commit hash.
-  The following hash-record commit updates this file, review/rc7/SOURCE.txt, and review/rc7/ACCEPTANCE-TABLE.md so they name the evidence commit as the parent of the tag. It does not change product files and does not change evidence result files.
+  The hash-record commit updates this file, review/rc7/SOURCE.txt, and review/rc7/ACCEPTANCE-TABLE.md so they name the evidence commit as the parent of the tag. It does not change product files and does not change evidence result files.
   Tag rc7 is local only and points at the hash-record commit.
   Nothing was pushed. Nothing was submitted.
 
