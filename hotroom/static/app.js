@@ -138,6 +138,21 @@
           applyChartInk(svg, pointRadius, pointStroke, trendWidth, width);
           guard += 1;
         }
+      } else {
+        // Formula first. Shrink only while ink would meet 30, 40, or 45.
+        // Stop at the first clear step. At 1280 the formula radius is already clear.
+        var screenGuard = 0;
+        while (screenInkCoversLabels(svg, width) && pointRadius > 3 && screenGuard < 48) {
+          pointRadius -= 0.25;
+          if (screenGuard % 2 === 1) {
+            pointStroke = Math.max(1, pointStroke - 0.25);
+          }
+          if (screenGuard % 3 === 2) {
+            trendWidth = Math.max(1.25, trendWidth - 0.25);
+          }
+          applyChartInk(svg, pointRadius, pointStroke, trendWidth, width);
+          screenGuard += 1;
+        }
       }
     }
   }
@@ -175,8 +190,29 @@
   // Print test: axis-label getBBox against each point box expanded by the
   // full stroke width, and against each trend segment expanded by the full
   // trend stroke. That is outside the painted ink (SVG strokes are centered)
-  // and still counts a touch as a hit.
+  // and still counts a touch as a hit. Print lengths stay as written; the
+  // screen test converts CSS pixels into viewBox units before padding.
   function printInkCoversLabels(svg) {
+    return inkCoversLabels(svg, function (strokePx) {
+      return strokePx;
+    });
+  }
+
+  // strokePx is CSS pixels. getBBox is viewBox user units. The full stroke
+  // in user units is strokePx * (640 / renderedWidth). A touch counts.
+  // On a 320 px chart that pad still leaves the white ring on the axis beside
+  // "40" (about 1 CSS px of ink), so the screen test keeps five more CSS
+  // pixels and stops at the first clear step.
+  function screenInkCoversLabels(svg, renderedWidth) {
+    var viewBoxWidth = 640;
+    var perPx = renderedWidth ? viewBoxWidth / renderedWidth : 1;
+    var touchPx = 5;
+    return inkCoversLabels(svg, function (strokePx) {
+      return strokePx * perPx + touchPx * perPx;
+    });
+  }
+
+  function inkCoversLabels(svg, padFor) {
     var labels = svg.querySelectorAll("text.axis-label");
     var circles = svg.querySelectorAll("circle.point");
     var trend = svg.querySelector("polyline.trend");
@@ -187,7 +223,7 @@
         if (!stroke) {
           stroke = 2;
         }
-        if (boxesHit(label, expandedBBox(circles[c], stroke))) {
+        if (boxesHit(label, expandedBBox(circles[c], padFor(stroke)))) {
           return true;
         }
       }
@@ -204,7 +240,7 @@
         var pair = parts[p].split(",");
         coords.push({ x: parseFloat(pair[0]), y: parseFloat(pair[1]) });
       }
-      var pad = trendStroke;
+      var pad = padFor(trendStroke);
       for (var s = 1; s < coords.length; s++) {
         var x1 = coords[s - 1].x;
         var y1 = coords[s - 1].y;
