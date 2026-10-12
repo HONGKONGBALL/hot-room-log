@@ -1,0 +1,11 @@
+product_commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+fresh clone: /tmp/hrl-rc7-fresh
+quick start: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt && .venv/bin/python app.py
+HTTP GET http://127.0.0.1:5050/ : 200
+server stopped afterwards. Nothing left listening on 5050 or 5051.
+then: .venv/bin/pip install -r requirements-dev.txt
+$ .venv/bin/pytest -q
+........................................................................ [ 63%]
+..........................................                               [100%]
+114 passed in 1.25s
+pytest_exit:0

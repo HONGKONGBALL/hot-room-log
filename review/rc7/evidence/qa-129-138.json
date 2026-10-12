@@ -1,0 +1,1640 @@
+{
+  "product_commit": "beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b",
+  "git_head": "beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b",
+  "git_diff_head_sha256": "15ba4c25f8fe367baf909e064fc07ee3ecf81987416ecd46f00ac0fa151d37d9",
+  "chart_inset_viewbox_units": 20,
+  "screen_radius_cap": false,
+  "qa": {
+    "129": {
+      "pass": true,
+      "detail": {
+        "banner": "Sample data \u2014 fictional rooms and readings for demonstration.",
+        "bannerBg": "rgb(255, 243, 191)",
+        "cards": [
+          {
+            "name": "Demo Estate Study Room Sample",
+            "band": "dangerous",
+            "bg": "rgb(255, 214, 214)",
+            "humidex": "47.6",
+            "bandText": "Dangerous",
+            "bandColor": "rgb(139, 26, 26)",
+            "bandBg": "rgb(255, 214, 214)"
+          },
+          {
+            "name": "Demo Classroom 3F Sample",
+            "band": "some",
+            "bg": "rgb(255, 243, 191)",
+            "humidex": "35.0",
+            "bandText": "Some discomfort",
+            "bandColor": "rgb(92, 72, 19)",
+            "bandBg": "rgb(255, 243, 191)"
+          },
+          {
+            "name": "Demo Library Corner Sample",
+            "band": "comfortable",
+            "bg": "rgb(211, 249, 216)",
+            "humidex": "28.2",
+            "bandText": "Comfortable",
+            "bandColor": "rgb(27, 94, 32)",
+            "bandBg": "rgb(211, 249, 216)"
+          }
+        ]
+      }
+    },
+    "130": {
+      "pass": true,
+      "detail": {
+        "titles": [
+          "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+          "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+          "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+          "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+          "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+          "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+        ],
+        "tips": [
+          {
+            "hidden": false,
+            "text": "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort"
+          },
+          {
+            "hidden": false,
+            "text": "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort"
+          },
+          {
+            "hidden": false,
+            "text": "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort"
+          },
+          {
+            "hidden": false,
+            "text": "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous"
+          },
+          {
+            "hidden": false,
+            "text": "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort"
+          },
+          {
+            "hidden": false,
+            "text": "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+          }
+        ]
+      }
+    },
+    "131": {
+      "pass": true,
+      "detail": {
+        "button_immediate": "Copied",
+        "button_after": "Copy letter",
+        "clipboard_starts": "Dear Room manager,\n\nWe are students who use Demo Estate Study Room. From 2026-09",
+        "clipboard_equals_textarea": true
+      }
+    },
+    "132": {
+      "pass": true,
+      "detail": {
+        "pdf": "review/rc7/evidence/qa132-edited-letter.pdf",
+        "pages": 2,
+        "page_size": "595.92 x 841.92 pts (A4)",
+        "missing": [],
+        "leaked": []
+      }
+    },
+    "133": {
+      "pass": true,
+      "detail": {
+        "dialogs": [
+          "Delete this reading?",
+          "Delete this room and all its readings?",
+          "Replace all rooms and readings with the sample data?"
+        ],
+        "rows_before": 6,
+        "rows_after": 6,
+        "still_room": true,
+        "cards": 3
+      }
+    },
+    "135": {
+      "pass": true,
+      "detail": {
+        "widths": {
+          "320": {
+            "pages": {
+              "dashboard": {
+                "layout": {
+                  "clientWidth": 320,
+                  "scrollWidth": 320,
+                  "pageOverflow": 0,
+                  "scrollers": [],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": false,
+                  "hits": [],
+                  "labels": []
+                }
+              },
+              "room": {
+                "layout": {
+                  "clientWidth": 320,
+                  "scrollWidth": 320,
+                  "pageOverflow": 0,
+                  "scrollers": [
+                    {
+                      "scrollWidth": 959,
+                      "clientWidth": 294,
+                      "overflows": true,
+                      "left": 12,
+                      "right": 308,
+                      "withinPage": true
+                    }
+                  ],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": true,
+                  "labels": [
+                    "30",
+                    "40",
+                    "45"
+                  ],
+                  "hits": [],
+                  "pointCount": 6,
+                  "titles": [
+                    "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+                    "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+                    "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+                    "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+                    "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+                    "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+                  ],
+                  "allTitles": true
+                }
+              },
+              "sheet": {
+                "layout": {
+                  "clientWidth": 320,
+                  "scrollWidth": 320,
+                  "pageOverflow": 0,
+                  "scrollers": [
+                    {
+                      "scrollWidth": 875,
+                      "clientWidth": 294,
+                      "overflows": true,
+                      "left": 12,
+                      "right": 308,
+                      "withinPage": true
+                    }
+                  ],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": true,
+                  "labels": [
+                    "30",
+                    "40",
+                    "45"
+                  ],
+                  "hits": [],
+                  "pointCount": 6,
+                  "titles": [
+                    "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+                    "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+                    "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+                    "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+                    "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+                    "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+                  ],
+                  "allTitles": true
+                }
+              },
+              "calculator": {
+                "layout": {
+                  "clientWidth": 320,
+                  "scrollWidth": 320,
+                  "pageOverflow": 0,
+                  "scrollers": [],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": false,
+                  "hits": [],
+                  "labels": []
+                }
+              }
+            },
+            "typed": {
+              "temp": "31",
+              "note": "narrow"
+            }
+          },
+          "375": {
+            "pages": {
+              "dashboard": {
+                "layout": {
+                  "clientWidth": 375,
+                  "scrollWidth": 375,
+                  "pageOverflow": 0,
+                  "scrollers": [],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": false,
+                  "hits": [],
+                  "labels": []
+                }
+              },
+              "room": {
+                "layout": {
+                  "clientWidth": 375,
+                  "scrollWidth": 375,
+                  "pageOverflow": 0,
+                  "scrollers": [
+                    {
+                      "scrollWidth": 959,
+                      "clientWidth": 349,
+                      "overflows": true,
+                      "left": 12,
+                      "right": 363,
+                      "withinPage": true
+                    }
+                  ],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": true,
+                  "labels": [
+                    "30",
+                    "40",
+                    "45"
+                  ],
+                  "hits": [],
+                  "pointCount": 6,
+                  "titles": [
+                    "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+                    "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+                    "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+                    "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+                    "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+                    "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+                  ],
+                  "allTitles": true
+                }
+              },
+              "sheet": {
+                "layout": {
+                  "clientWidth": 375,
+                  "scrollWidth": 375,
+                  "pageOverflow": 0,
+                  "scrollers": [
+                    {
+                      "scrollWidth": 875,
+                      "clientWidth": 349,
+                      "overflows": true,
+                      "left": 12,
+                      "right": 363,
+                      "withinPage": true
+                    }
+                  ],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": true,
+                  "labels": [
+                    "30",
+                    "40",
+                    "45"
+                  ],
+                  "hits": [],
+                  "pointCount": 6,
+                  "titles": [
+                    "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+                    "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+                    "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+                    "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+                    "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+                    "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+                  ],
+                  "allTitles": true
+                }
+              },
+              "calculator": {
+                "layout": {
+                  "clientWidth": 375,
+                  "scrollWidth": 375,
+                  "pageOverflow": 0,
+                  "scrollers": [],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": false,
+                  "hits": [],
+                  "labels": []
+                }
+              }
+            },
+            "typed": {
+              "temp": "31",
+              "note": "narrow"
+            }
+          },
+          "640": {
+            "pages": {
+              "room": {
+                "layout": {
+                  "clientWidth": 640,
+                  "scrollWidth": 640,
+                  "pageOverflow": 0,
+                  "scrollers": [
+                    {
+                      "scrollWidth": 959,
+                      "clientWidth": 614,
+                      "overflows": true,
+                      "left": 12,
+                      "right": 628,
+                      "withinPage": true
+                    }
+                  ],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": true,
+                  "labels": [
+                    "30",
+                    "40",
+                    "45"
+                  ],
+                  "hits": [],
+                  "pointCount": 6,
+                  "titles": [
+                    "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+                    "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+                    "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+                    "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+                    "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+                    "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+                  ],
+                  "allTitles": true
+                }
+              },
+              "sheet": {
+                "layout": {
+                  "clientWidth": 640,
+                  "scrollWidth": 640,
+                  "pageOverflow": 0,
+                  "scrollers": [
+                    {
+                      "scrollWidth": 875,
+                      "clientWidth": 614,
+                      "overflows": true,
+                      "left": 12,
+                      "right": 628,
+                      "withinPage": true
+                    }
+                  ],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": true,
+                  "labels": [
+                    "30",
+                    "40",
+                    "45"
+                  ],
+                  "hits": [],
+                  "pointCount": 6,
+                  "titles": [
+                    "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+                    "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+                    "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+                    "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+                    "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+                    "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+                  ],
+                  "allTitles": true
+                }
+              }
+            },
+            "typed": null
+          },
+          "720": {
+            "pages": {
+              "room": {
+                "layout": {
+                  "clientWidth": 720,
+                  "scrollWidth": 720,
+                  "pageOverflow": 0,
+                  "scrollers": [
+                    {
+                      "scrollWidth": 959,
+                      "clientWidth": 694,
+                      "overflows": true,
+                      "left": 12,
+                      "right": 708,
+                      "withinPage": true
+                    }
+                  ],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": true,
+                  "labels": [
+                    "30",
+                    "40",
+                    "45"
+                  ],
+                  "hits": [],
+                  "pointCount": 6,
+                  "titles": [
+                    "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+                    "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+                    "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+                    "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+                    "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+                    "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+                  ],
+                  "allTitles": true
+                }
+              },
+              "sheet": {
+                "layout": {
+                  "clientWidth": 720,
+                  "scrollWidth": 720,
+                  "pageOverflow": 0,
+                  "scrollers": [
+                    {
+                      "scrollWidth": 875,
+                      "clientWidth": 694,
+                      "overflows": true,
+                      "left": 12,
+                      "right": 708,
+                      "withinPage": true
+                    }
+                  ],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": true,
+                  "labels": [
+                    "30",
+                    "40",
+                    "45"
+                  ],
+                  "hits": [],
+                  "pointCount": 6,
+                  "titles": [
+                    "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+                    "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+                    "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+                    "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+                    "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+                    "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+                  ],
+                  "allTitles": true
+                }
+              }
+            },
+            "typed": null
+          },
+          "768": {
+            "pages": {
+              "room": {
+                "layout": {
+                  "clientWidth": 768,
+                  "scrollWidth": 768,
+                  "pageOverflow": 0,
+                  "scrollers": [
+                    {
+                      "scrollWidth": 959,
+                      "clientWidth": 742,
+                      "overflows": true,
+                      "left": 12,
+                      "right": 756,
+                      "withinPage": true
+                    }
+                  ],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": true,
+                  "labels": [
+                    "30",
+                    "40",
+                    "45"
+                  ],
+                  "hits": [],
+                  "pointCount": 6,
+                  "titles": [
+                    "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+                    "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+                    "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+                    "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+                    "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+                    "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+                  ],
+                  "allTitles": true
+                }
+              },
+              "sheet": {
+                "layout": {
+                  "clientWidth": 768,
+                  "scrollWidth": 768,
+                  "pageOverflow": 0,
+                  "scrollers": [
+                    {
+                      "scrollWidth": 875,
+                      "clientWidth": 742,
+                      "overflows": true,
+                      "left": 12,
+                      "right": 756,
+                      "withinPage": true
+                    }
+                  ],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": true,
+                  "labels": [
+                    "30",
+                    "40",
+                    "45"
+                  ],
+                  "hits": [],
+                  "pointCount": 6,
+                  "titles": [
+                    "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+                    "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+                    "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+                    "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+                    "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+                    "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+                  ],
+                  "allTitles": true
+                }
+              }
+            },
+            "typed": null
+          },
+          "1280": {
+            "pages": {
+              "room": {
+                "layout": {
+                  "clientWidth": 1280,
+                  "scrollWidth": 1280,
+                  "pageOverflow": 0,
+                  "scrollers": [
+                    {
+                      "scrollWidth": 1150,
+                      "clientWidth": 1150,
+                      "overflows": false,
+                      "left": 64,
+                      "right": 1216,
+                      "withinPage": true
+                    }
+                  ],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": true,
+                  "labels": [
+                    "30",
+                    "40",
+                    "45"
+                  ],
+                  "hits": [],
+                  "pointCount": 6,
+                  "titles": [
+                    "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+                    "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+                    "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+                    "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+                    "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+                    "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+                  ],
+                  "allTitles": true
+                }
+              },
+              "sheet": {
+                "layout": {
+                  "clientWidth": 1280,
+                  "scrollWidth": 1280,
+                  "pageOverflow": 0,
+                  "scrollers": [
+                    {
+                      "scrollWidth": 1150,
+                      "clientWidth": 1150,
+                      "overflows": false,
+                      "left": 64,
+                      "right": 1216,
+                      "withinPage": true
+                    }
+                  ],
+                  "offenders": []
+                },
+                "svg_hits": {
+                  "present": true,
+                  "labels": [
+                    "30",
+                    "40",
+                    "45"
+                  ],
+                  "hits": [],
+                  "pointCount": 6,
+                  "titles": [
+                    "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+                    "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+                    "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+                    "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+                    "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+                    "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+                  ],
+                  "allTitles": true
+                }
+              }
+            },
+            "typed": null
+          }
+        },
+        "svg_hit": "full stroke on labels 30, 40, 45; a touch is a hit"
+      }
+    },
+    "136": {
+      "pass": true,
+      "detail": {
+        "dashboard": {
+          "taken_at_focus": null,
+          "focused": [
+            {
+              "name": "Skip to content",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Hot Room Log",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Rooms",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Calculator",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Import",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "About",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Demo Estate Study Room",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Demo Classroom 3F",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Demo Library Corner",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Room name",
+              "tag": "input",
+              "id": "name",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Add room",
+              "tag": "button",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Export all readings (CSV)",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Import CSV",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Reset demo data",
+              "tag": "button",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "About",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            }
+          ],
+          "expected_count": 15,
+          "missing_from_tab": [],
+          "extra_tab": [],
+          "missing_outline": [],
+          "shift_tab": {
+            "name": "About",
+            "visibleOutline": true
+          }
+        },
+        "room": {
+          "taken_at_focus": {
+            "id": "taken_at",
+            "outlineWidth": "3px",
+            "outlineStyle": "solid",
+            "outlineColor": "rgb(11, 87, 208)",
+            "outlineOffset": "2px",
+            "rect": {
+              "x": 64,
+              "y": 131.109375,
+              "width": 448,
+              "height": 41.5625
+            },
+            "blue_pixels_around_control": 3421,
+            "ring_visible": true,
+            "screenshot": "review/rc7/evidence/qa-shots/136-room-taken-at-focus.png"
+          },
+          "focused": [
+            {
+              "name": "Skip to content",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Hot Room Log",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Rooms",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Calculator",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Import",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "About",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Temperature (\u00b0C)",
+              "tag": "input",
+              "id": "temp_c",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Relative humidity (%)",
+              "tag": "input",
+              "id": "rh_percent",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Time",
+              "tag": "input",
+              "id": "taken_at",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Time",
+              "tag": "input",
+              "id": "taken_at",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Time",
+              "tag": "input",
+              "id": "taken_at",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Time",
+              "tag": "input",
+              "id": "taken_at",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Time",
+              "tag": "input",
+              "id": "taken_at",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Time",
+              "tag": "input",
+              "id": "taken_at",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Time",
+              "tag": "input",
+              "id": "taken_at",
+              "outline": "3px",
+              "color": "rgb(36, 28, 22)",
+              "visible": false
+            },
+            {
+              "name": "Note (optional)",
+              "tag": "input",
+              "id": "note",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Add reading",
+              "tag": "button",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Delete reading from 2026-09-14 10:00",
+              "tag": "button",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Delete reading from 2026-09-14 15:00",
+              "tag": "button",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Delete reading from 2026-09-15 10:00",
+              "tag": "button",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Delete reading from 2026-09-15 15:00",
+              "tag": "button",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Delete reading from 2026-09-16 10:00",
+              "tag": "button",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Delete reading from 2026-09-16 15:00",
+              "tag": "button",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Evidence sheet",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Export this room (CSV)",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Delete room",
+              "tag": "button",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "About",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            }
+          ],
+          "expected_count": 21,
+          "missing_from_tab": [],
+          "extra_tab": [
+            [
+              "input",
+              "taken_at",
+              "Time"
+            ],
+            [
+              "input",
+              "taken_at",
+              "Time"
+            ],
+            [
+              "input",
+              "taken_at",
+              "Time"
+            ],
+            [
+              "input",
+              "taken_at",
+              "Time"
+            ],
+            [
+              "input",
+              "taken_at",
+              "Time"
+            ],
+            [
+              "input",
+              "taken_at",
+              "Time"
+            ]
+          ],
+          "missing_outline": [],
+          "shift_tab": {
+            "name": "About",
+            "visibleOutline": true
+          }
+        },
+        "sheet": {
+          "taken_at_focus": null,
+          "focused": [
+            {
+              "name": "Skip to content",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Hot Room Log",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Rooms",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Calculator",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Import",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "About",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Letter (edit before sending)",
+              "tag": "textarea",
+              "id": "letter",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Copy letter",
+              "tag": "button",
+              "id": "copy-letter",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Print / Save as PDF",
+              "tag": "button",
+              "id": "print-sheet",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "About",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            }
+          ],
+          "expected_count": 10,
+          "missing_from_tab": [],
+          "extra_tab": [],
+          "missing_outline": [],
+          "shift_tab": {
+            "name": "About",
+            "visibleOutline": true
+          }
+        },
+        "calculator": {
+          "taken_at_focus": null,
+          "focused": [
+            {
+              "name": "Skip to content",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Hot Room Log",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Rooms",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Calculator",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Import",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "About",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(255, 224, 138)",
+              "visible": true
+            },
+            {
+              "name": "Example: dry 35 \u00b0C at 40 % vs humid 30 \u00b0C at 85 %",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Temperature (\u00b0C)",
+              "tag": "input",
+              "id": "temp_c",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Relative humidity (%)",
+              "tag": "input",
+              "id": "rh_percent",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Temperature (\u00b0C)",
+              "tag": "input",
+              "id": "temp_c_b",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Relative humidity (%)",
+              "tag": "input",
+              "id": "rh_percent_b",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "Calculate",
+              "tag": "button",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            },
+            {
+              "name": "About",
+              "tag": "a",
+              "id": "",
+              "outline": "3px",
+              "color": "rgb(11, 87, 208)",
+              "visible": true
+            }
+          ],
+          "expected_count": 13,
+          "missing_from_tab": [],
+          "extra_tab": [],
+          "missing_outline": [],
+          "shift_tab": {
+            "name": "About",
+            "visibleOutline": true
+          }
+        },
+        "enter_submits_calculator": {
+          "url": "http://127.0.0.1:5050/calc?temp_c=30&rh_percent=85&temp_c_b=&rh_percent_b=",
+          "humidex": "44.4"
+        }
+      }
+    },
+    "138": {
+      "pass": true,
+      "detail": {
+        "dashboard": {
+          "overlap": {
+            "overlaps": [],
+            "clipped": [],
+            "innerWidth": 640,
+            "devicePixelRatio": 2
+          },
+          "layout": {
+            "clientWidth": 640,
+            "scrollWidth": 640,
+            "pageOverflow": 0,
+            "scrollers": [],
+            "offenders": []
+          },
+          "svg_hits": {
+            "present": false,
+            "hits": [],
+            "labels": []
+          }
+        },
+        "room": {
+          "overlap": {
+            "overlaps": [],
+            "clipped": [],
+            "innerWidth": 640,
+            "devicePixelRatio": 2
+          },
+          "layout": {
+            "clientWidth": 640,
+            "scrollWidth": 640,
+            "pageOverflow": 0,
+            "scrollers": [
+              {
+                "scrollWidth": 959,
+                "clientWidth": 614,
+                "overflows": true,
+                "left": 12,
+                "right": 628,
+                "withinPage": true
+              }
+            ],
+            "offenders": []
+          },
+          "svg_hits": {
+            "present": true,
+            "labels": [
+              "30",
+              "40",
+              "45"
+            ],
+            "hits": [],
+            "pointCount": 6,
+            "titles": [
+              "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+              "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+              "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+              "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+              "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+              "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+            ],
+            "allTitles": true
+          }
+        },
+        "sheet": {
+          "overlap": {
+            "overlaps": [],
+            "clipped": [],
+            "innerWidth": 640,
+            "devicePixelRatio": 2
+          },
+          "layout": {
+            "clientWidth": 640,
+            "scrollWidth": 640,
+            "pageOverflow": 0,
+            "scrollers": [
+              {
+                "scrollWidth": 875,
+                "clientWidth": 614,
+                "overflows": true,
+                "left": 12,
+                "right": 628,
+                "withinPage": true
+              }
+            ],
+            "offenders": []
+          },
+          "svg_hits": {
+            "present": true,
+            "labels": [
+              "30",
+              "40",
+              "45"
+            ],
+            "hits": [],
+            "pointCount": 6,
+            "titles": [
+              "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+              "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+              "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+              "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+              "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+              "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
+            ],
+            "allTitles": true
+          }
+        },
+        "calculator": {
+          "overlap": {
+            "overlaps": [],
+            "clipped": [],
+            "innerWidth": 640,
+            "devicePixelRatio": 2
+          },
+          "layout": {
+            "clientWidth": 640,
+            "scrollWidth": 640,
+            "pageOverflow": 0,
+            "scrollers": [],
+            "offenders": []
+          },
+          "svg_hits": {
+            "present": false,
+            "hits": [],
+            "labels": []
+          }
+        },
+        "method": "Chrome browser zoom at 200% on a 1280\u00d7900 window makes the layout viewport 640\u00d7450 CSS px and devicePixelRatio 2. Headless Chrome has no Ctrl+Plus dialog, so this context is that layout. The same full-stroke SVG getBBox test used at the fixed widths runs here. A touch is a hit. No cable was involved."
+      }
+    },
+    "137": {
+      "pass": true,
+      "detail": {
+        "cable_unplugged": false,
+        "method": "Playwright request log plus performance resource entries and src/href attributes. No network cable was unplugged.",
+        "request_hosts": [
+          "127.0.0.1"
+        ],
+        "request_count": 117,
+        "external_attrs": [],
+        "pages": [
+          {
+            "path": "/",
+            "resource_count": 2,
+            "style_loaded": true,
+            "script_present": true
+          },
+          {
+            "path": "/rooms/1",
+            "resource_count": 2,
+            "style_loaded": true,
+            "script_present": true
+          },
+          {
+            "path": "/rooms/1/sheet",
+            "resource_count": 2,
+            "style_loaded": true,
+            "script_present": true
+          },
+          {
+            "path": "/calc",
+            "resource_count": 2,
+            "style_loaded": true,
+            "script_present": true
+          },
+          {
+            "path": "/import",
+            "resource_count": 2,
+            "style_loaded": true,
+            "script_present": true
+          },
+          {
+            "path": "/about",
+            "resource_count": 2,
+            "style_loaded": true,
+            "script_present": true
+          }
+        ]
+      }
+    },
+    "134": {
+      "pass": true,
+      "detail": {
+        "noscript_titles": [
+          {
+            "title": "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+            "cx": "76.00"
+          },
+          {
+            "title": "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+            "cx": "181.60"
+          },
+          {
+            "title": "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+            "cx": "287.20"
+          },
+          {
+            "title": "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+            "cx": "392.80"
+          },
+          {
+            "title": "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+            "cx": "498.40"
+          },
+          {
+            "title": "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous",
+            "cx": "604.00"
+          }
+        ],
+        "noscript_hover": [
+          {
+            "title": "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+            "chart_tip": 0
+          },
+          {
+            "title": "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+            "chart_tip": 0
+          },
+          {
+            "title": "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+            "chart_tip": 0
+          },
+          {
+            "title": "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+            "chart_tip": 0
+          },
+          {
+            "title": "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+            "chart_tip": 0
+          },
+          {
+            "title": "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous",
+            "chart_tip": 0
+          }
+        ],
+        "script_tags": 1,
+        "narrow": {
+          "375": {
+            "scrollWidth": 959,
+            "clientWidth": 349,
+            "tableOverflow": true,
+            "docScrollWidth": 375,
+            "docClientWidth": 375,
+            "pageOverflow": false,
+            "screenshot": "review/rc7/evidence/qa-shots/134-noscript-room-375.png"
+          },
+          "320": {
+            "scrollWidth": 959,
+            "clientWidth": 294,
+            "tableOverflow": true,
+            "docScrollWidth": 320,
+            "docClientWidth": 320,
+            "pageOverflow": false,
+            "screenshot": "review/rc7/evidence/qa-shots/134-noscript-room-320.png"
+          }
+        },
+        "headed_hover": {
+          "titles": [
+            {
+              "title": "2026-09-14 10:00 \u00b7 humidex 40.7 \u00b7 Great discomfort",
+              "chartTip": 0
+            },
+            {
+              "title": "2026-09-14 15:00 \u00b7 humidex 44.3 \u00b7 Great discomfort",
+              "chartTip": 0
+            },
+            {
+              "title": "2026-09-15 10:00 \u00b7 humidex 41.3 \u00b7 Great discomfort",
+              "chartTip": 0
+            },
+            {
+              "title": "2026-09-15 15:00 \u00b7 humidex 45.8 \u00b7 Dangerous",
+              "chartTip": 0
+            },
+            {
+              "title": "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
+              "chartTip": 0
+            },
+            {
+              "title": "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous",
+              "chartTip": 0
+            }
+          ],
+          "screenshot": "review/rc7/evidence/qa-shots/134-noscript-hover-headed.png",
+          "headless": false
+        },
+        "dialogs": [],
+        "add_room": {
+          "url": "http://127.0.0.1:5050/rooms/4",
+          "h1": "QA134 Room",
+          "flash": "Room added."
+        },
+        "add_reading": {
+          "url": "http://127.0.0.1:5050/rooms/4",
+          "flash": "Reading added.",
+          "errors": [],
+          "rows": 1,
+          "table": "Time\tTemperature (\u00b0C)\tHumidity (%)\tDew point (\u00b0C)\tHumidex\tBand\tNote\tDelete\n2026-10-10 09:30\t31\t50\t19.3\t37.9\tSome discomfort\tqa134\t\nDelete"
+        },
+        "delete_reading": {
+          "flash": "Reading deleted.",
+          "rows": 0
+        },
+        "delete_room": {
+          "url": "http://127.0.0.1:5050/",
+          "flash": "Room deleted.",
+          "cards": 3,
+          "qa_room_visible": false
+        },
+        "calculator": {
+          "humidex": "44.4",
+          "text": "Condition A\n\nHumidex 44.4\n\nGreat discomfort\n\nDew point 27.2 \u00b0C\n\nHumidity adds +14.4\n\nShow working\nSaturation vapour pressure: es = 6.105 \u00d7 exp(17.27 \u00d7 30 \u00f7 (237.7 + 30)) = 42.29 hPa\nVapour pressure: e = 85 \u00f7 100 \u00d7 42.29 = 35.94 hPa\nHumidex: 30 + 0.5555 \u00d7 (35.94 \u2212 10) = 44.4\nDew point: gamma = ln(85 \u00f7 100) + 17.27 \u00d7 30 \u00f7 (237.7 + 30) = 1.7729; Td = 237.7 \u00d7 1.7729 \u00f7 (17.27 \u2212 1.7729) = 27.2 \u00b0C\n\nSteps show rounded numbers; results use full precision."
+        },
+        "export": {
+          "filename": "hot-room-log.csv",
+          "has_study_room": true,
+          "has_header": true
+        },
+        "import": {
+          "h1": "Import results",
+          "summary": "Readings added: 1\nNew rooms: 1\nDuplicates skipped: 0\nInvalid rows skipped: 0"
+        },
+        "reset": {
+          "flash": "Sample data restored.",
+          "cards": 3,
+          "names": [
+            "Demo Estate Study Room\nSample",
+            "Demo Classroom 3F\nSample",
+            "Demo Library Corner\nSample"
+          ],
+          "import_room_visible": false
+        },
+        "copy_label": "Copy letter",
+        "print_label": "Print / Save as PDF",
+        "still_on_sheet": true
+      }
+    }
+  },
+  "failures": [],
+  "requests_sample": [],
+  "pass": true,
+  "git_at_end": {
+    "product_commit": "beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b",
+    "git_head": "beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b",
+    "git_diff_head_sha256": "15ba4c25f8fe367baf909e064fc07ee3ecf81987416ecd46f00ac0fa151d37d9",
+    "chart_inset_viewbox_units": 20,
+    "screen_radius_cap": false
+  },
+  "request_hosts": [
+    "127.0.0.1"
+  ]
+}

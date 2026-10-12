@@ -1,0 +1,88 @@
+diff --git a/DECISIONS-NEEDED.txt b/DECISIONS-NEEDED.txt
+index f167283..29da6aa 100644
+--- a/DECISIONS-NEEDED.txt
++++ b/DECISIONS-NEEDED.txt
+@@ -1,9 +1,9 @@
+ Hot Room Log — decisions under contract v2
+ 
+-All five items are 已决（contract v2, 2026-10-11). Product logic, styles, and scripts stay as they are.
++All five items are closed (contract v2, 2026-10-11). Product logic, styles, and scripts stay as they are.
+ 
+-1. README Chinese paragraph. 已决（contract v2): the brief wins. The README is English only. The Chinese paragraph is removed. Chinese stays only in the short summary at the top of idea.md.
+-2. Sample banner on screenshots. 已决（contract v2): the §7.0 banner rule stays. The banner is only on pages that show sample rooms. The §15 screenshot rule is rewritten so screenshots 4 and 5 do not claim a banner.
+-3. JavaScript beyond copy, print, and confirm. 已决（contract v2): the existing script is accepted as progressive enhancement. The contract whitelist covers copy, print, confirm dialogs, chart fitting, scroll-edge shadows, and the chart tooltip. The script is not removed.
+-4. "printable" versus the printed sheet. 已决（contract v2): the wording is "printable evidence sheet". The layout stays. Room 1 still prints on at most 2 A4 pages.
+-5. Whether "no paid API" constrains only the running app. 已决（contract v2): the brief's "No paid API" rule applies to the product at runtime. The demo voice-over is disclosed as an AI-generated voice. Zhenhua still checks billing and terms before submission (QA 151). That check is not done in this file.
++1. README Chinese paragraph. Closed (contract v2): the brief wins. The README is English only. The Chinese paragraph is removed. Chinese stays only in the short summary at the top of idea.md.
++2. Sample banner on screenshots. Closed (contract v2): the section 7.0 banner rule stays. The banner is only on pages that show sample rooms. The section 15 screenshot rule is rewritten so screenshots 4 and 5 do not claim a banner.
++3. JavaScript beyond copy, print, and confirm. Closed (contract v2): the existing script is accepted as progressive enhancement. The contract whitelist covers copy, print, confirm dialogs, chart fitting, scroll-edge shadows, and the chart tooltip. The script is not removed.
++4. "printable" versus the printed sheet. Closed (contract v2): the wording is "printable evidence sheet". The layout stays. Room 1 still prints on at most 2 A4 pages.
++5. Whether "no paid API" constrains only the running app. Closed (contract v2): the brief's "No paid API" rule applies to the product at runtime. The demo voice-over is disclosed as an AI-generated voice. Owner decision, 2026-10-12 03:39:15 CST (UTC+8): qwen3-tts-flash calls used free quota (not billed); Model Studio terms allow publishing the generated audio in a public video; submit the narrated v4 demo, not the silent cut; keep the QA 119 / About TTS disclosure.
+diff --git a/hotroom/chart.py b/hotroom/chart.py
+index b36286e..2ccd0f8 100644
+--- a/hotroom/chart.py
++++ b/hotroom/chart.py
+@@ -29,9 +29,11 @@ def chart_model(readings):
+         return PLOT_TOP + (y_max - humidex) / span * plot_h
+ 
+     def x_at(index, count):
++        # Keep the first and last points 20 viewBox units inside the plot
++        # so point ink and the trend stroke stay clear of the y-axis labels.
+         if count == 1:
+             return PLOT_LEFT + plot_w / 2
+-        return PLOT_LEFT + plot_w * index / (count - 1)
++        return (PLOT_LEFT + 20) + (plot_w - 40) * index / (count - 1)
+ 
+     count = len(readings)
+     strips = []
+diff --git a/tests/test_f_room_page.py b/tests/test_f_room_page.py
+index 656100a..161df25 100644
+--- a/tests/test_f_room_page.py
++++ b/tests/test_f_room_page.py
+@@ -2,6 +2,7 @@
+ 
+ from datetime import datetime
+ 
++from hotroom.chart import PLOT_LEFT, PLOT_RIGHT, chart_model
+ from tests.htmltool import find_all, html_text, one, parse, raw_html
+ 
+ 
+@@ -66,6 +67,15 @@ def test_55_chart(client):
+     ]
+     xs = [float(point.attrs["cx"]) for point in points]
+     assert xs == sorted(xs) and len(set(xs)) == 6
++    # First and last points sit 20 viewBox units inside the plot (56 and 624).
++    assert xs[0] == 76.0
++    assert xs[-1] == 604.0
++    for point in points:
++        title = one(point, "title")
++        assert "humidex" in title.text()
++    for label in find_all(charts[0], "text", cls="axis-label"):
++        assert label.attrs.get("x") == "50"
++        assert label.attrs.get("text-anchor") == "end"
+     assert [point.attrs["data-humidex"] for point in points] == [
+         "40.7",
+         "44.3",
+@@ -81,6 +91,22 @@ def test_55_chart(client):
+     for key in ("band-comfortable", "band-some", "band-great", "band-dangerous"):
+         assert any(key in item for item in classes)
+     assert len(find_all(charts[0], "polyline", cls="trend")) == 1
++    center = PLOT_LEFT + (PLOT_RIGHT - PLOT_LEFT) / 2
++    single = chart_model(
++        [
++            {
++                "id": 1,
++                "humidex": 30.0,
++                "taken_at": "2026-09-14 10:00",
++                "band_key": "some",
++                "band": "Some discomfort",
++            }
++        ]
++    )
++    assert single["points"][0]["cx"] == f"{center:.2f}"
++    assert single["polyline"] is None
++    assert PLOT_LEFT == 56
++    assert PLOT_RIGHT == 624
+ 
+ 
+ def test_56_table(client):

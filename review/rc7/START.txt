@@ -1,0 +1,11 @@
+Start Hot Room Log from the project directory:
+
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
+
+URL: http://127.0.0.1:5050
+Port: 5050
+Bind: 127.0.0.1 unless HOST is set
+Login: none

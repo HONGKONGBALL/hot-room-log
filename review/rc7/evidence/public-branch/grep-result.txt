@@ -1,0 +1,5 @@
+product_commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+command: git -C /tmp/hrl-rc7-public log --all -p | grep -E '/workspace|builder-account|grok-build'
+stdout was empty.
+The raw stdout was saved as grep-stdout.txt and is a zero-byte file.
+The same command was empty before and after `git remote remove origin` in that temporary clone.

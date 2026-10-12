@@ -1,0 +1,76 @@
+product_commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+git_head_at_run: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+QA 124-127 started 2026-10-11T18:39:35-07:00
+=== clean copy ===
+pip install
+Requirement already satisfied: Flask<4,>=3 in ./.venv/lib/python3.13/site-packages (from -r /tmp/hrl-rc7/clean/requirements.txt (line 1)) (3.1.3)
+Requirement already satisfied: blinker>=1.9.0 in ./.venv/lib/python3.13/site-packages (from Flask<4,>=3->-r /tmp/hrl-rc7/clean/requirements.txt (line 1)) (1.9.0)
+Requirement already satisfied: click>=8.1.3 in ./.venv/lib/python3.13/site-packages (from Flask<4,>=3->-r /tmp/hrl-rc7/clean/requirements.txt (line 1)) (8.5.0)
+Requirement already satisfied: itsdangerous>=2.2.0 in ./.venv/lib/python3.13/site-packages (from Flask<4,>=3->-r /tmp/hrl-rc7/clean/requirements.txt (line 1)) (2.2.0)
+Requirement already satisfied: jinja2>=3.1.2 in ./.venv/lib/python3.13/site-packages (from Flask<4,>=3->-r /tmp/hrl-rc7/clean/requirements.txt (line 1)) (3.1.6)
+Requirement already satisfied: markupsafe>=2.1.1 in ./.venv/lib/python3.13/site-packages (from Flask<4,>=3->-r /tmp/hrl-rc7/clean/requirements.txt (line 1)) (3.0.4)
+Requirement already satisfied: werkzeug>=3.1.0 in ./.venv/lib/python3.13/site-packages (from Flask<4,>=3->-r /tmp/hrl-rc7/clean/requirements.txt (line 1)) (3.1.9)
+=== 124 first start ===
+PASS server process started
+--- flask log ---
+ * Serving Flask app 'hotroom'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5050
+[33mPress CTRL+C to quit[0m
+--- ss local column for 5050 (peer ignored) ---
+State  Recv-Q Send-Q Local Address:Port  Peer Address:Port
+LISTEN 0      128        127.0.0.1:5050       0.0.0.0:*   
+local addresses: 127.0.0.1:5050
+PASS 124 bind 127.0.0.1:5050
+PASS 124 instance/hotroom.db created
+GET / -> 200
+PASS 124 GET / 200
+GET /api/rooms -> [{"id": 1, "name": "Demo Estate Study Room", "is_sample": true, "reading_count": 6, "great_or_above_count": 6, "latest": {"taken_at": "2026-09-16 15:00", "humidex": 47.6, "band": "Dangerous", "band_key": "dangerous"}, "highest": {"taken_at": "2026-09-16 15:00", "humidex": 47.6, "band": "Dangerous", "band_key": "dangerous"}}, {"id": 2, "name": "Demo Classroom 3F", "is_sample": true, "reading_count": 6, "great_or_above_count": 1, "latest": {"taken_at": "2026-09-16 15:00", "humidex": 35.0, "band": "Some discomfort", "band_key": "some"}, "highest": {"taken_at": "2026-09-15 15:00", "humidex": 40.4, "band": "Great discomfort", "band_key": "great"}}, {"id": 3, "name": "Demo Library Corner", "is_sample": true, "reading_count": 6, "great_or_above_count": 0, "latest": {"taken_at": "2026-09-16 15:00", "humidex": 28.2, "band": "Comfortable", "band_key": "comfortable"}, "highest": {"taken_at": "2026-09-15 15:00", "humidex": 28.3, "band": "Comfortable", "band_key": "comfortable"}}]
+PASS 124 three rooms
+=== 125 create room, restart, data persists ===
+--- POST headers ---
+HTTP/1.1 302 FOUND
+Server: Werkzeug/3.1.9 Python/3.13.5
+Date: Mon, 12 Oct 2026 01:39:36 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 203
+Location: /rooms/4
+Vary: Cookie
+Set-Cookie: session=eyJfZmxhc2hlcyI6W3siIHQiOlsibWVzc2FnZSIsIlJvb20gYWRkZWQuIl19XX0.asw6WA.1ZatwB8fBN8LyJcOdqXu1Ab9cpQ; HttpOnly; Path=/
+Connection: close
+
+status [HTTP/1.1 302 FOUND] location [/rooms/4]
+PASS 125 302 to /rooms/4
+PASS 125 restarted
+PASS 125 four rooms including Curl Room
+=== 126 static, missing, export ===
+css 200 nope 404
+--- export headers ---
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.9 Python/3.13.5
+Date: Mon, 12 Oct 2026 01:39:37 GMT
+Content-Type: text/csv; charset=utf-8
+Content-Length: 1373
+Content-Disposition: attachment; filename="hot-room-log.csv"
+Connection: close
+
+PASS 126
+=== 127 port 5051, read-only 403, local address column ===
+PASS 5051 started
+GET :5051/ -> 200
+PASS 127 GET 5051 200
+PASS readonly started
+POST /reset -> 403
+PASS 127 readonly reset 403
+--- full ss line for local :5050, including the peer column ---
+State  Recv-Q Send-Q Local Address:Port  Peer Address:Port
+LISTEN 0      128        127.0.0.1:5050       0.0.0.0:*   
+--- local address column only ---
+local addresses: 127.0.0.1:5050
+PASS 127 local address is 127.0.0.1:5050 and not 0.0.0.0:5050
+main checks done, fail=0
+=== after stop: listeners whose local address is :5050 or :5051 ===
+State  Recv-Q Send-Q Local Address:Port  Peer Address:Port
+PASS nothing listens on 5050 or 5051
+QA 124-127 exit 0

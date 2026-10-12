@@ -1,0 +1,30 @@
+product_commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+file: hot-room-log-demo-v4.mp4
+sha256: d42d05ef21227ccacbebce2ce36f693b3fe2810841399ae63bc3c71eaf3d2c9b
+ffprobe duration: 152.067000
+pixel size: 1920x1080
+copy: byte-for-byte copy of the rc6 file. No re-encode. No TTS call.
+chart geometry: some frames may show the prior build's point positions. The labels stay readable. No frame checked shows the 40 label covered.
+
+Spot-check timestamps (seconds), frames in review/rc7/evidence/video-frames/:
+
+33.00  t-33.00.jpg
+  On-screen room chart. Labels 30, 40, and 45 are readable. The first point does not cover 40.
+
+87.75  t-87.75.jpg
+  Spoken: Print uses that same edited letter.
+  Picture: the on-screen sheet, greeting Dear Room manager. The chart is not in this frame.
+
+92.20  t-92.20.jpg
+  Spoken: Page one keeps the chart, the 47.6 reading, and the table.
+  Picture: printed page 1. Chart labels 45, 40, and 30 are readable. The table shows humidex 47.6.
+
+100.15  t-100.15.jpg
+  Spoken: Page two keeps Dear Room manager. The buttons are not printed.
+  Picture: printed page 2 starts with Dear Room manager. No buttons.
+
+124.10  t-124.10.jpg
+  About segment. The page says printable evidence sheet.
+
+136.50  t-136.50.jpg
+  Later in the same About segment. The AI disclosure names Model Studio and qwen3-tts-flash.

@@ -1,0 +1,12 @@
+product_commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+command: git -C /tmp/hrl-rc7-public log --format='%H %s'
+These hashes belong to the filtered temporary repository. They are not rc3-work hashes.
+The log has seven commits, from rc1 through the rc7 chart work. It is not one squashed commit.
+
+17ba33ece2deb84db8e9c8a64fd4a30cd72e5954 Candidate rc7: inset chart points so axis labels stay clear
+01c7535d5b95eafc37934004d3f1be528536f621 Candidate rc6: keep print labels clear and refresh evidence
+a72a4fa533091c0138af5ef56a2b78e5e58038ee Candidate rc5: apply contract v2 wording, disclosure, and QA 147-150
+e8ac1012fe11b617496b027e8133e1da57a6e690 Candidate rc4: repair print labels, page background, latest-reading text, and v4 disclosure
+7c7e246203b4038b79f21de53d6327407dd20e8c Candidate rc3: polish the layout, screenshots, and submission draft
+32934b7fd1aa35a5a9f1bf8972cff31fbd19b0a3 Candidate rc2: sync letter textarea to print target on beforeprint and input
+24624fdbbaf4c63dc32fcf6a8b454914644a3284 Candidate rc1

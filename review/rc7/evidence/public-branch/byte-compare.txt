@@ -1,0 +1,6 @@
+product_commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+Compared git show HEAD of rc3-work with git show HEAD of /tmp/hrl-rc7-public, and with the rc3-work working tree, for every file tracked under README.md, docs/, app.py, hotroom/, tests/, requirements.txt, requirements-dev.txt, pytest.ini, and LICENSE.
+files: 48
+mismatches: 0
+The tip copies of README.md, docs/devpost.md, docs/narration-check.md, app.py, hotroom/**, and tests/** are byte-identical to rc3-work.
+Those files were not edited on rc3-work to satisfy the grep.

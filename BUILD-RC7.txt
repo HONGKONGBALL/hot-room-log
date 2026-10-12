@@ -1,0 +1,176 @@
+Hot Room Log — candidate rc7
+Date: 2026-10-12
+Branch: rc3-work
+Parent tag: rc6 16fc9352494d8643e1d36e6fdd996bb0adfd7c70
+Product parent of that tag: a4e1542232d65dbdadf8195d4a6a55d856b87459
+Product commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+Evidence commit: (recorded by the following hash-record commit)
+Tag rc7 points at the hash-record commit. Its parent is the evidence commit.
+This file does not embed the hash-record commit's own hash.
+Nothing was pushed. Nothing was deployed. Nothing was submitted to Devpost.
+Status: implementation and self-check done, awaiting acceptance.
+No FINAL PASS is claimed.
+
+Start command, from the project directory:
+
+  python -m venv .venv
+  source .venv/bin/activate
+  pip install -r requirements.txt
+  python app.py
+
+URL: http://127.0.0.1:5050
+Port: 5050
+Bind: 127.0.0.1 unless HOST is set
+Login: none
+
+Environment for the checks below:
+  Linux
+  Python 3.13.5 (.venv)
+  pytest 9.1.1
+  Chrome /usr/bin/google-chrome
+  ffprobe 7.1.5
+
+Contract v2 SHA-256, recomputed on 2026-10-12. The files were not edited. run.sh was not run.
+
+  brief.md  a784723622afead05a8e029cc77dc65743911e418973f21a168d1b836f142688
+  idea.md   5cb30bfecfb9877c431f6bdc1a8305743373e5bbb5ec3159fd26fc4450859a83
+  prd.md    bd0a2a29219fbeab8a6c0732943379224bedcfe8c75c1ade2da7d5d2f75c769e
+  qa.md     1961075a80ebb305dfc084394e7136ae0a868c72661883945b31e5fade4049c6
+
+These match ACCEPTANCE.md A11 and BUILD-RC6.txt.
+
+Chart geometry shipped in the product commit:
+  hotroom/chart.py x_at insets the first and last points by 20 viewBox units.
+  count == 1 stays centered: PLOT_LEFT + plot_w / 2.
+  count >= 2: x = (PLOT_LEFT + 20) + (plot_w - 40) * index / (count - 1).
+  PLOT_LEFT stays 56. PLOT_RIGHT stays 624. Strips stay full plot width. The viewBox is unchanged.
+  Label x stays 50 and text-anchor stays end. JavaScript does not move labels.
+  The screen radius formula (7 * 640) / layoutWidth is unchanged. No screen radius cap was needed.
+  The 20-unit inset cleared the SVG full-stroke hit test at every required width, at 200% zoom, and on the print path.
+  Measured screen first cx is 76.00. At a 1280 px viewport the chart is 1152 px wide and the live radius is 3.89.
+
+Demo chart note:
+  review/rc7/hot-room-log-demo-v4.mp4 is a byte copy of the rc6 file.
+  Chart geometry in some frames may be from the prior build while the labels remain readable.
+  Checked frames, including the on-screen room chart and the print still at 92.20 s, do not show the 40 label covered.
+  No TTS call was made. The file was not re-encoded.
+
+A1. On-screen labels. Self-check pass.
+  Evidence: review/rc7/evidence/qa-129-138.json
+  pass true, failures empty.
+  Widths 320, 375, 640, 720, 768, and 1280, on /rooms/1 and /rooms/1/sheet.
+  Each axis label 30, 40, and 45 has a getBBox that misses every point box expanded by the full stroke and misses the trend polyline expanded by the full stroke. A touch counts as a hit. Hit lists are empty.
+  The same test passed for the 200% zoom room and sheet. Dashboard and calculator have no chart overlap.
+  Screenshots: review/rc7/evidence/qa-shots/
+
+A2. Geometry. Self-check pass.
+  Inset 20, as above. No radius cap.
+  screen_after in review/rc7/evidence/print/a1-a2-occlusion.json: first cx 76.00, live r 3.89, formula (7 * 640) / 1152 = 3.89.
+  QA 55 still passes: six points, strictly increasing cx, the six humidex values, four strips, one trend polyline, role="img", and a chart title. Point titles are still present.
+
+A3. Print does not regress. Self-check pass.
+  Evidence: review/rc7/evidence/print/a1-a2-occlusion.json
+  pass true, failures empty.
+  1280 and 1920, Print button and native beforeprint, backgrounds on and off.
+  Full-stroke occlusion hits are empty. Six points. Room 1 is 2 A4 pages.
+  Axis and time label heights are at least 7 pt and at least the noscript PDF from the same run.
+  Page 1 does not contain "Letter (edit before sending)" or "Hot Room Log does not send anything".
+  Page 2 contains "Dear Room manager" after the letter was edited to that greeting.
+  Buttons are not on page 2. Server-rendered titles remain on the points.
+  Magnified crops: review/rc7/evidence/print/magnified/
+
+A4. Pytest. Self-check pass.
+  Command: .venv/bin/pytest -q
+  Exit 0. 114 passed in 1.17s.
+  Log: review/rc7/evidence/pytest.txt
+  The log names product commit beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b.
+  Pytest log mtime is after that commit (2026-10-11 18:25:55 -0700).
+
+A5. QA 124–127. Self-check pass.
+  review/rc7/evidence/qa-124-127.sh
+  review/rc7/evidence/http/qa-124-127.log (fail=0)
+  Clean database copy. The script trap stopped its servers.
+  review/rc7/evidence/http/residual-status.txt says residual_fail=0.
+  Nothing was left listening on 5050 or 5051.
+  The log names the product commit. Result lines were not rewritten after the run.
+
+A6. QA 129–138, including QA 134 v2 and the SVG hit test. Self-check pass.
+  review/rc7/evidence/qa-129-138.json (pass true, failures empty)
+  A hit on labels 30, 40, or 45 fails QA 135 and QA 138. No hits were recorded.
+  JavaScript off: six point titles match the QA 130 strings, and no .chart-tip is in the DOM.
+  Headed hover screenshot: review/rc7/evidence/qa-shots/134-noscript-hover-headed.png
+  JavaScript off, 375 and 320: .table-scroll overflows inside the page, and the page itself does not.
+  Screenshots: review/rc7/evidence/qa-shots/134-noscript-room-375.png and 134-noscript-room-320.png
+  #taken_at focus ring is visible (outline 3px solid rgb(11, 87, 208), 3421 blue pixels).
+  Screenshot: review/rc7/evidence/qa-shots/136-room-taken-at-focus.png
+
+A7. Print measurements. Self-check pass.
+  PDFs, bbox text, magnified crops, and a1-a2-occlusion.json are under review/rc7/evidence/print/.
+  The JSON records the method (full-stroke expansion; a touch counts) and the product commit.
+  Evidence mtimes are after the product commit. The hash-record commit does not change these files.
+
+A8. Demo video. Self-check pass.
+  review/rc7/hot-room-log-demo-v4.mp4
+  sha256 d42d05ef21227ccacbebce2ce36f693b3fe2810841399ae63bc3c71eaf3d2c9b
+  ffprobe duration 152.067000 seconds
+  1920×1080, H.264 video, AAC audio
+  Byte-for-byte copy of review/rc6/hot-room-log-demo-v4.mp4. No re-encode. No TTS API was called.
+  Chart geometry in some frames may be from the prior build while the labels remain readable.
+  Spot frames and timestamps: review/rc7/evidence/video-frames/ and review/rc7/evidence/video-identity.txt
+  README and docs/devpost.md keep the same duration and the same disclosure sentences.
+
+A9. QA 151 and the decisions file. Self-check pass.
+  Closed from the owner decision at 2026-10-12 03:39:15 CST (UTC+8).
+  Sources: /workspace/pipeline/stemergent/QA151-DECISION.txt and /workspace/pipeline/stemergent/DECISIONS-NEEDED.txt.
+  qwen3-tts-flash calls used free quota (not billed). Model Studio terms allow publishing the generated audio in a public video. Submit the narrated v4 demo, not the silent cut. Keep the QA 119 / About TTS disclosure.
+  This file records that owner decision and does not claim a billing result beyond those two sources.
+  Repo-root DECISIONS-NEEDED.txt is English. The five contract-v2 decisions stay closed. Item 5 records that owner decision. It cites no machine path.
+  About, README, docs/devpost.md, and tests/test_o_pages.py were not changed.
+
+A10. Public-branch dry-run. Self-check pass.
+  The rc6 rsync-to-one-tree plan is not the public history. It would not show the competition commits and fails QA 146. This dry-run replaces it.
+  Done only in a temporary directory. filter-repo was not run in this worktree. Nothing was pushed. No GitHub remote was added.
+  Procedure:
+    1. Clone rc3-work with git clone --no-local into a temporary directory.
+    2. In that clone only, git filter-repo --invert-paths drops review/, BUILD*, ACCEPTANCE*, FIX-TASK*, and DECISIONS*.
+    3. Still only in that clone, git filter-repo --replace-text strips the substrings /workspace, builder-account, and grok-build from remaining history.
+    4. Empty commits that only touched dropped paths are pruned. The product commits stay, one per candidate, from rc1 through the rc7 chart work.
+    5. The tip copies of README.md, docs/devpost.md, docs/narration-check.md, app.py, hotroom/**, and tests/** stay byte-identical to rc3-work. Those files were not edited on rc3-work to make the grep empty.
+    6. Fresh clone of the filtered history: README quick start (venv, pip install -r requirements.txt, python app.py) answers HTTP 200 on 127.0.0.1:5050, then stop it. pip install -r requirements-dev.txt, then .venv/bin/pytest -q exits 0.
+  Saved evidence: review/rc7/evidence/public-branch/
+    commands.txt
+    git-log-oneline.txt (seven commits, rc1 through the rc7 chart work)
+    grep-result.txt (the git log --all -p grep command; stdout was empty)
+    byte-compare.txt (48 files, 0 mismatches)
+    pytest.txt (HTTP 200, then 114 passed, exit 0)
+  rc3-work rev-parse before and after the dry-run was beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b.
+
+A11. Contract and scope held. Self-check pass.
+  Contract v2 hashes above match A11 and BUILD-RC6.txt.
+  About disclosure text, QA 119, and tests/test_o_pages.py were not changed.
+  Optional UX items were not done.
+
+A12. Candidate package.
+  Branch rc3-work.
+  The product commit contains the chart inset and the English decisions file. It does not contain its own hash.
+  The evidence commit contains review/rc7/, this file, and ACCEPTANCE.md. It does not change product files. Evidence result files already contain the product commit hash.
+  The following hash-record commit updates this file, review/rc7/SOURCE.txt, and review/rc7/ACCEPTANCE-TABLE.md so they name the evidence commit as the parent of the tag. It does not change product files and does not change evidence result files.
+  Tag rc7 is local only and points at the hash-record commit.
+  Nothing was pushed. Nothing was submitted.
+
+A13. Evidence timing. Self-check pass.
+  Pytest, QA 124–127, QA 129–138, and the print JSON name the product commit beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b.
+  Their mtimes are after that commit. No later commit rewrites those result lines.
+
+A14. Known issues and status. Self-check pass.
+  review/rc7/KNOWN-ISSUES.md does not list QA 151 as pending and does not reopen the five contract-v2 decisions.
+  QA 139–145 were not run.
+  The QA 146 item here is the local dry-run, not a live submission.
+  Headless Chrome does not fire beforeprint for Ctrl+P.
+  QA 137 did not unplug a cable.
+  No FINAL PASS is claimed.
+  Status: implementation and self-check done, awaiting acceptance.
+
+Demo sha256: d42d05ef21227ccacbebce2ce36f693b3fe2810841399ae63bc3c71eaf3d2c9b
+Demo duration: 152.067 seconds
+QA 151: closed, 2026-10-12 03:39:15 CST (UTC+8), from /workspace/pipeline/stemergent/QA151-DECISION.txt and /workspace/pipeline/stemergent/DECISIONS-NEEDED.txt. Free quota, not billed; Model Studio terms allow the public video; submit the narrated v4 demo; keep the QA 119 / About TTS disclosure.

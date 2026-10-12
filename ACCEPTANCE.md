@@ -1,12 +1,12 @@
-# Hot Room Log — acceptance contract (rc6)
+# Hot Room Log — acceptance contract (rc7)
 
-Candidate under test: rc6, built on rc5 (`14f04de30d4cf591efd57e1564a49e574e22000c`, tag `rc5`, branch `rc3-work`). Product parent of that tag is `85e5aaeccfa66f66883d2ff69561bc451e33d796`.
+Candidate under test: rc7, built on rc6 (`16fc9352494d8643e1d36e6fdd996bb0adfd7c70`, tag `rc6`, branch `rc3-work`). Product parent of that tag is `a4e1542232d65dbdadf8195d4a6a55d856b87459`.
 
-Source of this rework: `/workspace/pipeline/stemergent/FIX-TASK-RC6.md` (copy at `FIX-TASK-RC6.md` in this worktree, left untracked). Contract text stays v2: top-level `idea.md`, `prd.md`, and `qa.md` under `/workspace/pipeline/stemergent`. This contract is the checkable form of the rc6 work. It is not a pass of an external review.
+Source of this rework: `/workspace/pipeline/stemergent/FIX-TASK-RC7.md` (copy at `FIX-TASK-RC7.md` in this worktree, left untracked). Contract text stays v2: top-level `idea.md`, `prd.md`, and `qa.md` under `/workspace/pipeline/stemergent`. This contract is the checkable form of the rc7 work. It is not a pass of an external review.
 
 ## Goal
 
-On the rc5 tree, stop printed chart points and the trend line from covering the y-axis labels 30, 40, and 45, and stop screen-only letter chrome from printing on page 1. Re-run the browser and print evidence on the new product commit, including the QA 134 v2 no-JS checks. Refresh only the About and print pictures in the demo, keeping the existing v4 audio and caption timeline. Record a local `rc6` tag and a public-export note. The running app still calls no external service.
+On the rc6 tree, stop the on-screen chart point and trend ink from covering y-axis labels 30, 40, and 45, including at 200% zoom and at narrow widths. Re-run pytest, QA 124–127, QA 129–138, and the print measurements on the new product commit, with an SVG hit test that can see that overlap. Keep the narrated v4 demo unless a frame shows the covered "40". Record the owner's QA 151 decision and close that item. Rehearse a local public-branch history that still shows the competition work and does not leak internal paths. Tag local `rc7`. The running app still calls no external service.
 
 ## Target environment
 
@@ -22,7 +22,7 @@ python app.py
 
 - App URL: `http://127.0.0.1:5050` (override with `PORT`). Binds to `127.0.0.1` unless `HOST` is set.
 - No account and no login. Sample data loads once into `instance/hotroom.db`.
-- Do not regenerate the voice-over. The packaged file stays named `hot-room-log-demo-v4.mp4`. Audio and burned-in caption timing stay the v4 timeline (sha256 of the rc5 picture+audio file was `f6f41d0ad643388d27526485fbcf87aaaa6325eaf06813375ab1947efadb26a1`, duration 152.067 seconds). Replacing About and print pictures changes the file hash. Duration stays 152.067 seconds unless the mux itself changes it, in which case README, Devpost, and BUILD-RC6 all show the new ffprobe duration.
+- Do not regenerate the voice-over unless a kept timeline is impossible. The packaged file stays named `hot-room-log-demo-v4.mp4`. The rc6 file sha256 is `d42d05ef21227ccacbebce2ce36f693b3fe2810841399ae63bc3c71eaf3d2c9b` and the ffprobe duration is 152.067 seconds.
 
 ## Core flows
 
@@ -31,55 +31,65 @@ python app.py
 3. The evidence sheet shows the summary, chart, table, method, and letter. Editing the letter, then Copy or Print, uses the edited text. Room 1 prints on at most 2 A4 pages. For the sample study room, page 1 has the chart and the table, and page 2 has the edited letter. Navigation, buttons, footer links, the textarea, the "Letter (edit before sending)" label, and the screen sentence "Hot Room Log does not send anything. Copy the letter into your own email, or print this sheet." are not printed.
 4. The calculator shows worked steps and a comparison sentence.
 5. CSV export and import merge readings, skip exact duplicates, and report bad rows. Reset restores the three sample rooms after confirmation. Read-only mode returns 403 on writes.
-6. With JavaScript off, add, delete, calculate, export, import, and reset still work. Chart points keep their server-rendered titles. Wide tables scroll inside `.table-scroll`.
+6. With JavaScript off, add, delete, calculate, export, import, and reset still work. Chart points keep their server-rendered titles. Wide tables scroll inside `.table-scroll`. At 320, 375, 640, 720, 768, and 1280 px, and at 200% zoom, the y-axis labels 30, 40, and 45 are clear of point ink and the trend line on the room page and on the sheet.
 
 ## Scope
 
-In scope for rc6:
+In scope for rc7:
 
-- Print-only chart fitting in `hotroom/static/app.js`, and print CSS or markup needed to hide the letter label and the screen instruction. Screen layout at viewport width ≥640 px stays as it is on rc5.
-- Evidence regenerated under `review/rc6/evidence/`: pytest, QA 124–127, QA 129–138 including QA 134 v2, and print measurements with occlusion checks.
-- Demo picture refresh for the About segment and the print stills only. Mux onto the existing v4 audio.
-- `docs/narration-check.md` path cleanup, README and Devpost video identity lines, `BUILD-RC6.txt`, `review/rc6/`, `KNOWN-ISSUES` for this candidate.
-- Local commit on `rc3-work` and tag `rc6`.
+- Horizontal inset of the first and last chart points in `hotroom/chart.py` `x_at` (about 20 viewBox units). The label anchor in `hotroom/templates/_chart.html` stays at x=50. JavaScript does not move labels. A screen-path radius cap is allowed only if the inset alone fails the SVG hit test, and only by the same idea as `printInkCoversLabels` (prd §3 whitelist item 4).
+- QA 138 detection copied forward under `review/rc7/evidence/` so overlap checks include SVG text against circles and the trend polyline. 200% zoom runs that test. A point covering "40" at 320 or 375 px is a failure.
+- Evidence regenerated under `review/rc7/evidence/`: pytest, QA 124–127, QA 129–138 at the widths above, and print measurements with occlusion checks. Every result file names the product commit. Files are written once, with LF line endings.
+- Demo: keep the rc6 narrated file if no frame shows a covered "40". Copy it byte-for-byte into `review/rc7/`. Record that some frames may still show the previous point positions while the labels stay readable.
+- English `DECISIONS-NEEDED.txt` with item 5 updated to the owner QA 151 decision. About, README, and Devpost disclosure wording stay as they are.
+- A local public-branch dry-run (no push) documented in `BUILD-RC7.txt`.
+- `BUILD-RC7.txt`, `review/rc7/`, local commit on `rc3-work`, and tag `rc7`.
 
 ## Non-goals
 
 - Do not edit contract v2 (`idea.md`, `prd.md`, `qa.md`, `brief.md`, `contract-v1/`). Do not run `run.sh` on stemergent.
-- Do not change the About AI disclosure, QA 119 text, or `tests/test_o_pages.py` disclosure assertions.
-- Do not invent a QA 151 billing or terms result. Do not switch the video to the silent cut. Do not call a TTS API unless the existing timeline cannot be kept, and do not call one without recording why the timeline broke.
-- Do not do the optional UX items listed in FIX-TASK-RC6 (error scroll, calculator scroll, room-name input type, copy-failure honesty, API 400 for deep JSON, tighter pytest asserts, tag style).
-- QA 139–146 stay submission-window work. They are not required to tag rc6.
+- Do not change the About AI disclosure, QA 119 text, README disclosure, Devpost disclosure, or `tests/test_o_pages.py` disclosure assertions.
+- Do not call a TTS API unless the existing v4 timeline cannot be kept. Do not switch to the silent cut.
+- Do not do the optional UX items listed in FIX-TASK-RC7 (room-name input type, autofocus on 400, calculator scroll, letter textarea min-height, print chart width, README screenshots, copy-failure honesty, API 400 for deep JSON or huge ints, CSV formula injection, tighter weak asserts, real Ctrl+P, Firefox, Safari, or a cable-unplugged QA 137).
+- QA 139–145 and the live Devpost half of QA 146 stay submission-window work. The QA 146 item in this contract is the local dry-run only.
 - Do not push, deploy, or submit to Devpost.
-- Do not delete `FIX-TASK-RC6.md`. Leave it untracked.
-- Do not change rc4 or rc5 evidence files.
+- Do not delete `FIX-TASK-RC6.md` or `FIX-TASK-RC7.md`. Leave both untracked. Do not add them to a commit.
+- Do not change files under `review/rc4/`, `review/rc5/`, or `review/rc6/`. Copy scripts into `review/rc7/` and edit the copies.
+- Do not rewrite rc3-work history. The public-branch rehearsal happens in a temporary clone.
 
 ## Acceptance criteria
 
-A1. Printed y-axis labels. For the sample study room's evidence sheet, at 1280 px and at 1920 px, for the Print button path and the native `beforeprint` path, with background graphics on and off: the labels 30, 40, and 45 are not covered by a point or by the trend line. Under print media, each label `getBBox` does not intersect any point box expanded by its stroke, and does not intersect the trend stroke box. Magnified screenshots of that label region are saved. `pdftotext -bbox` height of every chart axis and time label is at least 7 pt and is not smaller than the same label in the noscript PDF from the same run. Six points stay visibly separate. Room 1 is at most 2 A4 pages. The edited letter is in the PDF. Header navigation, buttons, footer links, and the textarea are absent. Each point still has the server-rendered `<title>`.
+A1. On-screen labels. For the sample study room, on `/rooms/1` and `/rooms/1/sheet`, at viewport widths 320, 375, 640, 720, 768, and 1280: each y-axis label 30, 40, and 45 has a `getBBox` that does not intersect any point box expanded by its full stroke, and does not intersect the trend polyline expanded by its full stroke. The same test is run for the 200% zoom cases (room, sheet, dashboard, calculator). Dashboard and calculator have no chart overlap failure. Label font size is not reduced as the fix. Each point still has the server-rendered `<title>`. Screenshots of the room and the sheet at each of those widths, and the 200% zoom shots, are under `review/rc7/evidence/qa-shots/`. The SVG hit results are in `review/rc7/evidence/qa-129-138.json` and show no hits.
 
-A2. Screen at ≥640 px. At a 1280 px viewport the on-screen chart still uses the rc5 fit: point `cx` values stay the server coordinates (first point 56.00), and the on-screen radius still follows `(7 * 640) / layoutWidth` rather than the print radius. A 1280 px room screenshot from after the change is saved. No screen-only layout, copy, or color change on the dashboard, room, sheet, or calculator at ≥640 px.
+A2. Geometry. `x_at` insets the first and last points by about 20 viewBox units from `PLOT_LEFT` (56) and `PLOT_RIGHT` (624). A single reading stays centered. The axis-label `x` stays 50 and `text-anchor` stays `end`. JavaScript does not set label positions. The rc6 screen radius formula `(7 * 640) / layoutWidth` still applies when the inset alone keeps the labels clear. If a required width still fails A1 after that inset, either increase the inset just enough to pass or cap screen radius and stroke the way `printInkCoversLabels` does, and record which one shipped. QA 55 still passes: six points, strictly increasing `cx`, the six humidex values, four strips, one trend polyline, `role="img"`, and a chart `<title>`.
 
-A3. Print chrome. On the same PDFs, page 1 does not contain "Letter (edit before sending)" and does not contain "Hot Room Log does not send anything". Page 2 contains the edited letter, including "Dear Room manager" when that is what was typed. Buttons are not on page 2. The sheet is still at most 2 A4 pages. If hiding the chrome would pull the letter onto page 1, a print page-break keeps the letter on page 2.
+A3. Print does not regress. For the sample study room's evidence sheet, at 1280 px and at 1920 px, for the Print button path and the native `beforeprint` path, with background graphics on and off: labels 30, 40, and 45 are not covered by a point or by the trend line, using the same full-stroke `getBBox` test as rc6. `pdftotext -bbox` height of every chart axis and time label is at least 7 pt and is not smaller than the same label in the noscript PDF from the same run. Six points stay visibly separate. Room 1 is at most 2 A4 pages. The edited letter is in the PDF. Page 1 does not contain "Letter (edit before sending)" or "Hot Room Log does not send anything". Page 2 contains the edited letter, including "Dear Room manager" when that is what was typed. Buttons are not on page 2. Each point still has the server-rendered `<title>`. Magnified label crops are saved.
 
-A4. Pytest. On the final product tree, `.venv/bin/pytest -q` exits 0. The log is `review/rc6/evidence/pytest.txt` and includes the commit hash. Its mtime is after the last edit to a product file (`app.py`, `hotroom/**`, `tests/**`, `requirements*.txt`).
+A4. Pytest. On the final product tree, `.venv/bin/pytest -q` exits 0. The log is `review/rc7/evidence/pytest.txt` and includes the product commit hash. Its mtime is after the last edit to a product file (`app.py`, `hotroom/**`, `tests/**`, `requirements*.txt`). The hash-record commit does not change that log.
 
-A5. QA 124–127. Re-run on a clean database copy. The log and HTTP captures are under `review/rc6/evidence/`. The server is stopped afterwards. Nothing is left listening on 5050 or 5051. The log names the product commit hash.
+A5. QA 124–127. Re-run on a clean database copy. The log and HTTP captures are under `review/rc7/evidence/`. The server is stopped afterwards. Nothing is left listening on 5050 or 5051. The log names the product commit hash. Result lines are not rewritten later, and CRLF is not normalized in a follow-up commit.
 
-A6. QA 129–138, including QA 134 v2. Re-run and save `review/rc6/evidence/qa-129-138.json` plus screenshots. The JSON names the product commit hash. QA 134 includes both missing no-JS actions: (1) JavaScript off, hover all 6 points: no JS tooltip element in the DOM, each point `title` matches the QA 130 text, and one headed-Chrome hover screenshot is saved; (2) JavaScript off, viewports 375 and 320: `.table-scroll` `scrollWidth` > `clientWidth`, and the page itself has no horizontal overflow, with screenshots. The room-page focus pass records whether `#taken_at` (datetime-local) shows a visible focus ring, with a screenshot taken while that control is focused.
+A6. QA 129–138. Re-run and save `review/rc7/evidence/qa-129-138.json` plus screenshots. The JSON names the product commit hash. The SVG intersection check in A1 is part of QA 135 and QA 138, and a hit fails the case. QA 134 still includes both no-JS actions: (1) JavaScript off, hover all 6 points: no JS tooltip element in the DOM, each point `title` matches the QA 130 text, and one headed-Chrome hover screenshot is saved; (2) JavaScript off, viewports 375 and 320: `.table-scroll` `scrollWidth` > `clientWidth`, and the page itself has no horizontal overflow, with screenshots. The room-page focus pass records whether `#taken_at` shows a visible focus ring, with a screenshot taken while that control is focused.
 
-A7. Print measurements. A1/A2 sizes plus the A1 occlusion checks are in `review/rc6/evidence/print/`. PDFs, bbox dumps, magnified label crops, and a JSON summary are there. The JSON names the product commit hash and the method. Evidence mtimes are after the last product-file edit.
+A7. Print measurements. A3 sizes plus the occlusion checks are in `review/rc7/evidence/print/`. PDFs, bbox dumps, magnified label crops, and a JSON summary are there. The JSON names the product commit hash and the method. Evidence mtimes are after the last product-file edit. The hash-record commit does not change these files.
 
-A8. Demo video. `review/rc6/hot-room-log-demo-v4.mp4` is 1920×1080, under 180 seconds, with the existing v4 English narration and captions. About frames show the current About page: "printable evidence sheet", no "one-page" or "one page", and the AI disclosure that names an AI-generated voice, Model Studio, and qwen3-tts-flash. Print frames show the fixed chart (the 40 label readable) and do not show "Letter (edit before sending)" on the printed page; page 2 still shows the edited greeting. Spot-check frames and timestamps are under `review/rc6/evidence/video-frames/`. `review/rc6/evidence/video-identity.txt` records sha256, ffprobe duration, and those timestamps. README and `docs/devpost.md` state the same duration and do not claim the file is absent or name a local absolute path. No new TTS call was made.
+A8. Demo video. `review/rc7/hot-room-log-demo-v4.mp4` is 1920×1080, under 180 seconds, English narration and burned-in English captions. If no existing frame shows the "40" label covered, the file is a byte copy of `review/rc6/hot-room-log-demo-v4.mp4` (same sha256 and duration). `BUILD-RC7.txt` says that chart geometry in some frames may be from the prior build while the labels remain readable. Spot-check frames are under `review/rc7/evidence/video-frames/`, including the print still where 30, 40, and 45 are readable. `review/rc7/evidence/video-identity.txt` records sha256, ffprobe duration, and those timestamps. README and `docs/devpost.md` keep the same duration and the same disclosure sentences. No new TTS call was made. Re-capture pictures only if a frame shows the covered "40", and keep the existing audio unless the timeline breaks.
 
-A9. Public export. `docs/narration-check.md` has no `/workspace`, `/etc`, or other machine-local absolute path, and its sha256 and duration match the packaged video. `BUILD-RC6.txt` documents the export filter. A clean export excludes `review/`, local task files, and build notes that contain machine paths or account details (`builder-account.txt` and the same class of file). `git grep "/workspace"` on that export is empty. The command and its empty result are saved at `review/rc6/evidence/public-export-grep.txt`. README and Devpost name the public video URL as an explicit TBD placeholder and do not contain a local absolute path.
+A9. QA 151 and the decisions file. `BUILD-RC7.txt`, `review/rc7/ACCEPTANCE-TABLE.md`, and `review/rc7/KNOWN-ISSUES.md` close QA 151. They cite `/workspace/pipeline/stemergent/QA151-DECISION.txt` and `/workspace/pipeline/stemergent/DECISIONS-NEEDED.txt`, timestamp 2026-10-12 03:39:15 CST (UTC+8), and the decision: qwen3-tts-flash calls used free quota and were not billed; Model Studio terms allow publishing the generated audio in a public video; submit the narrated v4 demo; keep the QA 119 / About TTS disclosure. They do not say "QA 151 pending". Repo-root `DECISIONS-NEEDED.txt` is English. It keeps the five contract-v2 decisions closed. Item 5 records that same owner decision. It has no character in the QA 147 ranges. About, README, and Devpost text are unchanged from rc6.
 
-A10. Decisions and known issues. `DECISIONS-NEEDED.txt` is unchanged: QA 151 stays pending for Zhenhua, with no billing result. `review/rc6/KNOWN-ISSUES.md` does not repeat the rc4 "A7 is not met" line and does not reopen the five contract-v2 decisions. It lists QA 151 as pending, QA 139–146 as not run, and any limit the new evidence still shows (including the 320/375 on-screen point over the "40" label if that is still true). It does not claim a FINAL PASS.
+A10. Public-branch dry-run. `BUILD-RC7.txt` documents a local procedure that keeps meaningful commit history and, in a temporary clone only, drops `review/`, `BUILD*`, `ACCEPTANCE*`, `FIX-TASK*`, and `DECISIONS*` plus machine-local paths. Nothing is pushed. Saved evidence shows: `git log --all -p` on that clone has no match for `/workspace`, `builder-account`, or `grok-build`; `git log --oneline` still shows the work from rc1 through this candidate (more than one commit); a fresh clone of that filtered history follows the README quick start and `.venv/bin/pytest -q` exits 0. rc3-work's own history is not rewritten. The rc6 single-commit rsync plan is not the public history.
 
-A11. Contract and scope held. SHA-256 of `/workspace/pipeline/stemergent/brief.md`, `idea.md`, `prd.md`, and `qa.md` match the hashes in `BUILD-RC5.txt`. About disclosure text and QA 119 tests are unchanged. `git diff rc5` does not touch contract files. Optional UX items stay undone.
+A11. Contract and scope held. SHA-256 of `/workspace/pipeline/stemergent/brief.md`, `idea.md`, `prd.md`, and `qa.md` match `BUILD-RC6.txt`:
 
-A12. Candidate package. Branch `rc3-work`. One product commit contains the code, the evidence, the demo, and `review/rc6/`. A later hash-record commit updates `BUILD-RC6.txt` and `review/rc6/SOURCE.txt` (and the acceptance table if needed) so they name the product commit. Tag `rc6` points at that hash-record commit. The tagged commit does not contain its own hash. `review/rc6/` holds the requirements pointer, source hashes, diff from rc5, start command, acceptance table, evidence, known issues, and the demo. Nothing was pushed. Nothing was submitted. `git status` is clean except untracked `FIX-TASK-RC6.md` and ignored files.
+- brief.md `a784723622afead05a8e029cc77dc65743911e418973f21a168d1b836f142688`
+- idea.md `5cb30bfecfb9877c431f6bdc1a8305743373e5bbb5ec3159fd26fc4450859a83`
+- prd.md `bd0a2a29219fbeab8a6c0732943379224bedcfe8c75c1ade2da7d5d2f75c769e`
+- qa.md `1961075a80ebb305dfc084394e7136ae0a868c72661883945b31e5fade4049c6`
 
-A13. Evidence timing. Every JSON and log under `review/rc6/evidence/` that records a result names the product commit. File mtimes for pytest, QA, and print evidence are later than the last product-file edit. The hash-record commit does not change product files.
+About disclosure text and QA 119 tests are unchanged. Optional UX items stay undone. No FINAL PASS is claimed.
 
-A14. Video and disclosure identity. The packaged demo's sha256 and duration in `BUILD-RC6.txt`, `video-identity.txt`, `docs/narration-check.md`, README, and Devpost agree. The unified AI paragraph on About, in README, and in Devpost is still the rc5 paragraph.
+A12. Candidate package. Branch `rc3-work`. The product commit contains the chart fix and the English decisions file and does not contain its own hash. Evidence is generated after that commit and already contains that hash when it is first committed. A later hash-record commit updates `BUILD-RC7.txt` and `review/rc7/SOURCE.txt` (and the acceptance table if needed) so they name the product commit. That hash-record commit does not change product files and does not change evidence result files. Tag `rc7` points at the hash-record commit. The tagged commit does not contain its own hash. `review/rc7/` holds the requirements pointer, source hashes, diff from rc6, start command, acceptance table, evidence, known issues, and the demo. Nothing was pushed. Nothing was submitted. `git status` is clean except untracked `FIX-TASK-RC6.md`, untracked `FIX-TASK-RC7.md`, and ignored files.
+
+A13. Evidence timing. Every JSON and log under `review/rc7/evidence/` that records a result names the product commit. File mtimes for pytest, QA, and print evidence are later than the last product-file edit. No later commit rewrites those result lines.
+
+A14. Known issues and status. `review/rc7/KNOWN-ISSUES.md` does not list QA 151 as pending and does not reopen the five contract-v2 decisions. It lists QA 139–145 as not run. It lists the local QA 146 dry-run as a rehearsal, not a live submission. It keeps any limit the new evidence still shows (headless Chrome does not fire `beforeprint` for Ctrl+P; QA 137 did not unplug a cable). It does not claim a FINAL PASS. Status of the candidate is: implementation and self-check done, awaiting acceptance.

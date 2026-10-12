@@ -1,0 +1,57 @@
+product_commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+tool: git-filter-repo 2.47.0, run from a temporary install. It was not added to the project.
+rc3-work was not rewritten. filter-repo was not run in /workspace/hot-room-log-rc3.
+
+Recorded rev-parse of rc3-work before the dry-run:
+beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+
+Commands, in order, with the temporary directories used for this run:
+
+  BEFORE=$(git -C /workspace/hot-room-log-rc3 rev-parse HEAD)
+  rm -rf /tmp/hrl-rc7-public /tmp/hrl-rc7-fresh
+  git clone --no-local /workspace/hot-room-log-rc3 /tmp/hrl-rc7-public
+  git -C /tmp/hrl-rc7-public checkout rc3-work
+  PYTHONPATH=/tmp/filter-repo-pkg /tmp/filter-repo-pkg/bin/git-filter-repo \
+    --invert-paths \
+    --path review/ \
+    --path-glob 'BUILD*' \
+    --path-glob 'ACCEPTANCE*' \
+    --path-glob 'FIX-TASK*' \
+    --path-glob 'DECISIONS*' \
+    --force \
+    --source /tmp/hrl-rc7-public --target /tmp/hrl-rc7-public
+  printf '%s\n' 'literal:/workspace==>' 'literal:builder-account==>' 'literal:grok-build==>' > /tmp/hrl-rc7-replace.txt
+  PYTHONPATH=/tmp/filter-repo-pkg /tmp/filter-repo-pkg/bin/git-filter-repo \
+    --replace-text /tmp/hrl-rc7-replace.txt --force \
+    --source /tmp/hrl-rc7-public --target /tmp/hrl-rc7-public
+  git -C /tmp/hrl-rc7-public remote remove origin
+
+The clone's origin pointed at the local worktree path, not at GitHub. It was removed. No GitHub remote was added. Nothing was pushed.
+
+--no-local avoids hardlinked objects, so the rewrite cannot touch rc3-work's pack files.
+--invert-paths drops review/, BUILD*, ACCEPTANCE*, FIX-TASK*, and DECISIONS*.
+--replace-text then strips the three substrings from every remaining blob.
+Commits whose only changes were on dropped paths become empty and are pruned.
+That removes the hash-record-only commits. It does not squash the product commits.
+
+After both filters, git ls-tree -r HEAD --name-only had no review/, BUILD*, ACCEPTANCE*, FIX-TASK*, or DECISIONS* path.
+
+Recorded rev-parse of rc3-work after the dry-run:
+beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+The two hashes match.
+
+Fresh clone of the filtered repository:
+
+  git clone /tmp/hrl-rc7-public /tmp/hrl-rc7-fresh
+  cd /tmp/hrl-rc7-fresh
+  python3 -m venv .venv
+  .venv/bin/pip install -r requirements.txt
+  .venv/bin/python app.py
+  curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:5050/
+  # observed HTTP 200, then the server was stopped
+  .venv/bin/pip install -r requirements-dev.txt
+  .venv/bin/pytest -q
+
+The fresh clone's origin is the local filtered directory /tmp/hrl-rc7-public. It is not a GitHub remote.
+
+This dry-run replaces the rc6 rsync-to-one-tree plan. That plan is not the public history.
