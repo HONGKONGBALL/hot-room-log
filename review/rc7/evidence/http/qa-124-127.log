@@ -1,6 +1,6 @@
-product_commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
-git_head_at_run: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
-QA 124-127 started 2026-10-11T18:39:35-07:00
+product_commit: cea644cec0e94c9cb0e8cd4faeae029adb499965
+git_head_at_run: cea644cec0e94c9cb0e8cd4faeae029adb499965
+QA 124-127 started 2026-10-11T20:19:25-07:00
 === clean copy ===
 pip install
 Requirement already satisfied: Flask<4,>=3 in ./.venv/lib/python3.13/site-packages (from -r /tmp/hrl-rc7/clean/requirements.txt (line 1)) (3.1.3)
@@ -32,12 +32,12 @@ PASS 124 three rooms
 --- POST headers ---
 HTTP/1.1 302 FOUND
 Server: Werkzeug/3.1.9 Python/3.13.5
-Date: Mon, 12 Oct 2026 01:39:36 GMT
+Date: Mon, 12 Oct 2026 03:19:26 GMT
 Content-Type: text/html; charset=utf-8
 Content-Length: 203
 Location: /rooms/4
 Vary: Cookie
-Set-Cookie: session=eyJfZmxhc2hlcyI6W3siIHQiOlsibWVzc2FnZSIsIlJvb20gYWRkZWQuIl19XX0.asw6WA.1ZatwB8fBN8LyJcOdqXu1Ab9cpQ; HttpOnly; Path=/
+Set-Cookie: session=eyJfZmxhc2hlcyI6W3siIHQiOlsibWVzc2FnZSIsIlJvb20gYWRkZWQuIl19XX0.asxRvg.Wnm_3c4Od03o8_9xwfujKx34NL8; HttpOnly; Path=/
 Connection: close
 
 status [HTTP/1.1 302 FOUND] location [/rooms/4]
@@ -49,7 +49,7 @@ css 200 nope 404
 --- export headers ---
 HTTP/1.1 200 OK
 Server: Werkzeug/3.1.9 Python/3.13.5
-Date: Mon, 12 Oct 2026 01:39:37 GMT
+Date: Mon, 12 Oct 2026 03:19:27 GMT
 Content-Type: text/csv; charset=utf-8
 Content-Length: 1373
 Content-Disposition: attachment; filename="hot-room-log.csv"

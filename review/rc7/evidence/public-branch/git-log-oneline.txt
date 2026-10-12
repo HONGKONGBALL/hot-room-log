@@ -1,8 +1,8 @@
-product_commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+product_commit: cea644cec0e94c9cb0e8cd4faeae029adb499965
 command: git -C /tmp/hrl-rc7-public log --format='%H %s'
 These hashes belong to the filtered temporary repository. They are not rc3-work hashes.
-The log has seven commits, from rc1 through the rc7 chart work. It is not one squashed commit.
-
+The log has eight commits, from rc1 through this chart-radius fix. It is not one squashed commit.
+b2835f32d8a4939e23be3232daf9b782da90a232 Candidate rc7: cap screen point radius when a y-axis label would be touched
 17ba33ece2deb84db8e9c8a64fd4a30cd72e5954 Candidate rc7: inset chart points so axis labels stay clear
 01c7535d5b95eafc37934004d3f1be528536f621 Candidate rc6: keep print labels clear and refresh evidence
 a72a4fa533091c0138af5ef56a2b78e5e58038ee Candidate rc5: apply contract v2 wording, disclosure, and QA 147-150

@@ -1,9 +1,9 @@
 {
-  "product_commit": "beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b",
-  "git_head": "beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b",
-  "git_diff_head_sha256": "15ba4c25f8fe367baf909e064fc07ee3ecf81987416ecd46f00ac0fa151d37d9",
+  "product_commit": "cea644cec0e94c9cb0e8cd4faeae029adb499965",
+  "git_head": "cea644cec0e94c9cb0e8cd4faeae029adb499965",
+  "git_diff_head_sha256": "eb4dbc196241c1933432282e56528233ac0e3e1562e52acdc126f59ea3297862",
   "chart_inset_viewbox_units": 20,
-  "screen_radius_cap": false,
+  "screen_radius_cap": true,
   "qa": {
     "129": {
       "pass": true,
@@ -167,7 +167,18 @@
                     "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
                     "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
                   ],
-                  "allTitles": true
+                  "allTitles": true,
+                  "renderedWidth": 296,
+                  "viewBoxWidth": 640,
+                  "radii": [
+                    "10.14",
+                    "10.14",
+                    "10.14",
+                    "10.14",
+                    "10.14",
+                    "10.14"
+                  ],
+                  "pad": "strokePx * (viewBoxWidth / renderedWidth)"
                 }
               },
               "sheet": {
@@ -204,7 +215,18 @@
                     "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
                     "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
                   ],
-                  "allTitles": true
+                  "allTitles": true,
+                  "renderedWidth": 296,
+                  "viewBoxWidth": 640,
+                  "radii": [
+                    "10.14",
+                    "10.14",
+                    "10.14",
+                    "10.14",
+                    "10.14",
+                    "10.14"
+                  ],
+                  "pad": "strokePx * (viewBoxWidth / renderedWidth)"
                 }
               },
               "calculator": {
@@ -277,7 +299,18 @@
                     "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
                     "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
                   ],
-                  "allTitles": true
+                  "allTitles": true,
+                  "renderedWidth": 351,
+                  "viewBoxWidth": 640,
+                  "radii": [
+                    "11.26",
+                    "11.26",
+                    "11.26",
+                    "11.26",
+                    "11.26",
+                    "11.26"
+                  ],
+                  "pad": "strokePx * (viewBoxWidth / renderedWidth)"
                 }
               },
               "sheet": {
@@ -314,7 +347,18 @@
                     "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
                     "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
                   ],
-                  "allTitles": true
+                  "allTitles": true,
+                  "renderedWidth": 351,
+                  "viewBoxWidth": 640,
+                  "radii": [
+                    "11.26",
+                    "11.26",
+                    "11.26",
+                    "11.26",
+                    "11.26",
+                    "11.26"
+                  ],
+                  "pad": "strokePx * (viewBoxWidth / renderedWidth)"
                 }
               },
               "calculator": {
@@ -373,7 +417,18 @@
                     "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
                     "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
                   ],
-                  "allTitles": true
+                  "allTitles": true,
+                  "renderedWidth": 616,
+                  "viewBoxWidth": 640,
+                  "radii": [
+                    "7.27",
+                    "7.27",
+                    "7.27",
+                    "7.27",
+                    "7.27",
+                    "7.27"
+                  ],
+                  "pad": "strokePx * (viewBoxWidth / renderedWidth)"
                 }
               },
               "sheet": {
@@ -410,7 +465,18 @@
                     "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
                     "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
                   ],
-                  "allTitles": true
+                  "allTitles": true,
+                  "renderedWidth": 616,
+                  "viewBoxWidth": 640,
+                  "radii": [
+                    "7.27",
+                    "7.27",
+                    "7.27",
+                    "7.27",
+                    "7.27",
+                    "7.27"
+                  ],
+                  "pad": "strokePx * (viewBoxWidth / renderedWidth)"
                 }
               }
             },
@@ -452,7 +518,18 @@
                     "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
                     "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
                   ],
-                  "allTitles": true
+                  "allTitles": true,
+                  "renderedWidth": 696,
+                  "viewBoxWidth": 640,
+                  "radii": [
+                    "6.44",
+                    "6.44",
+                    "6.44",
+                    "6.44",
+                    "6.44",
+                    "6.44"
+                  ],
+                  "pad": "strokePx * (viewBoxWidth / renderedWidth)"
                 }
               },
               "sheet": {
@@ -489,7 +566,18 @@
                     "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
                     "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
                   ],
-                  "allTitles": true
+                  "allTitles": true,
+                  "renderedWidth": 696,
+                  "viewBoxWidth": 640,
+                  "radii": [
+                    "6.44",
+                    "6.44",
+                    "6.44",
+                    "6.44",
+                    "6.44",
+                    "6.44"
+                  ],
+                  "pad": "strokePx * (viewBoxWidth / renderedWidth)"
                 }
               }
             },
@@ -531,7 +619,18 @@
                     "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
                     "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
                   ],
-                  "allTitles": true
+                  "allTitles": true,
+                  "renderedWidth": 744,
+                  "viewBoxWidth": 640,
+                  "radii": [
+                    "6.02",
+                    "6.02",
+                    "6.02",
+                    "6.02",
+                    "6.02",
+                    "6.02"
+                  ],
+                  "pad": "strokePx * (viewBoxWidth / renderedWidth)"
                 }
               },
               "sheet": {
@@ -568,7 +667,18 @@
                     "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
                     "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
                   ],
-                  "allTitles": true
+                  "allTitles": true,
+                  "renderedWidth": 744,
+                  "viewBoxWidth": 640,
+                  "radii": [
+                    "6.02",
+                    "6.02",
+                    "6.02",
+                    "6.02",
+                    "6.02",
+                    "6.02"
+                  ],
+                  "pad": "strokePx * (viewBoxWidth / renderedWidth)"
                 }
               }
             },
@@ -610,7 +720,18 @@
                     "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
                     "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
                   ],
-                  "allTitles": true
+                  "allTitles": true,
+                  "renderedWidth": 1152,
+                  "viewBoxWidth": 640,
+                  "radii": [
+                    "3.89",
+                    "3.89",
+                    "3.89",
+                    "3.89",
+                    "3.89",
+                    "3.89"
+                  ],
+                  "pad": "strokePx * (viewBoxWidth / renderedWidth)"
                 }
               },
               "sheet": {
@@ -647,14 +768,25 @@
                     "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
                     "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
                   ],
-                  "allTitles": true
+                  "allTitles": true,
+                  "renderedWidth": 1152,
+                  "viewBoxWidth": 640,
+                  "radii": [
+                    "3.89",
+                    "3.89",
+                    "3.89",
+                    "3.89",
+                    "3.89",
+                    "3.89"
+                  ],
+                  "pad": "strokePx * (viewBoxWidth / renderedWidth)"
                 }
               }
             },
             "typed": null
           }
         },
-        "svg_hit": "full stroke on labels 30, 40, 45; a touch is a hit"
+        "svg_hit": "pad = strokePx * (viewBoxWidth / renderedWidth); renderedWidth from getBoundingClientRect; viewBoxWidth 640; a touch is a hit"
       }
     },
     "136": {
@@ -1347,7 +1479,18 @@
               "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
               "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
             ],
-            "allTitles": true
+            "allTitles": true,
+            "renderedWidth": 616,
+            "viewBoxWidth": 640,
+            "radii": [
+              "7.27",
+              "7.27",
+              "7.27",
+              "7.27",
+              "7.27",
+              "7.27"
+            ],
+            "pad": "strokePx * (viewBoxWidth / renderedWidth)"
           }
         },
         "sheet": {
@@ -1390,7 +1533,18 @@
               "2026-09-16 10:00 \u00b7 humidex 42.1 \u00b7 Great discomfort",
               "2026-09-16 15:00 \u00b7 humidex 47.6 \u00b7 Dangerous"
             ],
-            "allTitles": true
+            "allTitles": true,
+            "renderedWidth": 616,
+            "viewBoxWidth": 640,
+            "radii": [
+              "7.27",
+              "7.27",
+              "7.27",
+              "7.27",
+              "7.27",
+              "7.27"
+            ],
+            "pad": "strokePx * (viewBoxWidth / renderedWidth)"
           }
         },
         "calculator": {
@@ -1628,11 +1782,11 @@
   "requests_sample": [],
   "pass": true,
   "git_at_end": {
-    "product_commit": "beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b",
-    "git_head": "beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b",
-    "git_diff_head_sha256": "15ba4c25f8fe367baf909e064fc07ee3ecf81987416ecd46f00ac0fa151d37d9",
+    "product_commit": "cea644cec0e94c9cb0e8cd4faeae029adb499965",
+    "git_head": "cea644cec0e94c9cb0e8cd4faeae029adb499965",
+    "git_diff_head_sha256": "814132cec8d74e4dbcc3e145e4d4fa1cf052373616e4b4e3260d351002aedfb2",
     "chart_inset_viewbox_units": 20,
-    "screen_radius_cap": false
+    "screen_radius_cap": true
   },
   "request_hosts": [
     "127.0.0.1"

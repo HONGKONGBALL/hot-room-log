@@ -1,4 +1,4 @@
-product_commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+product_commit: cea644cec0e94c9cb0e8cd4faeae029adb499965
 file: hot-room-log-demo-v4.mp4
 sha256: d42d05ef21227ccacbebce2ce36f693b3fe2810841399ae63bc3c71eaf3d2c9b
 ffprobe duration: 152.067000

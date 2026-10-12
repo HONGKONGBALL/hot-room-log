@@ -46,7 +46,7 @@ def git_identity():
         "git_head": head,
         "git_diff_head_sha256": diff.split()[0],
         "chart_inset_viewbox_units": 20,
-        "screen_radius_cap": False,
+        "screen_radius_cap": True,
     }
 
 

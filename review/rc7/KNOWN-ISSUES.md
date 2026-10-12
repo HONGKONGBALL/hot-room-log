@@ -26,6 +26,10 @@ QA 137 is the request log from the browser run. The checks used 127.0.0.1. The n
 
 Some frames in `review/rc7/hot-room-log-demo-v4.mp4` can still show the prior build's chart point positions. The checked frames keep labels 30, 40, and 45 readable. The file was not re-encoded.
 
+## Chart labels at narrow widths
+
+Product commit `cea644cec0e94c9cb0e8cd4faeae029adb499965` keeps the 20 viewBox-unit inset. That inset alone did not clear 320 or 375: the first point's white stroke still met the "0" of "40". The screen radius cap now runs when the corrected stroke test would hit. The pad is the full stroke in viewBox units plus five CSS pixels, because the stroke-only pad still left about 1 CSS px of ink. The loop stops at the first clear step. It leaves r 10.14 at a 320 px viewport and r 3.89 at a 1280 px viewport. Labels stay at x=50. The label font is not shrunk by this cap.
+
 ## Not reopened
 
 The five contract-v2 decisions stay closed. They are recorded in English in `DECISIONS-NEEDED.txt`. They were not reopened.

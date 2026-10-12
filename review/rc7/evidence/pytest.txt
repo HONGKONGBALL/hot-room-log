@@ -1,7 +1,7 @@
-product_commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
-git_head_at_run: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+product_commit: cea644cec0e94c9cb0e8cd4faeae029adb499965
+git_head_at_run: cea644cec0e94c9cb0e8cd4faeae029adb499965
 $ .venv/bin/pytest -q
 ........................................................................ [ 63%]
 ..........................................                               [100%]
-114 passed in 1.17s
+114 passed in 1.19s
 pytest_exit:0

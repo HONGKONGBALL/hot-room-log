@@ -3,8 +3,8 @@ Date: 2026-10-12
 Branch: rc3-work
 Parent tag: rc6 16fc9352494d8643e1d36e6fdd996bb0adfd7c70
 Product parent of that tag: a4e1542232d65dbdadf8195d4a6a55d856b87459
-Product commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
-Evidence commit: 2fcd27bc57fe7ab9f759d5376be231b8107d48e8
+Product commit: cea644cec0e94c9cb0e8cd4faeae029adb499965
+Evidence commit: (recorded by the following hash-record commit)
 Tag rc7 points at the hash-record commit. Its parent is the evidence commit.
 This file does not embed the hash-record commit's own hash.
 Nothing was pushed. Nothing was deployed. Nothing was submitted to Devpost.
@@ -44,10 +44,12 @@ Chart geometry shipped in the product commit:
   count == 1 stays centered: PLOT_LEFT + plot_w / 2.
   count >= 2: x = (PLOT_LEFT + 20) + (plot_w - 40) * index / (count - 1).
   PLOT_LEFT stays 56. PLOT_RIGHT stays 624. Strips stay full plot width. The viewBox is unchanged.
-  Label x stays 50 and text-anchor stays end. JavaScript does not move labels.
-  The screen radius formula (7 * 640) / layoutWidth is unchanged. No screen radius cap was needed.
-  The 20-unit inset cleared the SVG full-stroke hit test at every required width, at 200% zoom, and on the print path.
-  Measured screen first cx is 76.00. At a 1280 px viewport the chart is 1152 px wide and the live radius is 3.89.
+  Label x stays 50 and text-anchor stays end. JavaScript does not move labels and does not shrink the label font.
+  The screen radius formula is still (7 * 640) / layoutWidth. After that formula, the screen path caps point radius and stroke when ink would meet labels 30, 40, or 45.
+  The screen pad is the full stroke in viewBox units, strokePx * (640 / renderedWidth), plus five CSS pixels. The stroke-only pad still left the white ring about 1 CSS px from the "0" of "40" at 320. A touch counts. The loop stops at the first clear step.
+  The 20-unit inset alone did not clear 320 or 375. The cap is what clears those widths.
+  Measured after the cap: at a 320 px viewport the chart is 296 px wide and r is 10.14. At a 1280 px viewport the chart is 1152 px wide and r stays 3.89, the formula value. Six points stay separate.
+  First cx stays 76.00. Last cx stays 604.00.
 
 Demo chart note:
   review/rc7/hot-room-log-demo-v4.mp4 is a byte copy of the rc6 file.
@@ -59,12 +61,13 @@ A1. On-screen labels. Self-check pass.
   Evidence: review/rc7/evidence/qa-129-138.json
   pass true, failures empty.
   Widths 320, 375, 640, 720, 768, and 1280, on /rooms/1 and /rooms/1/sheet.
-  Each axis label 30, 40, and 45 has a getBBox that misses every point box expanded by the full stroke and misses the trend polyline expanded by the full stroke. A touch counts as a hit. Hit lists are empty.
-  The same test passed for the 200% zoom room and sheet. Dashboard and calculator have no chart overlap.
+  The SVG test pads each point and the trend by the full stroke in viewBox units: strokePx * (viewBoxWidth / renderedWidth). renderedWidth is getBoundingClientRect().width. viewBoxWidth is 640. A touch counts as a hit. Hit lists are empty at 320, 375, 640, 720, 768, and 1280, on /rooms/1 and /rooms/1/sheet, and on the 200% zoom room and sheet.
+  320 and 375 shots are full pages, so the whole chart is in the file. Magnified nearest-neighbor crops of the "40" label and the first point: review/rc7/evidence/qa-shots/135-room-320-40.png, 135-room-375-40.png, 135-sheet-320-40.png, and 135-sheet-375-40.png. Each crop shows a gap between the "0" and the white stroke.
+  Dashboard and calculator have no chart overlap.
   Screenshots: review/rc7/evidence/qa-shots/
 
 A2. Geometry. Self-check pass.
-  Inset 20, as above. No radius cap.
+  Inset 20, as above. The screen radius cap runs when the corrected test would still hit. It leaves r 10.14 at 320 and r 3.89 at 1280.
   screen_after in review/rc7/evidence/print/a1-a2-occlusion.json: first cx 76.00, live r 3.89, formula (7 * 640) / 1152 = 3.89.
   QA 55 still passes: six points, strictly increasing cx, the six humidex values, four strips, one trend polyline, role="img", and a chart title. Point titles are still present.
 
@@ -81,10 +84,10 @@ A3. Print does not regress. Self-check pass.
 
 A4. Pytest. Self-check pass.
   Command: .venv/bin/pytest -q
-  Exit 0. 114 passed in 1.17s.
+  Exit 0. 114 passed in 1.19s.
   Log: review/rc7/evidence/pytest.txt
-  The log names product commit beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b.
-  Pytest log mtime is after that commit (2026-10-11 18:25:55 -0700).
+  The log names product commit cea644cec0e94c9cb0e8cd4faeae029adb499965.
+  Pytest log mtime is after that commit (2026-10-11 20:19:17 -0700).
 
 A5. QA 124–127. Self-check pass.
   review/rc7/evidence/qa-124-127.sh
@@ -139,11 +142,11 @@ A10. Public-branch dry-run. Self-check pass.
     6. Fresh clone of the filtered history: README quick start (venv, pip install -r requirements.txt, python app.py) answers HTTP 200 on 127.0.0.1:5050, then stop it. pip install -r requirements-dev.txt, then .venv/bin/pytest -q exits 0.
   Saved evidence: review/rc7/evidence/public-branch/
     commands.txt
-    git-log-oneline.txt (seven commits, rc1 through the rc7 chart work)
+    git-log-oneline.txt (eight commits, rc1 through this chart-radius fix)
     grep-result.txt (the git log --all -p grep command; stdout was empty)
     byte-compare.txt (48 files, 0 mismatches)
     pytest.txt (HTTP 200, then 114 passed, exit 0)
-  rc3-work rev-parse before and after the dry-run was beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b.
+  rc3-work rev-parse before and after the dry-run was cea644cec0e94c9cb0e8cd4faeae029adb499965.
 
 A11. Contract and scope held. Self-check pass.
   Contract v2 hashes above match A11 and BUILD-RC6.txt.
@@ -152,14 +155,14 @@ A11. Contract and scope held. Self-check pass.
 
 A12. Candidate package.
   Branch rc3-work.
-  The product commit contains the chart inset and the English decisions file. It does not contain its own hash.
+  The product commit contains the chart inset, the screen radius cap, and the English decisions file. It does not contain its own hash.
   The evidence commit contains review/rc7/, this file, and ACCEPTANCE.md. It does not change product files. Evidence result files already contain the product commit hash.
   The hash-record commit updates this file, review/rc7/SOURCE.txt, and review/rc7/ACCEPTANCE-TABLE.md so they name the evidence commit as the parent of the tag. It does not change product files and does not change evidence result files.
   Tag rc7 is local only and points at the hash-record commit.
   Nothing was pushed. Nothing was submitted.
 
 A13. Evidence timing. Self-check pass.
-  Pytest, QA 124–127, QA 129–138, and the print JSON name the product commit beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b.
+  Pytest, QA 124–127, QA 129–138, and the print JSON name the product commit cea644cec0e94c9cb0e8cd4faeae029adb499965.
   Their mtimes are after that commit. No later commit rewrites those result lines.
 
 A14. Known issues and status. Self-check pass.

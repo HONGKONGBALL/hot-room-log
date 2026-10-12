@@ -3,8 +3,10 @@
 QA 137 records network requests. It does not unplug a cable.
 QA 136 records keyboard focus names and the computed focus outline.
 Labels 30, 40, and 45 are tested with SVG getBBox against each point
-expanded by its full stroke and against the trend polyline expanded by
-its full stroke. A touch counts as a hit and fails QA 135 and QA 138.
+and the trend. The pad is the full stroke in viewBox user units:
+strokePx * (viewBoxWidth / renderedWidth). renderedWidth comes from
+getBoundingClientRect. viewBoxWidth is 640. A touch counts as a hit
+and fails QA 135 and QA 138. Empty hits with a visible touch is a failed run.
 """
 
 import base64
@@ -37,8 +39,57 @@ def git_identity():
         "git_head": head,
         "git_diff_head_sha256": diff.split()[0],
         "chart_inset_viewbox_units": 20,
-        "screen_radius_cap": False,
+        "screen_radius_cap": True,
     }
+
+
+def save_label_crop(page, dest: Path):
+    """Nearest-neighbor crop of the 40 label and the first point."""
+    svg = page.locator("svg.chart")
+    svg.scroll_into_view_if_needed()
+    src = dest.with_suffix(".src.png")
+    svg.screenshot(path=str(src))
+    rel = page.evaluate(
+        """() => {
+          const svg = document.querySelector('svg.chart');
+          const sr = svg.getBoundingClientRect();
+          const label = Array.from(svg.querySelectorAll('text.axis-label')).find(node => node.textContent === '40');
+          const circle = svg.querySelector('circle.point');
+          const lr = label.getBoundingClientRect();
+          const cr = circle.getBoundingClientRect();
+          return {
+            left: Math.min(lr.left, cr.left) - sr.left - 8,
+            top: Math.min(lr.top, cr.top) - sr.top - 8,
+            right: Math.max(lr.right, cr.right) - sr.left + 14,
+            bottom: Math.max(lr.bottom, cr.bottom) - sr.top + 8
+          };
+        }"""
+    )
+    script = (
+        "import sys\n"
+        "from PIL import Image\n"
+        "src, dest, l, t, r, b = sys.argv[1:]\n"
+        "im = Image.open(src).convert('RGB')\n"
+        "box = (max(0, int(float(l))), max(0, int(float(t))), "
+        "min(im.width, int(float(r))), min(im.height, int(float(b))))\n"
+        "crop = im.crop(box)\n"
+        "mag = crop.resize((crop.width * 8, crop.height * 8), Image.Resampling.NEAREST)\n"
+        "mag.save(dest)\n"
+    )
+    subprocess.check_call(
+        [
+            "/usr/bin/python3",
+            "-c",
+            script,
+            str(src),
+            str(dest),
+            str(rel["left"]),
+            str(rel["top"]),
+            str(rel["right"]),
+            str(rel["bottom"]),
+        ]
+    )
+    src.unlink()
 
 
 def hosts_of(urls):
@@ -102,6 +153,9 @@ SVG_HIT_JS = r"""
 () => {
   const svg = document.querySelector('svg.chart');
   if (!svg) return {present: false, hits: [], labels: []};
+  const renderedWidth = svg.getBoundingClientRect().width;
+  const viewBoxWidth = (svg.viewBox && svg.viewBox.baseVal && svg.viewBox.baseVal.width) || 640;
+  const perPx = renderedWidth ? viewBoxWidth / renderedWidth : 1;
   function boxOf(node, pad) {
     const b = node.getBBox();
     return {
@@ -124,19 +178,22 @@ SVG_HIT_JS = r"""
     circles.forEach(circle => {
       let stroke = parseFloat(circle.style.strokeWidth);
       if (!stroke) stroke = 2;
-      if (boxesHit(label, boxOf(circle, stroke))) {
+      const pad = stroke * perPx;
+      if (boxesHit(label, boxOf(circle, pad))) {
         hits.push({
           label: labelNode.textContent,
           kind: 'point-full-stroke',
           cx: circle.getAttribute('cx'),
           r: circle.getAttribute('r'),
-          stroke: stroke
+          stroke: stroke,
+          pad: pad
         });
       }
     });
     if (!trend) return;
     let trendStroke = parseFloat(trend.style.strokeWidth);
     if (!trendStroke) trendStroke = 2.5;
+    trendStroke = trendStroke * perPx;
     const parts = trend.getAttribute('points').trim().split(/\s+/);
     const coords = [];
     parts.forEach(part => {
@@ -171,7 +228,11 @@ SVG_HIT_JS = r"""
     hits: hits,
     pointCount: circles.length,
     titles: titles,
-    allTitles: titles.length > 0 && titles.every(text => text.indexOf('humidex') !== -1)
+    allTitles: titles.length > 0 && titles.every(text => text.indexOf('humidex') !== -1),
+    renderedWidth: renderedWidth,
+    viewBoxWidth: viewBoxWidth,
+    radii: circles.map(node => node.getAttribute('r')),
+    pad: 'strokePx * (viewBoxWidth / renderedWidth)'
   };
 }
 """
@@ -544,7 +605,15 @@ def main():
                 page.goto(BASE + path, wait_until="networkidle")
                 layout = page.evaluate(LAYOUT_JS)
                 hit = page.evaluate(SVG_HIT_JS)
-                page.screenshot(path=str(SHOTS / f"135-{name}-{width}.png"), full_page=False)
+                whole_chart = name in ("room", "sheet") and width in (320, 375)
+                if whole_chart:
+                    page.locator("svg.chart").scroll_into_view_if_needed()
+                page.screenshot(
+                    path=str(SHOTS / f"135-{name}-{width}.png"),
+                    full_page=whole_chart,
+                )
+                if whole_chart:
+                    save_label_crop(page, SHOTS / f"135-{name}-{width}-40.png")
                 per_page[name] = {"layout": layout, "svg_hits": hit}
             typed = None
             if width in (320, 375):
@@ -577,7 +646,17 @@ def main():
                         ok135 = False
                 elif hit.get("hits") or hit.get("present"):
                     ok135 = False
-        record(135, ok135, {"widths": narrow, "svg_hit": "full stroke on labels 30, 40, 45; a touch is a hit"})
+        record(
+            135,
+            ok135,
+            {
+                "widths": narrow,
+                "svg_hit": (
+                    "pad = strokePx * (viewBoxWidth / renderedWidth); "
+                    "renderedWidth from getBoundingClientRect; viewBoxWidth 640; a touch is a hit"
+                ),
+            },
+        )
 
         # 136 keyboard, back at 1280
         page.set_viewport_size({"width": 1280, "height": 900})

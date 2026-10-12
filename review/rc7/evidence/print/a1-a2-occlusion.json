@@ -1,9 +1,9 @@
 {
-  "product_commit": "beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b",
-  "git_head": "beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b",
-  "git_diff_head_sha256": "15ba4c25f8fe367baf909e064fc07ee3ecf81987416ecd46f00ac0fa151d37d9",
+  "product_commit": "cea644cec0e94c9cb0e8cd4faeae029adb499965",
+  "git_head": "cea644cec0e94c9cb0e8cd4faeae029adb499965",
+  "git_diff_head_sha256": "8a50a85c5e03979900125f6598c25775888a4ed54fdd12739125e6a4a5bfe9e9",
   "chart_inset_viewbox_units": 20,
-  "screen_radius_cap": false,
+  "screen_radius_cap": true,
   "base": "http://127.0.0.1:5050",
   "note": "Page.printToPDF is the print-preview and Save-as-PDF pipeline. Headless Chrome does not open a print dialog for Ctrl+P and does not fire beforeprint for that key event. The Print button calls window.print(), which does fire beforeprint; the PDF for that path is then captured with Page.printToPDF. Occlusion is measured in that beforeprint listener, after the app print fit, with SVG getBBox in user units. Each axis-label box is tested against every point box expanded by the full stroke width and by half the stroke width, and against each trend segment expanded the same two ways. A shared edge counts as an intersection. matchMedia('print') is still false inside beforeprint, so the fit uses the print chart width rather than the on-screen width. The letter textarea is edited to Dear Room manager before each JavaScript PDF.",
   "viewports": {
@@ -10953,10 +10953,10 @@
   "failures": [],
   "pass": true,
   "git_at_end": {
-    "product_commit": "beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b",
-    "git_head": "beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b",
-    "git_diff_head_sha256": "15ba4c25f8fe367baf909e064fc07ee3ecf81987416ecd46f00ac0fa151d37d9",
+    "product_commit": "cea644cec0e94c9cb0e8cd4faeae029adb499965",
+    "git_head": "cea644cec0e94c9cb0e8cd4faeae029adb499965",
+    "git_diff_head_sha256": "e38867c9b814d61232019bc74db02636b2e677f6051c90a0a526dead680e9664",
     "chart_inset_viewbox_units": 20,
-    "screen_radius_cap": false
+    "screen_radius_cap": true
   }
 }

@@ -1,9 +1,9 @@
-product_commit: beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+product_commit: cea644cec0e94c9cb0e8cd4faeae029adb499965
 tool: git-filter-repo 2.47.0, run from a temporary install. It was not added to the project.
 rc3-work was not rewritten. filter-repo was not run in /workspace/hot-room-log-rc3.
 
 Recorded rev-parse of rc3-work before the dry-run:
-beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+cea644cec0e94c9cb0e8cd4faeae029adb499965
 
 Commands, in order, with the temporary directories used for this run:
 
@@ -37,7 +37,7 @@ That removes the hash-record-only commits. It does not squash the product commit
 After both filters, git ls-tree -r HEAD --name-only had no review/, BUILD*, ACCEPTANCE*, FIX-TASK*, or DECISIONS* path.
 
 Recorded rev-parse of rc3-work after the dry-run:
-beffa3a0ed2d9668d0c6a926dd7b2d253534fe0b
+cea644cec0e94c9cb0e8cd4faeae029adb499965
 The two hashes match.
 
 Fresh clone of the filtered repository:
