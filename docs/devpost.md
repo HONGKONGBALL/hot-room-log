@@ -2,7 +2,7 @@
 
 Paste this only after the STEMergent Hacks 2026 submission form is open. The manage page read on 2026-10-08 said submissions run from Oct 30, 11:00 pm CDT (Oct 31, 12:00 noon Hong Kong time) through Nov 15, 2026. Re-check the live page on the day. Do not submit before it opens.
 
-Leave **Challenges** and **What I learned** blank here. Those two answers should be written by Zhenhua after the build, from real experience.
+Leave **Challenges** and **What I learned** blank here. Those two answers should be written by Psyche after the build, from real experience.
 
 ## Fields
 
@@ -11,7 +11,7 @@ Leave **Challenges** and **What I learned** blank here. Those two answers should
 | Project title | Hot Room Log |
 | Tagline, if the form asks | Turn "it's too hot to study" into evidence: log a room's temperature and humidity, see how hot it really feels, and print an evidence sheet asking for a fix. |
 | Pathway | Hackathon |
-| Team | Solo: Zhenhua Liu (Devpost: Zhenhua; GitHub: HONGKONGBALL). No teammates. |
+| Team | Solo: Psyche (Devpost: Zhenhua; GitHub: HONGKONGBALL). No teammates. |
 | Code link | `https://github.com/HONGKONGBALL/hot-room-log` — create the public repo before submitting, and confirm the README quick start works on a fresh clone. |
 | Prototype link | Leave blank unless a read-only demo (`HOTROOM_READONLY=1`) is deployed and has been opened in a private browser window. Do not post a dead link. |
 | Built with | python, flask, sqlite, jinja, html, css, javascript, svg, pytest |
@@ -26,9 +26,9 @@ Leave **Challenges** and **What I learned** blank here. Those two answers should
 
 **What's next (ideas, not built).** A Traditional Chinese interface. Optional automatic readings through the existing JSON API. Comparing rooms side by side.
 
-**Honesty notes.** The rooms and readings in the demo and screenshots are fictional sample data. Hot Room Log is not deployed at, endorsed by or used by any school, estate or organisation. Humidex bands are a comfort guide, not medical advice. This is a solo project by Zhenhua Liu, built new for STEMergent Hacks 2026.
+**Honesty notes.** The rooms and readings in the demo and screenshots are fictional sample data. Hot Room Log is not deployed at, endorsed by or used by any school, estate or organisation. Humidex bands are a comfort guide, not medical advice. This is a solo project by Psyche, built new for STEMergent Hacks 2026.
 
-**AI tools and third-party resources.** AI tools and the demo: Grok (xAI) wrote the application code and tests, the docs, the screenshots, the demo recording scripts, and the demo's narration text and captions. Claude (Anthropic) drafted the planning documents (the idea, the requirements, and the QA plan). The demo video's voice-over is an AI-generated voice from Alibaba Cloud Model Studio (DashScope/Bailian) text-to-speech: model qwen3-tts-flash, voice Cherry. It was used only to make the video. The running app does not call DashScope or any other external service, and needs no API key. Playwright, Google Chrome, ffmpeg, and the DejaVu Sans font were used to produce the demo. Zhenhua reviews this list before submission. Running app, third-party: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. Formulas: the Canadian humidex (Masterton & Richardson, 1979, Environment Canada) and a Magnus-type vapour-pressure approximation. The running app has no third-party images, fonts, or icons: the pages use the system font stack, with no font files, no icon font, and no chart library. That limit is about the running app only. It does not describe the demo video pipeline.
+**AI tools and third-party resources.** AI tools and the demo: Grok (xAI) wrote the application code and tests, the docs, the screenshots, the demo recording scripts, and the demo's narration text and captions. Claude (Anthropic) drafted the planning documents (the idea, the requirements, and the QA plan). The demo video's voice-over is an AI-generated voice from Alibaba Cloud Model Studio (DashScope/Bailian) text-to-speech: model qwen3-tts-flash, voice Cherry. It was used only to make the video. The running app does not call DashScope or any other external service, and needs no API key. Playwright, Google Chrome, ffmpeg, and the DejaVu Sans font were used to produce the demo. Psyche reviews this list before submission. Running app, third-party: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. Formulas: the Canadian humidex (Masterton & Richardson, 1979, Environment Canada) and a Magnus-type vapour-pressure approximation. The running app has no third-party images, fonts, or icons: the pages use the system font stack, with no font files, no icon font, and no chart library. That limit is about the running app only. It does not describe the demo video pipeline.
 
 ## Screenshots and video
 

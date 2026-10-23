@@ -87,16 +87,16 @@ The humidex definition `T + 0.5555 × (e − 10)` is the Canadian humidex (Maste
 
 - Running app, third-party resources: Flask and its dependencies (Werkzeug, Jinja2, MarkupSafe, ItsDangerous, Click, Blinker) and pytest. The pages use the system font stack. The running app has no third-party images, fonts, or icons: no font files, no icon font, and no chart library. That sentence is about the running app only. It does not describe the demo video pipeline.
 - Formula sources: the Canadian humidex (Masterton & Richardson, 1979, Environment Canada) and the Magnus-type approximation above.
-- AI tools and the demo: Grok (xAI) wrote the application code and tests, the docs, the screenshots, the demo recording scripts, and the demo's narration text and captions. Claude (Anthropic) drafted the planning documents (the idea, the requirements, and the QA plan). The demo video's voice-over is an AI-generated voice from Alibaba Cloud Model Studio (DashScope/Bailian) text-to-speech: model qwen3-tts-flash, voice Cherry. It was used only to make the video. The running app does not call DashScope or any other external service, and needs no API key. Playwright, Google Chrome, ffmpeg, and the DejaVu Sans font were used to produce the demo. Zhenhua reviews this list before submission.
+- AI tools and the demo: Grok (xAI) wrote the application code and tests, the docs, the screenshots, the demo recording scripts, and the demo's narration text and captions. Claude (Anthropic) drafted the planning documents (the idea, the requirements, and the QA plan). The demo video's voice-over is an AI-generated voice from Alibaba Cloud Model Studio (DashScope/Bailian) text-to-speech: model qwen3-tts-flash, voice Cherry. It was used only to make the video. The running app does not call DashScope or any other external service, and needs no API key. Playwright, Google Chrome, ffmpeg, and the DejaVu Sans font were used to produce the demo. Psyche reviews this list before submission.
 
 ## Honesty
 
-The sample rooms and readings are fictional. They are not measurements of any real room. Hot Room Log is not deployed at, endorsed by, or used by any school, estate, or organisation. This is a solo project by Zhenhua Liu for STEMergent Hacks 2026, Hackathon pathway. Export a CSV if you want a copy of your own readings before using Reset demo data.
+The sample rooms and readings are fictional. They are not measurements of any real room. Hot Room Log is not deployed at, endorsed by, or used by any school, estate, or organisation. This is a solo project by Psyche for STEMergent Hacks 2026, Hackathon pathway. Export a CSV if you want a copy of your own readings before using Reset demo data.
 
 ## Submission draft
 
-Paste-ready Devpost text, with the AI disclosure filled in for the tools used on this build, is in [docs/devpost.md](docs/devpost.md). Do not submit before the Devpost form is open. "Challenges" and "What I learned" are left for Zhenhua to write from the build.
+Paste-ready Devpost text, with the AI disclosure filled in for the tools used on this build, is in [docs/devpost.md](docs/devpost.md). Do not submit before the Devpost form is open. "Challenges" and "What I learned" are left for Psyche to write from the build.
 
 ## Licence
 
-MIT. Copyright (c) 2026 Zhenhua Liu. See [LICENSE](LICENSE).
+MIT. Copyright (c) 2026 Psyche. See [LICENSE](LICENSE).
